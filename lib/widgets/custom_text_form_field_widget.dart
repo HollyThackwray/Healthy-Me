@@ -36,35 +36,35 @@ class CustomTextField extends StatelessWidget {
         labelStyle: TextStyle(
           fontSize: 25,
           fontWeight: FontWeight.w300,
-          color: MediaQuery.of(context).platformBrightness == Brightness.light ? Colors.black : Colors.white,
+          color: Theme.of(context).dividerColor,
         ),
         border: UnderlineInputBorder(
           borderSide: BorderSide(
-            color: MediaQuery.of(context).platformBrightness == Brightness.light ? Colors.black : Colors.white,
+            color: Theme.of(context).dividerColor,
           ),
         ),
         enabledBorder: UnderlineInputBorder(
           borderSide: BorderSide(
-            color: MediaQuery.of(context).platformBrightness == Brightness.light ? Colors.black : Colors.white,
+            color: Theme.of(context).dividerColor,
           ),
         ),
         focusedBorder: UnderlineInputBorder(
           borderSide: BorderSide(
-            color: MediaQuery.of(context).platformBrightness == Brightness.light ? Colors.black : Colors.white,
+            color: Theme.of(context).dividerColor,
           ),
         ),
         disabledBorder: UnderlineInputBorder(
           borderSide: BorderSide(
-            color: MediaQuery.of(context).platformBrightness == Brightness.light ? Colors.black : Colors.white,
+            color: Theme.of(context).dividerColor,
           ),
         ),
         focusedErrorBorder: UnderlineInputBorder(
           borderSide: BorderSide(
-            color: MediaQuery.of(context).platformBrightness == Brightness.light ? Colors.black : Colors.white,
+            color: Theme.of(context).dividerColor,
           ),
         ),
       ),
-      cursorColor: MediaQuery.of(context).platformBrightness == Brightness.light ? Colors.black : Colors.white,
+      cursorColor: Theme.of(context).dividerColor,
     );
   }
 }

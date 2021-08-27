@@ -6,7 +6,8 @@ class MyThemes {
     primaryColor: Colors.black,
     fontFamily: 'Avenir',
     colorScheme: ColorScheme.dark(),
-    // iconTheme: IconThemeData(color: Colors.purple.shade200, opacity: 0.8),
+    dividerColor: Colors.white,
+    iconTheme: IconThemeData(color: Colors.black),
   );
 
   static final lightTheme = ThemeData(
@@ -14,6 +15,7 @@ class MyThemes {
     primaryColor: Colors.white,
     fontFamily: 'Avenir',
     colorScheme: ColorScheme.light(),
-    // iconTheme: IconThemeData(color: Colors.red, opacity: 0.8),
+    iconTheme: IconThemeData(color: Colors.white),
+    dividerColor: Colors.black,
   );
 }

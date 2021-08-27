@@ -13,4 +13,7 @@ class Images {
   static const String spoons = 'assets/images/spoons.png';
   static const String up_arrow = 'assets/images/up_arrow.png';
   static const String up_mark = 'assets/images/up_mark.png';
+  static const String qr_code = 'assets/images/qr_code.png';
+  static const String healthy_me_logo = 'assets/images/healthy_me_logo.png';
+  static const String me = 'assets/images/Me.png';
 }

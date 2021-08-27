@@ -12,9 +12,26 @@ class AppConstants {
     fontWeight: FontWeight.w300,
     color: AppColors.darkerBlueBorder,
   );
-  
+
   static TextStyle buttonTextStyle = TextStyle(
     fontSize: 25,
     fontWeight: FontWeight.w300,
   );
+
+  static
+   TextStyle nameTextStyle = TextStyle(
+    fontSize: 34,
+    fontWeight: FontWeight.w300,
+  );
+
+  static TextStyle bulkinDaysTextStyle = TextStyle(
+    fontSize: 17,
+    fontWeight: FontWeight.w300,
+  );
+  
+  static TextStyle toneTextStyle = TextStyle(
+    fontSize: 70,
+    fontWeight: FontWeight.w300,
+  );
+  
 }

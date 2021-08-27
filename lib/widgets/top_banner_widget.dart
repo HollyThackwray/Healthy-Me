@@ -35,7 +35,7 @@ class TopBannerWidget extends StatelessWidget {
               child: SizedBox(
                 height: 15,
                 child: Container(
-                  color: MediaQuery.of(context).platformBrightness == Brightness.light ? Colors.white : Colors.black,
+                  color: Theme.of(context).primaryColor,
                 ),
               ),
             ),
@@ -46,7 +46,7 @@ class TopBannerWidget extends StatelessWidget {
               child: SizedBox(
                 height: 15,
                 child: Container(
-                  color: MediaQuery.of(context).platformBrightness == Brightness.light ? Colors.white : Colors.black,
+                  color: Theme.of(context).primaryColor,
                 ),
               ),
             ),

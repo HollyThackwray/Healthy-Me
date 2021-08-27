@@ -17,7 +17,8 @@ class TopTitleWidget extends StatelessWidget {
         child: Text(
           title,
           style: AppConstants.topBarTextStyle.copyWith(
-              color: MediaQuery.of(context).platformBrightness == Brightness.light ? Colors.white : Colors.black),
+            color: Theme.of(context).primaryColor,
+          ),
         ),
       ),
     );

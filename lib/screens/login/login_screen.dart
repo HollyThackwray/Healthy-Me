@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:hollythackwray/res/app_colors.dart';
 import 'package:hollythackwray/res/app_constants.dart';
 import 'package:hollythackwray/res/validators.dart';
+import 'package:hollythackwray/screens/healthyMe/healthy_me_screen.dart';
+import 'package:hollythackwray/screens/signup/signup_screen.dart';
+import 'package:hollythackwray/widgets/button_widget.dart';
 import 'package:hollythackwray/widgets/custom_text_form_field_widget.dart';
 import 'package:hollythackwray/widgets/top_banner_widget.dart';
 
@@ -39,7 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               TopBannerWidget(
                 size: size,
-                title: 'REGISTER',
+                title: 'SIGN-IN',
               ),
               SizedBox(
                 height: size.height * 0.12,
@@ -70,67 +74,23 @@ class _LoginScreenState extends State<LoginScreen> {
               ButtonWidget(
                 size: size,
                 isTransparent: false,
-                onTap: () {},
+                onTap: () {
+                  Get.offAll(() => HealtthyMeScreen());
+                },
                 title: 'Sign-In',
               ),
               ButtonWidget(
                 size: size,
                 isTransparent: true,
-                onTap: () {},
+                onTap: () {
+                  Get.to(() => SignUpScreen());
+                },
                 title: 'Register',
               ),
               SizedBox(
                 height: 20,
               )
             ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class ButtonWidget extends StatelessWidget {
-  const ButtonWidget({
-    Key? key,
-    required this.size,
-    required this.onTap,
-    required this.title,
-    required this.isTransparent,
-  }) : super(key: key);
-
-  final Size size;
-  final void Function() onTap;
-  final String title;
-  final bool isTransparent;
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        width: size.width * 0.35,
-        margin: EdgeInsets.only(bottom: 20),
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: AppColors.darkerBlueBorder,
-          ),
-          borderRadius: BorderRadius.circular(25),
-          color: isTransparent ? Colors.transparent : AppColors.lightBlue,
-        ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10),
-          child: Center(
-            child: Text(
-              title,
-              style: isTransparent
-                  ? TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.w300,
-                      color:
-                          MediaQuery.of(context).platformBrightness == Brightness.light ? Colors.black : Colors.white,
-                    )
-                  : AppConstants.buttonTextStyle,
-            ),
           ),
         ),
       ),
