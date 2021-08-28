@@ -18,8 +18,7 @@ class AppConstants {
     fontWeight: FontWeight.w300,
   );
 
-  static
-   TextStyle nameTextStyle = TextStyle(
+  static TextStyle nameTextStyle = TextStyle(
     fontSize: 34,
     fontWeight: FontWeight.w300,
   );
@@ -28,10 +27,18 @@ class AppConstants {
     fontSize: 17,
     fontWeight: FontWeight.w300,
   );
-  
+
   static TextStyle toneTextStyle = TextStyle(
     fontSize: 70,
     fontWeight: FontWeight.w300,
   );
-  
+  static TextStyle labelStyle = TextStyle(
+    fontSize: 25,
+    fontWeight: FontWeight.w300,
+  );
+
+  static TextStyle switchProfAccStyle = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.w300,
+  );
 }

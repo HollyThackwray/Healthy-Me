@@ -16,4 +16,5 @@ class Images {
   static const String qr_code = 'assets/images/qr_code.png';
   static const String healthy_me_logo = 'assets/images/healthy_me_logo.png';
   static const String me = 'assets/images/Me.png';
+  static const String settings_large = 'assets/images/settings_large.png';
 }
