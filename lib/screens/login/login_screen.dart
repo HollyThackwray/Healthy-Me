@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'package:hollythackwray/res/app_colors.dart';
-import 'package:hollythackwray/res/app_constants.dart';
 import 'package:hollythackwray/res/validators.dart';
 import 'package:hollythackwray/screens/healthyMe/healthy_me_screen.dart';
 import 'package:hollythackwray/screens/signup/signup_screen.dart';
@@ -51,6 +49,7 @@ class _LoginScreenState extends State<LoginScreen> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
                 child: CustomTextField(
+                  hint: '',
                   controller: _emailController,
                   label: 'E-mail',
                   obs: false,
@@ -63,6 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: CustomTextField(
                   controller: _passwordController,
                   label: 'Password',
+                  hint: '',
                   obs: true,
                   showForgetPass: true,
                   validator: Validators.passwordValidator,

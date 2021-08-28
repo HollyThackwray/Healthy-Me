@@ -41,88 +41,97 @@ class _SignUpScreenState extends State<SignUpScreen> {
         elevation: 0,
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            TopBannerWidget(
-              size: size,
-              title: 'REGISTER',
-            ),
-            SizedBox(
-              height: size.height * 0.12,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-              child: CustomTextField(
-                controller: _fNameController,
-                label: 'First Name',
-                obs: false,
-                showForgetPass: false,
-                validator: Validators.emptyValidator,
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              TopBannerWidget(
+                size: size,
+                title: 'REGISTER',
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-              child: CustomTextField(
-                controller: _lNameController,
-                label: 'Last Name',
-                obs: false,
-                showForgetPass: false,
-                validator: Validators.emptyValidator,
+              SizedBox(
+                height: size.height * 0.12,
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-              child: CustomTextField(
-                controller: _emailController,
-                label: 'E-mail',
-                obs: false,
-                showForgetPass: false,
-                validator: Validators.emailValidator,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+                child: CustomTextField(
+                  controller: _fNameController,
+                  label: 'First Name',
+                  hint: '',
+                  obs: false,
+                  showForgetPass: false,
+                  validator: Validators.emptyValidator,
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-              child: CustomTextField(
-                controller: _userNameController,
-                label: 'Username',
-                obs: false,
-                showForgetPass: false,
-                validator: Validators.emptyValidator,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+                child: CustomTextField(
+                  controller: _lNameController,
+                  hint: '',
+                  label: 'Last Name',
+                  obs: false,
+                  showForgetPass: false,
+                  validator: Validators.emptyValidator,
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-              child: CustomTextField(
-                controller: _passwordController,
-                label: 'Password',
-                obs: true,
-                showForgetPass: false,
-                validator: Validators.passwordValidator,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+                child: CustomTextField(
+                  controller: _emailController,
+                  label: 'E-mail',
+                  hint: '',
+                  obs: false,
+                  showForgetPass: false,
+                  validator: Validators.emailValidator,
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-              child: CustomTextField(
-                controller: _confirmPasswordController,
-                label: 'Confirm Password',
-                obs: true,
-                showForgetPass: false,
-                validator: Validators.passwordValidator,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+                child: CustomTextField(
+                  controller: _userNameController,
+                  label: 'Username',
+                  obs: false,
+                  showForgetPass: false,
+                  hint: '',
+                  validator: Validators.emptyValidator,
+                ),
               ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            ButtonWidget(
-              size: size,
-              isTransparent: false,
-              onTap: () {},
-              title: 'Register',
-            ),
-            SizedBox(
-              height: 20,
-            )
-          ],
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+                child: CustomTextField(
+                  controller: _passwordController,
+                  label: 'Password',
+                  obs: true,
+                  showForgetPass: false,
+                  hint: '',
+                  validator: Validators.passwordValidator,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+                child: CustomTextField(
+                  controller: _confirmPasswordController,
+                  label: 'Confirm Password',
+                  obs: true,
+                  hint: '',
+                  showForgetPass: false,
+                  validator: Validators.passwordValidator,
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              ButtonWidget(
+                size: size,
+                isTransparent: false,
+                onTap: () {},
+                title: 'Register',
+              ),
+              SizedBox(
+                height: 20,
+              )
+            ],
+          ),
         ),
       ),
     );

@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: MyThemes.lightTheme,
       title: 'HollyThackwray',
       debugShowCheckedModeBanner: false,
-      themeMode: ThemeMode.dark,
+      themeMode: ThemeMode.system,
       home: LoginScreen(),
     );
   }

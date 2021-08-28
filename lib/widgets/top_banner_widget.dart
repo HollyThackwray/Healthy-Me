@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hollythackwray/res/app_colors.dart';
-import 'package:hollythackwray/widgets/top_title_widget.dart';
+import 'package:hollythackwray/res/app_constants.dart';
 
 class TopBannerWidget extends StatelessWidget {
   const TopBannerWidget({
@@ -39,8 +39,16 @@ class TopBannerWidget extends StatelessWidget {
                 ),
               ),
             ),
-            TopTitleWidget(
-              title: title,
+            Container(
+              color: AppColors.lightBlue,
+              child: Center(
+                child: Text(
+                  title,
+                  style: AppConstants.topBarTextStyle.copyWith(
+                    color: Theme.of(context).primaryColor,
+                  ),
+                ),
+              ),
             ),
             Center(
               child: SizedBox(

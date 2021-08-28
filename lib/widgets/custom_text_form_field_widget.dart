@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:hollythackwray/res/app_constants.dart';
 
 class CustomTextField extends StatelessWidget {
@@ -7,12 +8,14 @@ class CustomTextField extends StatelessWidget {
     required this.obs,
     required this.showForgetPass,
     required this.label,
+    required this.hint,
     this.validator,
     required this.controller,
   }) : super(key: key);
   final bool obs;
   final bool showForgetPass;
   final String label;
+  final String hint;
   final String? Function(String?)? validator;
   final TextEditingController controller;
 
@@ -23,6 +26,7 @@ class CustomTextField extends StatelessWidget {
       validator: validator,
       obscureText: obs,
       decoration: InputDecoration(
+        hintText: hint,
         suffixIconConstraints: BoxConstraints(
           minHeight: 0,
         ),

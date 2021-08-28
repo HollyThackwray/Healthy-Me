@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hollythackwray/res/app_colors.dart';
 import 'package:hollythackwray/res/app_constants.dart';
 import 'package:hollythackwray/res/images.dart';
-import 'package:hollythackwray/widgets/top_banner_widget.dart';
-import 'package:hollythackwray/widgets/top_title_widget.dart';
+import 'package:hollythackwray/screens/settings/settings_screen.dart';
 
 class HealtthyMeScreen extends StatefulWidget {
   HealtthyMeScreen({Key? key}) : super(key: key);
@@ -61,8 +61,16 @@ class _HealtthyMeScreenState extends State<HealtthyMeScreen> {
                         ),
                       ),
                     ),
-                    TopTitleWidget(
-                      title: 'HEALTHY ME',
+                    Container(
+                      color: AppColors.lightBlue,
+                      child: Center(
+                        child: Text(
+                          "HEALTHY ME",
+                          style: AppConstants.topBarTextStyle.copyWith(
+                            color: Theme.of(context).primaryColor,
+                          ),
+                        ),
+                      ),
                     ),
                     Center(
                       child: SizedBox(
@@ -86,11 +94,16 @@ class _HealtthyMeScreenState extends State<HealtthyMeScreen> {
                             fit: BoxFit.fill,
                           ),
                           Spacer(),
-                          Image.asset(
-                            Images.setting,
-                            color: Theme.of(context).iconTheme.color,
-                            height: 33,
-                            fit: BoxFit.fill,
+                          GestureDetector(
+                            onTap: (){
+                              Get.to(()=> SettingsScreen());
+                            },
+                            child: Image.asset(
+                              Images.setting,
+                              color: Theme.of(context).iconTheme.color,
+                              height: 33,
+                              fit: BoxFit.fill,
+                            ),
                           )
                         ],
                       ),
