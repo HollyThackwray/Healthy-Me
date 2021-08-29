@@ -26,7 +26,7 @@ class ButtonWidget extends StatelessWidget {
           border: Border.all(
             color: AppColors.darkerBlueBorder,
           ),
-          borderRadius: BorderRadius.circular(25),
+          borderRadius: BorderRadius.circular(30),
           color: isTransparent ? Colors.transparent : AppColors.lightBlue,
         ),
         child: Padding(

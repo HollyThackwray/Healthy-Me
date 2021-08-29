@@ -80,16 +80,14 @@ class TopBannerSubHeadingWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(
-                  color: AppColors.lightBlue,
-                  child: Center(
-                    child: Text(
-                      subTitle,
-                      style: AppConstants.topBarTextStyle.copyWith(
-                        color: Theme.of(context).primaryColor,
-                        fontSize: 34,
-                      ),
+                Expanded(
+                  child: Text(
+                    subTitle,
+                    style: AppConstants.labelStyle.copyWith(
+                      color: Theme.of(context).primaryColor,
+                      // fontSize: 34,
                     ),
+                    textAlign: TextAlign.center,
                   ),
                 ),
                 Container(

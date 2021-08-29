@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hollythackwray/res/app_colors.dart';
 import 'package:hollythackwray/res/app_constants.dart';
 import 'package:hollythackwray/res/images.dart';
+import 'package:hollythackwray/screens/getProfAcc/get_prof_acc_screen.dart';
 import 'package:hollythackwray/widgets/custom_text_form_field_widget.dart';
 import 'package:hollythackwray/widgets/top_banner_sub_heading_widget.dart';
 
@@ -186,18 +188,23 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           style: AppConstants.switchProfAccStyle,
                         ),
                         Spacer(),
-                        Container(
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: AppColors.lightBlue,
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20),
-                            child: Image.asset(
-                              Images.forward_arrow,
-                              height: 15,
-                              width: 15,
-                              color: Theme.of(context).primaryColor,
+                        GestureDetector(
+                          onTap: () {
+                            Get.to(() => GetProfAccScreen());
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: AppColors.lightBlue,
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20),
+                              child: Image.asset(
+                                Images.forward_arrow,
+                                height: 15,
+                                width: 15,
+                                color: Theme.of(context).primaryColor,
+                              ),
                             ),
                           ),
                         ),
