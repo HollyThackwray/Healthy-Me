@@ -4,6 +4,7 @@ import 'package:hollythackwray/res/app_colors.dart';
 import 'package:hollythackwray/res/app_constants.dart';
 import 'package:hollythackwray/res/images.dart';
 import 'package:hollythackwray/screens/settings/settings_screen.dart';
+import 'package:hollythackwray/screens/snacks/snacks_screen.dart';
 
 class HealtthyMeScreen extends StatefulWidget {
   HealtthyMeScreen({Key? key}) : super(key: key);
@@ -95,8 +96,8 @@ class _HealtthyMeScreenState extends State<HealtthyMeScreen> {
                           ),
                           Spacer(),
                           GestureDetector(
-                            onTap: (){
-                              Get.to(()=> SettingsScreen());
+                            onTap: () {
+                              Get.to(() => SettingsScreen());
                             },
                             child: Image.asset(
                               Images.setting,
@@ -242,10 +243,15 @@ class _HealtthyMeScreenState extends State<HealtthyMeScreen> {
                     SizedBox(
                       height: 10,
                     ),
-                    Text(
-                      'SNACKS',
-                      style: AppConstants.buttonTextStyle
-                          .copyWith(color: AppColors.darkerBlueBorder, decoration: TextDecoration.underline),
+                    GestureDetector(
+                      onTap: () {
+                        Get.to(() => SnacksScreen());
+                      },
+                      child: Text(
+                        'SNACKS',
+                        style: AppConstants.buttonTextStyle
+                            .copyWith(color: AppColors.darkerBlueBorder, decoration: TextDecoration.underline),
+                      ),
                     ),
                     SizedBox(
                       height: 30,

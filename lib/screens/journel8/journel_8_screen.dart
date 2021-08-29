@@ -1,13 +1,18 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:hollythackwray/res/app_colors.dart';
 import 'package:hollythackwray/res/app_constants.dart';
 import 'package:hollythackwray/res/images.dart';
-import 'package:hollythackwray/screens/journel8/journel_8_screen.dart';
 import 'package:hollythackwray/widgets/top_banner_sub_heading_widget.dart';
 
-class Journel6Scren extends StatelessWidget {
-  Journel6Scren({Key? key}) : super(key: key);
+class Journel8Screen extends StatefulWidget {
+  Journel8Screen({Key? key}) : super(key: key);
+
+  @override
+  _Journel8ScreenState createState() => _Journel8ScreenState();
+}
+
+class _Journel8ScreenState extends State<Journel8Screen> {
   final List<String> clients = [
     'HThack_02',
     'EBaguley',
@@ -16,6 +21,14 @@ class Journel6Scren extends StatelessWidget {
     'Com_Fit',
     'Micheal_88',
   ];
+
+  late TextEditingController _searchController;
+  @override
+  void initState() {
+    super.initState();
+    _searchController = TextEditingController();
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -63,30 +76,35 @@ class Journel6Scren extends StatelessWidget {
                 SizedBox(
                   height: size.height * 0.2,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 0, left: 20, bottom: 30),
-                  child: Align(
-                    alignment: Alignment.topLeft,
-                    child: Text(
-                      'Clients: 52',
-                      style: AppConstants.buttonTextStyle,
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 20),
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color:
+                          Theme.of(context).dividerColor == Colors.black ? AppColors.lightBlackHeading : Colors.white,
+                    ),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: CupertinoSearchTextField(
+                      itemColor: Theme.of(context).dividerColor,
+                      controller: _searchController,
+                      placeholder: 'Search With Username or Email',
+                      // decoration: BoxDecoration(
+                      //   border: Border.all(
+                      //     color: Theme.of(context).dividerColor,
+                      //   ),
+                      // ),
+                      backgroundColor: Colors.transparent,
+
+                      borderRadius: BorderRadius.circular(30),
+                      placeholderStyle: AppConstants.bulkinDaysTextStyle,
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 20, left: 20, bottom: 20),
-                  child: Align(
-                    alignment: Alignment.topRight,
-                    child: GestureDetector(
-                      onTap: () {
-                        Get.to(() => Journel8Screen());
-                      },
-                      child: Text(
-                        '+',
-                        style: AppConstants.buttonTextStyle,
-                      ),
-                    ),
-                  ),
+                SizedBox(
+                  height: 20,
                 ),
                 Column(
                   children: clients

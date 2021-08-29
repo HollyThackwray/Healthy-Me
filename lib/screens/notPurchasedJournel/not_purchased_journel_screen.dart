@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:hollythackwray/res/app_colors.dart';
 import 'package:hollythackwray/res/app_constants.dart';
 import 'package:hollythackwray/res/images.dart';
+import 'package:hollythackwray/screens/disclaimer/disclaimer_screen.dart';
 import 'package:hollythackwray/screens/journel6/journel_6_screen.dart';
 import 'package:hollythackwray/widgets/top_banner_sub_heading_widget.dart';
 
@@ -318,9 +319,14 @@ class _NotPurchasedJournelScreenState extends State<NotPurchasedJournelScreen> {
               padding: const EdgeInsets.all(20),
               child: Align(
                 alignment: Alignment.bottomLeft,
-                child: Text(
-                  'Healthy Me disclaimer',
-                  style: AppConstants.bulkinDaysTextStyle.copyWith(color: AppColors.darkerBlueBorder),
+                child: GestureDetector(
+                  onTap: () {
+                    Get.to(() => DisclaimerScreen());
+                  },
+                  child: Text(
+                    'Healthy Me disclaimer',
+                    style: AppConstants.bulkinDaysTextStyle.copyWith(color: AppColors.darkerBlueBorder),
+                  ),
                 ),
               ),
             ),
