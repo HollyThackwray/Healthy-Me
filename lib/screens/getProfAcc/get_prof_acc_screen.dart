@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hollythackwray/res/app_colors.dart';
 import 'package:hollythackwray/res/app_constants.dart';
+import 'package:hollythackwray/screens/notPurchasedJournel/not_purchased_journel_screen.dart';
 import 'package:hollythackwray/widgets/button_widget.dart';
 import 'package:hollythackwray/widgets/top_banner_sub_heading_widget.dart';
 
@@ -57,7 +59,9 @@ class _GetProfAccScreenState extends State<GetProfAccScreen> {
             Center(
               child: ButtonWidget(
                 size: size,
-                onTap: () {},
+                onTap: () {
+                  Get.to(() => NotPurchasedJournelScreen());
+                },
                 title: 'Create',
                 isTransparent: false,
               ),
