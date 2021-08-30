@@ -5,6 +5,7 @@ import 'package:hollythackwray/res/app_colors.dart';
 import 'package:hollythackwray/res/app_constants.dart';
 import 'package:hollythackwray/res/images.dart';
 import 'package:hollythackwray/screens/getProfAcc/get_prof_acc_screen.dart';
+import 'package:hollythackwray/screens/login/login_screen.dart';
 import 'package:hollythackwray/widgets/custom_text_form_field_widget.dart';
 import 'package:hollythackwray/widgets/top_banner_sub_heading_widget.dart';
 
@@ -237,14 +238,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   SizedBox(
                     height: 50,
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
-                      color: AppColors.lightBlue,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 35),
-                      child: Text('Sign-Out', style: AppConstants.labelStyle),
+                  GestureDetector(
+                    onTap: () {
+                      Get.offAll(() => LoginScreen());
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                        color: AppColors.lightBlue,
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 35),
+                        child: Text('Sign-Out', style: AppConstants.labelStyle),
+                      ),
                     ),
                   ),
                   SizedBox(

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:hollythackwray/res/app_colors.dart';
 import 'package:hollythackwray/res/app_constants.dart';
 import 'package:hollythackwray/res/images.dart';
+import 'package:hollythackwray/screens/change_program/change_program_screen.dart';
 import 'package:hollythackwray/screens/settings/settings_screen.dart';
 import 'package:hollythackwray/screens/snacks/snacks_screen.dart';
 
@@ -324,10 +325,15 @@ class _HealtthyMeScreenState extends State<HealtthyMeScreen> {
                       alignment: Alignment.bottomLeft,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: Text(
-                          'Change program',
-                          style: AppConstants.buttonTextStyle.copyWith(
-                            color: AppColors.darkerBlueBorder,
+                        child: GestureDetector(
+                          onTap: () {
+                            Get.to(() => ChangeProgramScreen());
+                          },
+                          child: Text(
+                            'Change program',
+                            style: AppConstants.buttonTextStyle.copyWith(
+                              color: AppColors.darkerBlueBorder,
+                            ),
                           ),
                         ),
                       ),
