@@ -1,12 +1,14 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hollythackwray/models/day_model.dart';
 import 'package:hollythackwray/res/app_colors.dart';
 import 'package:hollythackwray/res/app_constants.dart';
 import 'package:hollythackwray/res/images.dart';
 import 'package:hollythackwray/screens/disclaimer/disclaimer_screen.dart';
 import 'package:hollythackwray/screens/journel2/journel_2_screen.dart';
 import 'package:hollythackwray/screens/notPurchasedJournel/not_purchased_journel_screen.dart';
+import 'package:hollythackwray/screens/program_details/program_details_screen.dart';
 import 'package:hollythackwray/widgets/top_banner_sub_heading_widget.dart';
 
 class ChangeProgramScreen extends StatelessWidget {
@@ -187,7 +189,71 @@ class ChangeProgramScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              onTap: () {},
+              onTap: () {
+                Get.to(
+                  () => ProgramDetailsScreen(
+                    description: '',
+                    title: 'BULK',
+                    iconsRow: Row(),
+                    monday: DayModel(
+                      name: 'Monday',
+                      data: [
+                        DataModel(
+                          notification: 'Notification at 6 AM',
+                          title: 'Take a brisk run/walk to start your day!',
+                          icon: Images.running_person,
+                          subtitle: '',
+                        ),
+                        DataModel(
+                          notification: 'Notification at 8 AM',
+                          title: 'Breakfast: Eggs any style',
+                          icon: Images.spoons,
+                          subtitle: 'Include: cheese, lentils and a glass of milk',
+                        ),
+                        DataModel(
+                          notification: 'Notification at 10 AM',
+                          title: 'Reminder: Try to stay active!',
+                          icon: Images.running_person,
+                          subtitle: '',
+                        ),
+                        DataModel(
+                          notification: 'Notification at 12 PM',
+                          title: 'Lunch: Tuna or Salmon sandwich',
+                          icon: Images.spoons,
+                          subtitle: 'Include: Ezekiel bread',
+                        ),
+                        DataModel(
+                          notification: 'Notification at 6 AM',
+                          title: 'Reminder: Try to stay active!',
+                          icon: Images.running_person,
+                          subtitle: '',
+                        ),
+                        DataModel(
+                          notification: 'Notification at 2 PM',
+                          title: 'Gym: Chest + Shoulders',
+                          icon: Images.dumble,
+                          subtitle: '',
+                        ),
+                        DataModel(
+                          notification: 'Notification at 6 AM',
+                          title: 'Dinner: Chicken without the skin',
+                          icon: Images.spoons,
+                          subtitle: 'Include: Broccoli and Quinoa',
+                        ),
+                      ],
+                    ),
+                    tuesday: DayModel(name: 'Tuesday', data: []),
+                    wedday: DayModel(name: 'Wednesday', data: []),
+                    thursday: DayModel(name: 'Thursday', data: []),
+                    friday: DayModel(name: 'Friday', data: []),
+                    satday: DayModel(name: 'Satday', data: []),
+                    sunday: DayModel(
+                      name: 'sunday',
+                      data: [],
+                    ),
+                  ),
+                );
+              },
               title: 'BULK',
             ),
             RoundedContainerWidget(
