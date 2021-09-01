@@ -192,9 +192,34 @@ class ChangeProgramScreen extends StatelessWidget {
               onTap: () {
                 Get.to(
                   () => ProgramDetailsScreen(
-                    description: '',
+                    description:
+                        'Bulking is the muscle gaining phase. In this program you will intentionally consume more calories than your body needs. These extra calories provide your body with the necessary fuel to boost muscle size and strength.',
                     title: 'BULK',
-                    iconsRow: Row(),
+                    iconsRow: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Image.asset(
+                          Images.dumble,
+                          height: 30,
+                          fit: BoxFit.fill,
+                          color: Theme.of(context).primaryColor,
+                        ),
+                        SizedBox(width: 20),
+                        Image.asset(
+                          Images.running_person,
+                          height: 30,
+                          fit: BoxFit.fill,
+                          color: Theme.of(context).primaryColor,
+                        ),
+                        SizedBox(width: 20),
+                        Image.asset(
+                          Images.spoons,
+                          height: 30,
+                          fit: BoxFit.fill,
+                          color: Theme.of(context).primaryColor,
+                        ),
+                      ],
+                    ),
                     monday: DayModel(
                       name: 'Monday',
                       data: [
@@ -242,14 +267,260 @@ class ChangeProgramScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    tuesday: DayModel(name: 'Tuesday', data: []),
-                    wedday: DayModel(name: 'Wednesday', data: []),
-                    thursday: DayModel(name: 'Thursday', data: []),
-                    friday: DayModel(name: 'Friday', data: []),
-                    satday: DayModel(name: 'Satday', data: []),
+                    tuesday: DayModel(name: 'Tuesday', data: [
+                      DataModel(
+                        notification: '',
+                        title: 'Take a brisk run/walk to start your day!',
+                        icon: Images.running_person,
+                        subtitle: '',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Breakfast: Oats ',
+                        icon: Images.spoons,
+                        subtitle: 'Include: and greek yogurt, quinoa, almonds and milk',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Reminder: Try to stay active!',
+                        icon: Images.running_person,
+                        subtitle: '',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Lunch: Salad with shrimp',
+                        icon: Images.spoons,
+                        subtitle: 'Include: pumkin seeds and quinoa',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Reminder: Try to stay active!',
+                        icon: Images.running_person,
+                        subtitle: '',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Gym: Back + Legs',
+                        icon: Images.dumble,
+                        subtitle: '',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Dinner: Lean beef',
+                        icon: Images.spoons,
+                        subtitle: 'Include: Brussels sprouts',
+                      ),
+                    ]),
+                    wedday: DayModel(name: 'Wednesday', data: [
+                      DataModel(
+                        notification: '',
+                        title: 'Take a brisk run/walk to start your day!',
+                        icon: Images.running_person,
+                        subtitle: '',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Breakfast: Eggs any style ',
+                        icon: Images.spoons,
+                        subtitle: 'Include: cheese, lentils and a glass of milk',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Reminder: Try to stay active!',
+                        icon: Images.running_person,
+                        subtitle: '',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Lunch: Smoothie',
+                        icon: Images.spoons,
+                        subtitle: 'Include: Fresh fruits, avocado and milk',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Reminder: Try to stay active!',
+                        icon: Images.running_person,
+                        subtitle: '',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Gym: Arms + Abdominals',
+                        icon: Images.dumble,
+                        subtitle: '',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Dinner: Tuna or salmon',
+                        icon: Images.spoons,
+                        subtitle: 'Include: Potato, Kumara, carrots and Quinoa ',
+                      ),
+                    ]),
+                    thursday: DayModel(name: 'Thursday', data: [
+                      DataModel(
+                        notification: '',
+                        title: 'Take a brisk run/walk to start your day!',
+                        icon: Images.running_person,
+                        subtitle: '',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Breakfast: Oats',
+                        icon: Images.spoons,
+                        subtitle: 'Include: and greek yoghurt, quinoa, almonds and milk',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Reminder: Try to stay active!',
+                        icon: Images.running_person,
+                        subtitle: '',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Lunch: Tuna or Salmon sandwich',
+                        icon: Images.spoons,
+                        subtitle: 'Include: Ezekiel bread ',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Reminder: Try to stay active!',
+                        icon: Images.running_person,
+                        subtitle: '',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Gym: Chest + Shoulders',
+                        icon: Images.dumble,
+                        subtitle: '',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Dinner: Pork tenderloin',
+                        icon: Images.spoons,
+                        subtitle: 'Include: Beans and broccoli ',
+                      ),
+                    ]),
+                    friday: DayModel(name: 'Friday', data: [
+                      DataModel(
+                        notification: '',
+                        title: 'Take a brisk run/walk to start your day!',
+                        icon: Images.running_person,
+                        subtitle: '',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Breakfast: Eggs any style ',
+                        icon: Images.spoons,
+                        subtitle: 'Include: cheese, lentils and a glass of milk',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Reminder: Try to stay active!',
+                        icon: Images.running_person,
+                        subtitle: '',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Lunch: Chicken breast',
+                        icon: Images.spoons,
+                        subtitle: 'Include: Soybeans and Cottage cheese',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Reminder: Try to stay active!',
+                        icon: Images.running_person,
+                        subtitle: '',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Gym: Back + Legs',
+                        icon: Images.dumble,
+                        subtitle: '',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Dinner: Lean beef',
+                        icon: Images.spoons,
+                        subtitle: 'Include: Brussels sprouts',
+                      ),
+                    ]),
+                    satday: DayModel(name: 'Satday', data: [
+                      DataModel(
+                        notification: '',
+                        title: 'Take a brisk run/walk to start your day!',
+                        icon: Images.running_person,
+                        subtitle: '',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Breakfast: Chicken omlette ',
+                        icon: Images.spoons,
+                        subtitle: 'Include: Glass of milk / soya milk',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Reminder: Try to stay active!',
+                        icon: Images.running_person,
+                        subtitle: '',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Lunch: Tuna or Salmon sandwich',
+                        icon: Images.spoons,
+                        subtitle: 'Include: Ezekiel bread ',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Reminder: Try to stay active!',
+                        icon: Images.running_person,
+                        subtitle: '',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Gym: Arms + Abdominals',
+                        icon: Images.dumble,
+                        subtitle: '',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Dinner: Chicken without the skin',
+                        icon: Images.spoons,
+                        subtitle: 'Include: Broccoli and Quinoa',
+                      ),
+                    ]),
                     sunday: DayModel(
                       name: 'sunday',
-                      data: [],
+                      data: [
+                        DataModel(
+                          notification: '',
+                          title: 'Take a brisk run/walk to start your day!',
+                          icon: Images.running_person,
+                          subtitle: '',
+                        ),
+                        DataModel(
+                          notification: '',
+                          title: 'Breakfast: Anything!',
+                          icon: Images.spoons,
+                          subtitle: '',
+                        ),
+                        DataModel(
+                          notification: '',
+                          title: 'Lunch: Anything!',
+                          icon: Images.spoons,
+                          subtitle: '',
+                        ),
+                        DataModel(
+                          notification: '',
+                          title: 'Gym: Optional',
+                          icon: Images.dumble,
+                          subtitle: '',
+                        ),
+                        DataModel(
+                          notification: '',
+                          title: 'Dinner: Anything!',
+                          icon: Images.spoons,
+                          subtitle: '',
+                        ),
+                      ],
                     ),
                   ),
                 );
@@ -278,7 +549,299 @@ class ChangeProgramScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              onTap: () {},
+              onTap: () {
+                Get.to(
+                  () => ProgramDetailsScreen(
+                    description:
+                        'Slimming is loosing weight healthily without gaining muscle. You will be consuming less calories than your body needs without feeling hungry so you use more energy than your providing and therefore loosing weight.',
+                    title: 'SLIM',
+                    iconsRow: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Image.asset(
+                          Images.running_person,
+                          height: 30,
+                          fit: BoxFit.fill,
+                          color: Theme.of(context).primaryColor,
+                        ),
+                        SizedBox(width: 20),
+                        Image.asset(
+                          Images.spoons,
+                          height: 30,
+                          fit: BoxFit.fill,
+                          color: Theme.of(context).primaryColor,
+                        ),
+                      ],
+                    ),
+                    monday: DayModel(
+                      name: 'Monday',
+                      data: [
+                        DataModel(
+                          notification: '',
+                          title: 'Take a brisk run/walk to start your day!',
+                          icon: Images.running_person,
+                          subtitle: '',
+                        ),
+                        DataModel(
+                          notification: 'Notification at 8 AM',
+                          title: 'Breakfast: Eggs any style',
+                          icon: Images.spoons,
+                          subtitle: 'Include: a glass of milk',
+                        ),
+                        DataModel(
+                          notification: '',
+                          title: 'Reminder: Try to stay active!',
+                          icon: Images.running_person,
+                          subtitle: '',
+                        ),
+                        DataModel(
+                          notification: '',
+                          title: 'Lunch: Salmon',
+                          icon: Images.spoons,
+                          subtitle: 'Include: Broccoli, cauliflower and cabbage',
+                        ),
+                        DataModel(
+                          notification: '',
+                          title: 'Cardio: Run/walk 10 - 60 minutes ',
+                          icon: Images.running_person,
+                          subtitle: '',
+                        ),
+                        DataModel(
+                          notification: '',
+                          title: 'Dinner: Chicken without the skin',
+                          icon: Images.spoons,
+                          subtitle: 'Include: Broccoli and potatoes',
+                        ),
+                      ],
+                    ),
+                    tuesday: DayModel(name: 'Tuesday', data: [
+                      DataModel(
+                        notification: '',
+                        title: 'Take a brisk run/walk to start your day!',
+                        icon: Images.running_person,
+                        subtitle: '',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Breakfast: Green tea',
+                        icon: Images.spoons,
+                        subtitle: 'Include: Fruit',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Reminder: Try to stay active!',
+                        icon: Images.running_person,
+                        subtitle: '',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Lunch: Eggs',
+                        icon: Images.spoons,
+                        subtitle: 'Include: Salad - kale, spinach, collards and swiss chards',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Cardio: Run/walk 10 - 60 minutes ',
+                        icon: Images.running_person,
+                        subtitle: '',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Dinner: Lean beef',
+                        icon: Images.spoons,
+                        subtitle: 'Include: Brussels sprouts',
+                      ),
+                    ]),
+                    wedday: DayModel(name: 'Wednesday', data: [
+                      DataModel(
+                        notification: '',
+                        title: 'Take a brisk run/walk to start your day!',
+                        icon: Images.running_person,
+                        subtitle: '',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Breakfast: Smoothie',
+                        icon: Images.spoons,
+                        subtitle: 'Include: Vegetables, berries and fruit',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Reminder: Try to stay active!',
+                        icon: Images.running_person,
+                        subtitle: '',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Lunch: Eggs',
+                        icon: Images.spoons,
+                        subtitle: 'Include: Salad - kale, spinach, collards and swiss chards',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Cardio: Run/walk 10 - 60 minutes ',
+                        icon: Images.running_person,
+                        subtitle: '',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Dinner: Avocado and salad',
+                        icon: Images.spoons,
+                        subtitle: 'Include: Kale and chickpeas',
+                      ),
+                    ]),
+                    thursday: DayModel(name: 'Thursday', data: [
+                      DataModel(
+                        notification: '',
+                        title: 'Take a brisk run/walk to start your day!',
+                        icon: Images.running_person,
+                        subtitle: '',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Breakfast: Coffee',
+                        icon: Images.spoons,
+                        subtitle: 'Include: Grapefruit',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Reminder: Try to stay active!',
+                        icon: Images.running_person,
+                        subtitle: '',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Lunch: Tuna',
+                        icon: Images.spoons,
+                        subtitle: 'Include: Ezekiel Bread',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Cardio: Run/walk 10 - 60 minutes ',
+                        icon: Images.running_person,
+                        subtitle: '',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Dinner: Bean and Vegetable Soup',
+                        icon: Images.spoons,
+                        subtitle: 'Include: Black beans',
+                      ),
+                    ]),
+                    friday: DayModel(name: 'Friday', data: [
+                      DataModel(
+                        notification: '',
+                        title: 'Take a brisk run/walk to start your day!',
+                        icon: Images.running_person,
+                        subtitle: '',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Breakfast: Bananas and greek yoghurt',
+                        icon: Images.spoons,
+                        subtitle: '',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Reminder: Try to stay active!',
+                        icon: Images.running_person,
+                        subtitle: '',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Lunch: Soup',
+                        icon: Images.spoons,
+                        subtitle: '',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Cardio: Run/walk 10 - 60 minutes ',
+                        icon: Images.running_person,
+                        subtitle: '',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Dinner: Chicken',
+                        icon: Images.spoons,
+                        subtitle: '',
+                      ),
+                    ]),
+                    satday: DayModel(name: 'Satday', data: [
+                      DataModel(
+                        notification: '',
+                        title: 'Take a brisk run/walk to start your day!',
+                        icon: Images.running_person,
+                        subtitle: '',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Breakfast: Oatmeal',
+                        icon: Images.spoons,
+                        subtitle: 'Include: Chia seeds, flax seeds, greek yogurt and nuts',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Reminder: Try to stay active!',
+                        icon: Images.running_person,
+                        subtitle: '',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Lunch: Soup',
+                        icon: Images.spoons,
+                        subtitle: '',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Cardio: Run/walk 10 - 60 minutes ',
+                        icon: Images.running_person,
+                        subtitle: '',
+                      ),
+                      DataModel(
+                        notification: '',
+                        title: 'Dinner: Steak',
+                        icon: Images.spoons,
+                        subtitle: 'Include: Broccoli',
+                      ),
+                    ]),
+                    sunday: DayModel(
+                      name: 'sunday',
+                      data: [
+                        DataModel(
+                          notification: '',
+                          title: 'Take a brisk run/walk to start your day!',
+                          icon: Images.running_person,
+                          subtitle: '',
+                        ),
+                        DataModel(
+                          notification: '',
+                          title: 'Breakfast: Anything!',
+                          icon: Images.spoons,
+                          subtitle: '',
+                        ),
+                        DataModel(
+                          notification: '',
+                          title: 'Lunch: Anything!',
+                          icon: Images.spoons,
+                          subtitle: '',
+                        ),
+                        DataModel(
+                          notification: '',
+                          title: 'Cardio: Run/walk 10 - 60 minutes',
+                          icon: Images.running_person,
+                          subtitle: '',
+                        ),
+                        DataModel(
+                          notification: '',
+                          title: 'Dinner: Anything!',
+                          icon: Images.spoons,
+                          subtitle: '',
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
               title: 'SLIM',
             ),
             RoundedContainerWidget(
