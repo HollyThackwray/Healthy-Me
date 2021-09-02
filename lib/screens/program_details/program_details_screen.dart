@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:hollythackwray/models/day_model.dart';
 import 'package:hollythackwray/res/app_colors.dart';
 import 'package:hollythackwray/res/app_constants.dart';
 import 'package:hollythackwray/res/images.dart';
+import 'package:hollythackwray/screens/challenge/challenge_screen.dart';
 
 class ProgramDetailsScreen extends StatefulWidget {
   final DayModel monday;
@@ -322,7 +324,21 @@ class DayRoutineWidget extends StatelessWidget {
                                 child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(e.title!, style: AppConstants.bulkinDaysTextStyle),
+                                GestureDetector(
+                                  onTap: () {
+                                    if (e.title! == 'Healthy Me Challenge') {
+                                      Get.to(() => ChallengeScreen());
+                                    }
+                                  },
+                                  child: Text(
+                                    e.title!,
+                                    style: AppConstants.bulkinDaysTextStyle.copyWith(
+                                      color: e.title! == 'Healthy Me Challenge'
+                                          ? AppColors.darkerBlueBorder
+                                          : Theme.of(context).dividerColor,
+                                    ),
+                                  ),
+                                ),
                                 e.subtitle!.isNotEmpty
                                     ? Text(e.subtitle!,
                                         style: AppConstants.bulkinDaysTextStyle.copyWith(
