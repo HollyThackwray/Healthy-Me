@@ -1,7 +1,8 @@
 import 'package:charts_painter/chart.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:hollythackwray/screens/scan/scan_screen.dart';
 import 'package:intl/intl.dart';
-
 import 'package:hollythackwray/res/app_colors.dart';
 import 'package:hollythackwray/res/app_constants.dart';
 import 'package:hollythackwray/res/images.dart';
@@ -25,11 +26,6 @@ class _Journel7ScreenState extends State<Journel7Screen> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.lightBlue,
-        elevation: 0,
-        leading: Container(),
-      ),
       body: SlidingUpPanel(
         controller: _panelController,
         panel: SingleChildScrollView(
@@ -219,6 +215,11 @@ class _Journel7ScreenState extends State<Journel7Screen> {
             SingleChildScrollView(
               child: Column(
                 children: [
+                  Container(
+                    height: AppBar().preferredSize.height,
+                    width: double.infinity,
+                    color: AppColors.lightBlue,
+                  ),
                   TopBannerSubHeadingWidget(
                     size: size,
                     title: 'HEALTHY ME',
@@ -234,11 +235,16 @@ class _Journel7ScreenState extends State<Journel7Screen> {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Image.asset(
-                            Images.qr_code,
-                            color: AppColors.darkerBlueBorder,
-                            height: 21,
-                            width: 21,
+                          GestureDetector(
+                            onTap: () {
+                              Get.to(() => ScanScreen());
+                            },
+                            child: Image.asset(
+                              Images.qr_code,
+                              color: AppColors.darkerBlueBorder,
+                              height: 21,
+                              width: 21,
+                            ),
                           ),
                           Text(
                             'Log in',
@@ -251,8 +257,9 @@ class _Journel7ScreenState extends State<Journel7Screen> {
                     ),
                   ),
                   Text(
-                    DateFormat.MMMMd().format(widget.date) + 'th',
+                    DateFormat.MMMM().format(widget.date) + '\n' + DateFormat.d().format(widget.date),
                     style: AppConstants.labelStyle,
+                    textAlign: TextAlign.center,
                   ),
                   SizedBox(
                     height: 40,

@@ -6,6 +6,7 @@ import 'package:hollythackwray/res/app_colors.dart';
 import 'package:hollythackwray/res/app_constants.dart';
 import 'package:hollythackwray/res/images.dart';
 import 'package:hollythackwray/screens/challenge/challenge_screen.dart';
+import 'package:hollythackwray/screens/more_information/bulk_more_information_screen.dart';
 
 class ProgramDetailsScreen extends StatefulWidget {
   final DayModel monday;
@@ -184,10 +185,15 @@ class _ProgramDetailsScreenState extends State<ProgramDetailsScreen> {
                       SizedBox(
                         width: 15,
                       ),
-                      Text(
-                        'More information',
-                        style: AppConstants.labelStyle.copyWith(
-                          color: AppColors.darkerBlueBorder,
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(() => widget.title == 'BULK' ? BulkMoreInformationScreen() : Container());
+                        },
+                        child: Text(
+                          'More information',
+                          style: AppConstants.labelStyle.copyWith(
+                            color: AppColors.darkerBlueBorder,
+                          ),
                         ),
                       )
                     ],

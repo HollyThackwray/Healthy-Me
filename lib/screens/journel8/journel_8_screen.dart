@@ -33,11 +33,7 @@ class _Journel8ScreenState extends State<Journel8Screen> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.lightBlue,
-        elevation: 0,
-        leading: Container(),
-      ),
+     
       body: Stack(
         children: [
           Container(
@@ -68,6 +64,11 @@ class _Journel8ScreenState extends State<Journel8Screen> {
           SingleChildScrollView(
             child: Column(
               children: [
+                Container(
+                  height: AppBar().preferredSize.height,
+                  width: double.infinity,
+                  color: AppColors.lightBlue,
+                ),
                 TopBannerSubHeadingWidget(
                   size: size,
                   title: 'HEALTHY ME',

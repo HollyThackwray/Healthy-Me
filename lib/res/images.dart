@@ -20,4 +20,5 @@ class Images {
   static const String pencil_large = 'assets/images/pencil_large.png';
   static const String pencil_extra_large = 'assets/images/pencil_extraL.png';
   static const String settings_large = 'assets/images/settings_large.png';
+  static const String tick = 'assets/images/tick.gif';
 }

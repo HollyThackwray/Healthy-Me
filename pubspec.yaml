@@ -19,6 +19,8 @@ dependencies:
   path_provider: ^2.0.2
   charts_painter: ^1.0.0
   sliding_up_panel: ^2.0.0+1
+  just_audio: ^0.9.9
+  lottie: ^1.1.0
   flutter_launcher_icons: ^0.9.0
 
 flutter_icons:
@@ -43,6 +45,7 @@ flutter:
   assets:
     - assets/images/
     - assets/fonts/
+    - assets/sound/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
   # For details regarding adding assets from package dependencies, see

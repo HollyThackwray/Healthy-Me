@@ -19,11 +19,7 @@ class _Journel2ScreenState extends State<Journel2Screen> {
     Size size = MediaQuery.of(context).size;
     ScrollController _scrollController = ScrollController();
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.lightBlue,
-        elevation: 0,
-        leading: Container(),
-      ),
+
       body: Stack(
         children: [
           Container(
@@ -55,6 +51,11 @@ class _Journel2ScreenState extends State<Journel2Screen> {
             controller: _scrollController,
             child: Column(
               children: [
+                Container(
+                  height: AppBar().preferredSize.height,
+                  width: double.infinity,
+                  color: AppColors.lightBlue,
+                ),
                 TopBannerSubHeadingWidget(
                   size: size,
                   title: 'HEALTHY ME',

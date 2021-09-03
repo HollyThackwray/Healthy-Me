@@ -30,15 +30,17 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.lightBlue,
-        elevation: 0,
-      ),
+      
       body: SingleChildScrollView(
         child: Form(
           key: _formKey,
           child: Column(
             children: [
+              Container(
+                height: AppBar().preferredSize.height,
+                width: double.infinity,
+                color: AppColors.lightBlue,
+              ),
               TopBannerWidget(
                 size: size,
                 title: 'SIGN-IN',

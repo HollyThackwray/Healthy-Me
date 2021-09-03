@@ -12,14 +12,15 @@ class ChallengeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.lightBlue,
-        elevation: 0,
-        leading: Container(),
-      ),
+    
       body: SingleChildScrollView(
         child: Column(
           children: [
+            Container(
+              height: AppBar().preferredSize.height,
+              width: double.infinity,
+              color: AppColors.lightBlue,
+            ),
             TopBannerSubHeadingWidget(
               size: size,
               title: 'HEALTHY ME',

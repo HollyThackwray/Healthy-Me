@@ -35,16 +35,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.lightBlue,
-        iconTheme: Theme.of(context).iconTheme,
-        elevation: 0,
-      ),
+     
       body: SingleChildScrollView(
         child: Form(
           key: _formKey,
           child: Column(
             children: [
+              Container(
+                height: AppBar().preferredSize.height,
+                width: double.infinity,
+                color: AppColors.lightBlue,
+              ),
               TopBannerWidget(
                 size: size,
                 title: 'REGISTER',
