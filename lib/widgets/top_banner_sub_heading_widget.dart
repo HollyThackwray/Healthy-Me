@@ -11,29 +11,32 @@ class TopBannerSubHeadingWidget extends StatelessWidget {
     required this.title,
     required this.subTitle,
     required this.size,
+    required this.isCongo,
   }) : super(key: key);
   final String title;
   final String subTitle;
   final Size size;
-
+  final bool isCongo;
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Transform.scale(
-          scale: 1.7,
-          child: Container(
-            width: double.infinity,
-            height: size.height * 0.38,
-            decoration: BoxDecoration(
-              color: AppColors.lightBlue,
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(size.width),
-                bottomRight: Radius.circular(size.width),
+        isCongo
+            ? Container()
+            : Transform.scale(
+                scale: 1.7,
+                child: Container(
+                  width: double.infinity,
+                  height: size.height * 0.38,
+                  decoration: BoxDecoration(
+                    color: AppColors.lightBlue,
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(size.width),
+                      bottomRight: Radius.circular(size.width),
+                    ),
+                  ),
+                ),
               ),
-            ),
-          ),
-        ),
         Column(
           children: [
             Center(

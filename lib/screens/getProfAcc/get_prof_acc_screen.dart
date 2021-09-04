@@ -29,6 +29,7 @@ class _GetProfAccScreenState extends State<GetProfAccScreen> {
               color: AppColors.lightBlue,
             ),
             TopBannerSubHeadingWidget(
+              isCongo: false,
               size: size,
               title: 'HEALTHY ME',
               subTitle: 'PROFESSIONAL ACCOUNT',

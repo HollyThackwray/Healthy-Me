@@ -37,6 +37,7 @@ class _NotPurchasedJournelScreenState extends State<NotPurchasedJournelScreen> {
             TopBannerSubHeadingWidget(
               size: size,
               title: 'HEALTHY ME',
+              isCongo: false,
               subTitle: 'CHANGE PROGRAM',
             ),
             SizedBox(

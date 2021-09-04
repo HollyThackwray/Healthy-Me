@@ -72,6 +72,7 @@ class _Journel8ScreenState extends State<Journel8Screen> {
                 TopBannerSubHeadingWidget(
                   size: size,
                   title: 'HEALTHY ME',
+                  isCongo: false,
                   subTitle: 'JOURNAL',
                 ),
                 SizedBox(

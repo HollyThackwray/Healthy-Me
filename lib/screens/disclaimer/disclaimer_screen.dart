@@ -23,6 +23,7 @@ class DisclaimerScreen extends StatelessWidget {
               size: size,
               title: 'HEALTHY ME',
               subTitle: 'DISCLAIMER',
+              isCongo: false,
             ),
             SizedBox(
               height: size.height * 0.2,

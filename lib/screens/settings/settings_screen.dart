@@ -67,6 +67,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     size: size,
                     title: 'HEALTHY ME',
                     subTitle: 'SETTINGS',
+                    isCongo: false,
                   ),
                   SizedBox(
                     height: size.height * 0.2,

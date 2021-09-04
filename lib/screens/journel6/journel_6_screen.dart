@@ -58,6 +58,7 @@ class Journel6Scren extends StatelessWidget {
                 ),
                 TopBannerSubHeadingWidget(
                   size: size,
+                  isCongo: false,
                   title: 'HEALTHY ME',
                   subTitle: 'JOURNAL',
                 ),

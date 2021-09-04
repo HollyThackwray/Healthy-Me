@@ -22,6 +22,7 @@ class ChallengeScreen extends StatelessWidget {
               color: AppColors.lightBlue,
             ),
             TopBannerSubHeadingWidget(
+              isCongo: false,
               size: size,
               title: 'HEALTHY ME',
               subTitle: 'CHALLENGE',

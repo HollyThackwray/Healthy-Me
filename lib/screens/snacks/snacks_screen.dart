@@ -23,6 +23,7 @@ class SnacksScreen extends StatelessWidget {
             TopBannerSubHeadingWidget(
               size: size,
               title: 'HEALTHY ME',
+              isCongo: false,
               subTitle: 'SNACKS',
             ),
             SizedBox(

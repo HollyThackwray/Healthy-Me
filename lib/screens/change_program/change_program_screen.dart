@@ -28,6 +28,7 @@ class ChangeProgramScreen extends StatelessWidget {
             ),
             TopBannerSubHeadingWidget(
               size: size,
+              isCongo: false,
               title: 'HEALTHY ME',
               subTitle: 'CHANGE PROGRAM',
             ),

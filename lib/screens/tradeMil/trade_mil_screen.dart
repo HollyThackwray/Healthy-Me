@@ -30,6 +30,7 @@ class _TradeMilScreenState extends State<TradeMilScreen> {
             TopBannerSubHeadingWidget(
               size: size,
               title: 'HEALTHY ME',
+              isCongo: false,
               subTitle: 'HThack_02',
             ),
             SizedBox(

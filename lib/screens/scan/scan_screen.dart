@@ -27,6 +27,7 @@ class _ScanScreenState extends State<ScanScreen> {
           ),
           TopBannerSubHeadingWidget(
             size: size,
+            isCongo: false,
             title: 'HEALTHY ME',
             subTitle: 'SCAN',
           ),

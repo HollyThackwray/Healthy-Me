@@ -289,22 +289,22 @@ class DayRoutineWidget extends StatelessWidget {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Row(
-                          children: [
-                            SizedBox(
-                              width: 50,
-                            ),
-                            e.notification!.isEmpty
-                                ? Container()
-                                : Text(
-                                    e.notification!,
-                                    style: AppConstants.bulkinDaysTextStyle.copyWith(fontSize: 7),
-                                  ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
+                        // Row(
+                        //   children: [
+                        //     SizedBox(
+                        //       width: 50,
+                        //     ),
+                        //     e.notification!.isEmpty
+                        //         ? Container()
+                        //         : Text(
+                        //             e.notification!,
+                        //             style: AppConstants.bulkinDaysTextStyle.copyWith(fontSize: 7),
+                        //           ),
+                        //   ],
+                        // ),
+                        // SizedBox(
+                        //   height: 10,
+                        // ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -348,7 +348,7 @@ class DayRoutineWidget extends StatelessWidget {
                                 e.subtitle!.isNotEmpty
                                     ? Text(e.subtitle!,
                                         style: AppConstants.bulkinDaysTextStyle.copyWith(
-                                          fontSize: 10,
+                                          fontSize: 12,
                                         ))
                                     : Container(),
                               ],
