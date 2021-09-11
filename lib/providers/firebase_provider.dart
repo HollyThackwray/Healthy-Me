@@ -25,7 +25,6 @@ class FirebaseProvider extends BaseProvider {
       Duration(seconds: 3),
       () async {
         _user = _auth.currentUser;
-        signOut();
         if (_user == null) {
           Get.offAll(() => LoginScreen());
         } else {
@@ -71,12 +70,38 @@ class FirebaseProvider extends BaseProvider {
     }
   }
 
+  Future<bool> updatePassword(String newPass) async {
+    try {
+      if (_user != null) {
+        await _user!.updatePassword(newPass).then((value) => showPlatformDialogue(title: 'Password Updated'));
+      }
+    } on SocketException catch (_) {
+      return false;
+    } catch (e) {
+      print(e);
+    }
+    return true;
+  }
+
+  Future<bool> updateEmail(String newMail) async {
+    try {
+      if (_user != null) {
+        await _user!.updateEmail(newMail).then((value) => showPlatformDialogue(title: 'Email Updated'));
+      }
+    } on SocketException catch (_) {
+      return false;
+    } catch (e) {
+      print(e);
+    }
+    return true;
+  }
+
   Future<void> signUp({
     required String email,
     required String password,
     required String fName,
     required String lName,
-    String? name,
+    required String? name,
   }) async {
     try {
       setLoadingState(true);
@@ -112,6 +137,7 @@ class FirebaseProvider extends BaseProvider {
       currentProgram: [],
       firstName: fName,
       lastName: lName,
+      profilePic: null,
       email: email,
       userId: _user!.uid,
       notifications: true,
@@ -160,7 +186,7 @@ class FirebaseProvider extends BaseProvider {
     user = null;
     // UserModel.users.clear();
     _auth.signOut();
-    Get.offAll(LoginScreen());
+    Get.offAll(() => LoginScreen());
   }
 
   PickedFile? image;
@@ -243,17 +269,13 @@ class FirebaseProvider extends BaseProvider {
 
   updateUsername(String name) async {
     try {
-      setLoadingState(true);
       await FirebaseFirestore.instance.collection("users").doc(user!.userId).update(
         {
           "username": name,
         },
       );
-      await showPlatformDialogue(title: 'Username Updated');
-      Get.back();
     } catch (e) {
       print(e);
     }
-    setLoadingState(false);
   }
 }

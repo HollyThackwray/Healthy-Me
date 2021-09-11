@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:hollythackwray/res/app_constants.dart';
-
 class CustomTextField extends StatelessWidget {
   const CustomTextField({
     Key? key,
@@ -10,9 +8,11 @@ class CustomTextField extends StatelessWidget {
     required this.label,
     required this.hint,
     this.validator,
+    this.endWidget,
     required this.controller,
   }) : super(key: key);
   final bool obs;
+  final Widget? endWidget;
   final bool showForgetPass;
   final String label;
   final String hint;
@@ -30,12 +30,7 @@ class CustomTextField extends StatelessWidget {
         suffixIconConstraints: BoxConstraints(
           minHeight: 0,
         ),
-        suffixIcon: showForgetPass
-            ? Text(
-                'Forgot Password?',
-                style: AppConstants.forgetPassTextStyle,
-              )
-            : null,
+        suffixIcon: showForgetPass ? endWidget : null,
         labelText: label,
         labelStyle: TextStyle(
           fontSize: 25,

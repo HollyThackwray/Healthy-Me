@@ -137,6 +137,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           await showPlatformDialogue(title: 'Passwords don\'t match');
                         } else
                           value.signUp(
+                            name: _userNameController.text,
                             email: _emailController.text,
                             password: _passwordController.text,
                             fName: _fNameController.text,

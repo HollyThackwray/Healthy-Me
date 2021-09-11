@@ -6,6 +6,7 @@ class UserModel {
   final String? username;
   final String? email;
   final String? firstName;
+  final String? profilePic;
   final String? lastName;
   final String? userId;
   final List<String>? currentProgram;
@@ -14,6 +15,7 @@ class UserModel {
     this.username,
     this.email,
     this.firstName,
+    this.profilePic,
     this.lastName,
     this.userId,
     this.currentProgram,
@@ -24,6 +26,7 @@ class UserModel {
     String? username,
     String? email,
     String? firstName,
+    String? profilePic,
     String? lastName,
     String? userId,
     List<String>? currentProgram,
@@ -33,6 +36,7 @@ class UserModel {
       username: username ?? this.username,
       email: email ?? this.email,
       firstName: firstName ?? this.firstName,
+      profilePic: profilePic ?? this.profilePic,
       lastName: lastName ?? this.lastName,
       userId: userId ?? this.userId,
       currentProgram: currentProgram ?? this.currentProgram,
@@ -45,6 +49,7 @@ class UserModel {
       'username': username,
       'email': email,
       'firstName': firstName,
+      'profilePic': profilePic,
       'lastName': lastName,
       'userId': userId,
       'currentProgram': currentProgram,
@@ -57,6 +62,7 @@ class UserModel {
       username: map['username'],
       email: map['email'],
       firstName: map['firstName'],
+      profilePic: map['profilePic'],
       lastName: map['lastName'],
       userId: map['userId'],
       currentProgram: List<String>.from(map['currentProgram']),
@@ -70,31 +76,33 @@ class UserModel {
 
   @override
   String toString() {
-    return 'UserModel(username: $username, email: $email, firstName: $firstName, lastName: $lastName, userId: $userId, currentProgram: $currentProgram, notifications: $notifications)';
+    return 'UserModel(username: $username, email: $email, firstName: $firstName, profilePic: $profilePic, lastName: $lastName, userId: $userId, currentProgram: $currentProgram, notifications: $notifications)';
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-  
+
     return other is UserModel &&
-      other.username == username &&
-      other.email == email &&
-      other.firstName == firstName &&
-      other.lastName == lastName &&
-      other.userId == userId &&
-      listEquals(other.currentProgram, currentProgram) &&
-      other.notifications == notifications;
+        other.username == username &&
+        other.email == email &&
+        other.firstName == firstName &&
+        other.profilePic == profilePic &&
+        other.lastName == lastName &&
+        other.userId == userId &&
+        listEquals(other.currentProgram, currentProgram) &&
+        other.notifications == notifications;
   }
 
   @override
   int get hashCode {
     return username.hashCode ^
-      email.hashCode ^
-      firstName.hashCode ^
-      lastName.hashCode ^
-      userId.hashCode ^
-      currentProgram.hashCode ^
-      notifications.hashCode;
+        email.hashCode ^
+        firstName.hashCode ^
+        profilePic.hashCode ^
+        lastName.hashCode ^
+        userId.hashCode ^
+        currentProgram.hashCode ^
+        notifications.hashCode;
   }
 }
