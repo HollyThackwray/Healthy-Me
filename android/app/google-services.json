@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "260161558284",
+    "project_id": "healthy-me-ac442",
+    "storage_bucket": "healthy-me-ac442.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:260161558284:android:0544456c95290e99d75b29",
+        "android_client_info": {
+          "package_name": "com.hollythackwray.hollythackwray"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "260161558284-2g8r0nf8k2h170jptttiq89o9ku7v8lr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAKZ3TfTuLfQad05Z5FOVO2-KMgG2q05M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "260161558284-2g8r0nf8k2h170jptttiq89o9ku7v8lr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hollythackwray/providers/firebase_provider.dart';
 import 'package:hollythackwray/res/app_colors.dart';
 import 'package:hollythackwray/res/validators.dart';
-import 'package:hollythackwray/screens/healthyMe/healthy_me_screen.dart';
 import 'package:hollythackwray/screens/signup/signup_screen.dart';
 import 'package:hollythackwray/widgets/button_widget.dart';
 import 'package:hollythackwray/widgets/custom_text_form_field_widget.dart';
 import 'package:hollythackwray/widgets/top_banner_widget.dart';
+import 'package:loading_overlay/loading_overlay.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({Key? key}) : super(key: key);
@@ -29,70 +31,76 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Scaffold(
-      
-      body: SingleChildScrollView(
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: [
-              Container(
-                height: AppBar().preferredSize.height,
-                width: double.infinity,
-                color: AppColors.lightBlue,
+    return Consumer<FirebaseProvider>(
+      builder: (context, value, child) => LoadingOverlay(
+        isLoading: value.isLoading,
+        child: Scaffold(
+          body: SingleChildScrollView(
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  Container(
+                    height: AppBar().preferredSize.height,
+                    width: double.infinity,
+                    color: AppColors.lightBlue,
+                  ),
+                  TopBannerWidget(
+                    size: size,
+                    title: 'SIGN-IN',
+                  ),
+                  SizedBox(
+                    height: size.height * 0.12,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+                    child: CustomTextField(
+                      hint: '',
+                      controller: _emailController,
+                      label: 'E-mail',
+                      obs: false,
+                      showForgetPass: false,
+                      validator: Validators.emailValidator,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+                    child: CustomTextField(
+                      controller: _passwordController,
+                      label: 'Password',
+                      hint: '',
+                      obs: true,
+                      showForgetPass: true,
+                      validator: Validators.passwordValidator,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  ButtonWidget(
+                    size: size,
+                    isTransparent: false,
+                    onTap: () {
+                      if (_formKey.currentState?.validate() ?? false) {
+                        value.signIn(email: _emailController.text, password: _passwordController.text);
+                      }
+                    },
+                    title: 'Sign-In',
+                  ),
+                  ButtonWidget(
+                    size: size,
+                    isTransparent: true,
+                    onTap: () {
+                      Get.to(() => SignUpScreen());
+                    },
+                    title: 'Register',
+                  ),
+                  SizedBox(
+                    height: 20,
+                  )
+                ],
               ),
-              TopBannerWidget(
-                size: size,
-                title: 'SIGN-IN',
-              ),
-              SizedBox(
-                height: size.height * 0.12,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-                child: CustomTextField(
-                  hint: '',
-                  controller: _emailController,
-                  label: 'E-mail',
-                  obs: false,
-                  showForgetPass: false,
-                  validator: Validators.emailValidator,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-                child: CustomTextField(
-                  controller: _passwordController,
-                  label: 'Password',
-                  hint: '',
-                  obs: true,
-                  showForgetPass: true,
-                  validator: Validators.passwordValidator,
-                ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              ButtonWidget(
-                size: size,
-                isTransparent: false,
-                onTap: () {
-                  Get.offAll(() => HealtthyMeScreen());
-                },
-                title: 'Sign-In',
-              ),
-              ButtonWidget(
-                size: size,
-                isTransparent: true,
-                onTap: () {
-                  Get.to(() => SignUpScreen());
-                },
-                title: 'Register',
-              ),
-              SizedBox(
-                height: 20,
-              )
-            ],
+            ),
           ),
         ),
       ),

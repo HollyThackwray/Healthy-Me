@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:hollythackwray/providers/firebase_provider.dart';
 import 'package:hollythackwray/res/app_colors.dart';
+import 'package:hollythackwray/res/platform_dialogue.dart';
 import 'package:hollythackwray/res/validators.dart';
 import 'package:hollythackwray/widgets/button_widget.dart';
 import 'package:hollythackwray/widgets/custom_text_form_field_widget.dart';
 import 'package:hollythackwray/widgets/top_banner_widget.dart';
+import 'package:loading_overlay/loading_overlay.dart';
+import 'package:provider/provider.dart';
 
 class SignUpScreen extends StatefulWidget {
   SignUpScreen({Key? key}) : super(key: key);
@@ -34,104 +38,120 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Scaffold(
-     
-      body: SingleChildScrollView(
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: [
-              Container(
-                height: AppBar().preferredSize.height,
-                width: double.infinity,
-                color: AppColors.lightBlue,
+    return Consumer<FirebaseProvider>(
+      builder: (context, value, child) => LoadingOverlay(
+        isLoading: value.isLoading,
+        child: Scaffold(
+          body: SingleChildScrollView(
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  Container(
+                    height: AppBar().preferredSize.height,
+                    width: double.infinity,
+                    color: AppColors.lightBlue,
+                  ),
+                  TopBannerWidget(
+                    size: size,
+                    title: 'REGISTER',
+                  ),
+                  SizedBox(
+                    height: size.height * 0.12,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+                    child: CustomTextField(
+                      controller: _fNameController,
+                      label: 'First Name',
+                      hint: '',
+                      obs: false,
+                      showForgetPass: false,
+                      validator: Validators.emptyValidator,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+                    child: CustomTextField(
+                      controller: _lNameController,
+                      hint: '',
+                      label: 'Last Name',
+                      obs: false,
+                      showForgetPass: false,
+                      validator: Validators.emptyValidator,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+                    child: CustomTextField(
+                      controller: _emailController,
+                      label: 'E-mail',
+                      hint: '',
+                      obs: false,
+                      showForgetPass: false,
+                      validator: Validators.emailValidator,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+                    child: CustomTextField(
+                      controller: _userNameController,
+                      label: 'Username',
+                      obs: false,
+                      showForgetPass: false,
+                      hint: '',
+                      validator: Validators.emptyValidator,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+                    child: CustomTextField(
+                      controller: _passwordController,
+                      label: 'Password',
+                      obs: true,
+                      showForgetPass: false,
+                      hint: '',
+                      validator: Validators.passwordValidator,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+                    child: CustomTextField(
+                      controller: _confirmPasswordController,
+                      label: 'Confirm Password',
+                      obs: true,
+                      hint: '',
+                      showForgetPass: false,
+                      validator: Validators.passwordValidator,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  ButtonWidget(
+                    size: size,
+                    isTransparent: false,
+                    onTap: () async {
+                      if (_formKey.currentState?.validate() ?? false) {
+                        if (_passwordController.text != _confirmPasswordController.text) {
+                          await showPlatformDialogue(title: 'Passwords don\'t match');
+                        } else
+                          value.signUp(
+                            email: _emailController.text,
+                            password: _passwordController.text,
+                            fName: _fNameController.text,
+                            lName: _lNameController.text,
+                          );
+                      }
+                    },
+                    title: 'Register',
+                  ),
+                  SizedBox(
+                    height: 20,
+                  )
+                ],
               ),
-              TopBannerWidget(
-                size: size,
-                title: 'REGISTER',
-              ),
-              SizedBox(
-                height: size.height * 0.12,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-                child: CustomTextField(
-                  controller: _fNameController,
-                  label: 'First Name',
-                  hint: '',
-                  obs: false,
-                  showForgetPass: false,
-                  validator: Validators.emptyValidator,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-                child: CustomTextField(
-                  controller: _lNameController,
-                  hint: '',
-                  label: 'Last Name',
-                  obs: false,
-                  showForgetPass: false,
-                  validator: Validators.emptyValidator,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-                child: CustomTextField(
-                  controller: _emailController,
-                  label: 'E-mail',
-                  hint: '',
-                  obs: false,
-                  showForgetPass: false,
-                  validator: Validators.emailValidator,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-                child: CustomTextField(
-                  controller: _userNameController,
-                  label: 'Username',
-                  obs: false,
-                  showForgetPass: false,
-                  hint: '',
-                  validator: Validators.emptyValidator,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-                child: CustomTextField(
-                  controller: _passwordController,
-                  label: 'Password',
-                  obs: true,
-                  showForgetPass: false,
-                  hint: '',
-                  validator: Validators.passwordValidator,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-                child: CustomTextField(
-                  controller: _confirmPasswordController,
-                  label: 'Confirm Password',
-                  obs: true,
-                  hint: '',
-                  showForgetPass: false,
-                  validator: Validators.passwordValidator,
-                ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              ButtonWidget(
-                size: size,
-                isTransparent: false,
-                onTap: () {},
-                title: 'Register',
-              ),
-              SizedBox(
-                height: 20,
-              )
-            ],
+            ),
           ),
         ),
       ),
