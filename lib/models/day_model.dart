@@ -43,10 +43,8 @@ class DayModel {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-  
-    return other is DayModel &&
-      other.name == name &&
-      listEquals(other.data, data);
+
+    return other is DayModel && other.name == name && listEquals(other.data, data);
   }
 
   @override
@@ -54,19 +52,19 @@ class DayModel {
 }
 
 class DataModel {
-  final String? notification;
+  final int? notification;
   final String? title;
   final String? icon;
   final String? subtitle;
   DataModel({
-    required this.notification,
-    required this.title,
-    required this.icon,
-    required this.subtitle,
+    this.notification,
+    this.title,
+    this.icon,
+    this.subtitle,
   });
 
   DataModel copyWith({
-    String? notification,
+    int? notification,
     String? title,
     String? icon,
     String? subtitle,
@@ -109,19 +107,16 @@ class DataModel {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-  
+
     return other is DataModel &&
-      other.notification == notification &&
-      other.title == title &&
-      other.icon == icon &&
-      other.subtitle == subtitle;
+        other.notification == notification &&
+        other.title == title &&
+        other.icon == icon &&
+        other.subtitle == subtitle;
   }
 
   @override
   int get hashCode {
-    return notification.hashCode ^
-      title.hashCode ^
-      icon.hashCode ^
-      subtitle.hashCode;
+    return notification.hashCode ^ title.hashCode ^ icon.hashCode ^ subtitle.hashCode;
   }
 }
