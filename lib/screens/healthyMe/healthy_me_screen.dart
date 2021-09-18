@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hollythackwray/models/plan_model.dart';
 import 'package:hollythackwray/providers/firebase_provider.dart';
 import 'package:hollythackwray/res/app_colors.dart';
 import 'package:hollythackwray/res/app_constants.dart';
@@ -233,19 +235,21 @@ class _HealtthyMeScreenState extends State<HealtthyMeScreen> {
                         height: 10,
                       ),
                       Text(
-                        'Successfully Bulking for 38 days!',
+                        value.user!.currentProgram!.length == 0 ? 'No plans :(' : 'Successfully Bulking for 38 days!',
                         style: AppConstants.bulkinDaysTextStyle,
                       ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: ImageIcon(
-                          AssetImage(
-                            Images.share,
-                          ),
-                        ),
-                        iconSize: 20,
-                        color: Theme.of(context).dividerColor,
-                      ),
+                      value.user!.currentProgram!.length == 0
+                          ? Container()
+                          : IconButton(
+                              onPressed: () {},
+                              icon: ImageIcon(
+                                AssetImage(
+                                  Images.share,
+                                ),
+                              ),
+                              iconSize: 20,
+                              color: Theme.of(context).dividerColor,
+                            ),
                       SizedBox(
                         height: 10,
                       ),
@@ -268,69 +272,73 @@ class _HealtthyMeScreenState extends State<HealtthyMeScreen> {
                       SizedBox(
                         height: 30,
                       ),
-                      Text(
-                        'TONE',
-                        style: AppConstants.toneTextStyle.copyWith(
-                          color: Theme.of(context).dividerColor,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Image.asset(
-                            Images.dumble,
-                            height: 28,
-                            fit: BoxFit.fill,
-                            color: AppColors.lightBlue,
-                          ),
-                          SizedBox(
-                            width: 20,
-                          ),
-                          Image.asset(
-                            Images.running_person,
-                            height: 28,
-                            fit: BoxFit.fill,
-                            color: AppColors.lightBlue,
-                          ),
-                          SizedBox(
-                            width: 20,
-                          ),
-                          Image.asset(
-                            Images.spoons,
-                            height: 28,
-                            fit: BoxFit.fill,
-                            color: AppColors.lightBlue,
-                          ),
-                        ],
+                      StreamBuilder<QuerySnapshot>(
+                        stream: FirebaseFirestore.instance.collection('plans').snapshots(),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasError) {
+                            return Text('Something went wrong');
+                          }
+
+                          if (snapshot.connectionState == ConnectionState.waiting) {
+                            return Container(
+                              height: size.height * 0.3,
+                              child: Center(
+                                child: CircularProgressIndicator(),
+                              ),
+                            );
+                          }
+                          if (value.user!.currentProgram!.length == 0) {
+                            return Center(
+                              child: Text("No Plans.", style: AppConstants.labelStyle),
+                            );
+                          }
+
+                          return Column(
+                            children: snapshot.data!.docs.map((e) {
+                              PlanModel plan = PlanModel.fromMap(e.data() as Map<String, dynamic>);
+                              if (value.user!.currentProgram!.contains(plan.id)) {
+                                return Column(
+                                  children: [
+                                    SizedBox(
+                                      height: 30,
+                                    ),
+                                    Text(
+                                      plan.title,
+                                      style: AppConstants.toneTextStyle.copyWith(
+                                        color: Theme.of(context).dividerColor,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: plan.icons
+                                            .map(
+                                              (e) => Container(
+                                                margin: EdgeInsets.symmetric(horizontal: 5),
+                                                child: Image.asset(
+                                                  e,
+                                                  height: 28,
+                                                  fit: BoxFit.fill,
+                                                  color: AppColors.lightBlue,
+                                                ),
+                                              ),
+                                            )
+                                            .toList()),
+                                    SizedBox(
+                                      height: 20,
+                                    ),
+                                  ],
+                                );
+                              }
+                              return Container();
+                            }).toList(),
+                          );
+                        },
                       ),
                       SizedBox(
                         height: 30,
-                      ),
-                      Text(
-                        'VEGAN',
-                        style: AppConstants.toneTextStyle.copyWith(
-                          color: Theme.of(context).dividerColor,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Image.asset(
-                            Images.spoons,
-                            height: 28,
-                            fit: BoxFit.fill,
-                            color: AppColors.lightBlue,
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 50,
                       ),
                       Align(
                         alignment: Alignment.bottomLeft,

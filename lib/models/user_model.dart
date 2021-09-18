@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
+import 'package:hollythackwray/models/current_plan_model.dart';
+
 class UserModel {
   final String? username;
   final String? email;
@@ -9,7 +11,7 @@ class UserModel {
   final String? profilePic;
   final String? lastName;
   final String? userId;
-  final List<String>? currentProgram;
+  final List<CurrentPlanModel>? currentProgram;
   final bool? notifications;
   UserModel({
     this.username,
@@ -29,7 +31,7 @@ class UserModel {
     String? profilePic,
     String? lastName,
     String? userId,
-    List<String>? currentProgram,
+    List<CurrentPlanModel>? currentProgram,
     bool? notifications,
   }) {
     return UserModel(
@@ -52,7 +54,7 @@ class UserModel {
       'profilePic': profilePic,
       'lastName': lastName,
       'userId': userId,
-      'currentProgram': currentProgram,
+      'currentProgram': currentProgram?.map((x) => x.toMap()).toList(),
       'notifications': notifications,
     };
   }
@@ -65,7 +67,7 @@ class UserModel {
       profilePic: map['profilePic'],
       lastName: map['lastName'],
       userId: map['userId'],
-      currentProgram: List<String>.from(map['currentProgram']),
+      currentProgram: List<CurrentPlanModel>.from(map['currentProgram']?.map((x) => CurrentPlanModel.fromMap(x))),
       notifications: map['notifications'],
     );
   }
@@ -82,27 +84,27 @@ class UserModel {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-
+  
     return other is UserModel &&
-        other.username == username &&
-        other.email == email &&
-        other.firstName == firstName &&
-        other.profilePic == profilePic &&
-        other.lastName == lastName &&
-        other.userId == userId &&
-        listEquals(other.currentProgram, currentProgram) &&
-        other.notifications == notifications;
+      other.username == username &&
+      other.email == email &&
+      other.firstName == firstName &&
+      other.profilePic == profilePic &&
+      other.lastName == lastName &&
+      other.userId == userId &&
+      listEquals(other.currentProgram, currentProgram) &&
+      other.notifications == notifications;
   }
 
   @override
   int get hashCode {
     return username.hashCode ^
-        email.hashCode ^
-        firstName.hashCode ^
-        profilePic.hashCode ^
-        lastName.hashCode ^
-        userId.hashCode ^
-        currentProgram.hashCode ^
-        notifications.hashCode;
+      email.hashCode ^
+      firstName.hashCode ^
+      profilePic.hashCode ^
+      lastName.hashCode ^
+      userId.hashCode ^
+      currentProgram.hashCode ^
+      notifications.hashCode;
   }
 }
