@@ -9,6 +9,7 @@ import 'package:hollythackwray/res/images.dart';
 import 'package:hollythackwray/screens/change_program/change_program_screen.dart';
 import 'package:hollythackwray/screens/settings/settings_screen.dart';
 import 'package:hollythackwray/screens/snacks/snacks_screen.dart';
+import 'package:jiffy/jiffy.dart';
 import 'package:provider/provider.dart';
 
 class HealtthyMeScreen extends StatefulWidget {
@@ -225,53 +226,6 @@ class _HealtthyMeScreenState extends State<HealtthyMeScreen> {
                           ),
                         ],
                       ),
-                      SizedBox(
-                        height: 30,
-                      ),
-                      Divider(
-                        color: Theme.of(context).dividerColor,
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        value.user!.currentProgram!.length == 0 ? 'No plans :(' : 'Successfully Bulking for 38 days!',
-                        style: AppConstants.bulkinDaysTextStyle,
-                      ),
-                      value.user!.currentProgram!.length == 0
-                          ? Container()
-                          : IconButton(
-                              onPressed: () {},
-                              icon: ImageIcon(
-                                AssetImage(
-                                  Images.share,
-                                ),
-                              ),
-                              iconSize: 20,
-                              color: Theme.of(context).dividerColor,
-                            ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Divider(
-                        color: Theme.of(context).dividerColor,
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Get.to(() => SnacksScreen());
-                        },
-                        child: Text(
-                          'SNACKS',
-                          style: AppConstants.buttonTextStyle
-                              .copyWith(color: AppColors.darkerBlueBorder, decoration: TextDecoration.underline),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 30,
-                      ),
                       StreamBuilder<QuerySnapshot>(
                         stream: FirebaseFirestore.instance.collection('plans').snapshots(),
                         builder: (context, snapshot) {
@@ -296,12 +250,73 @@ class _HealtthyMeScreenState extends State<HealtthyMeScreen> {
                           return Column(
                             children: snapshot.data!.docs.map((e) {
                               PlanModel plan = PlanModel.fromMap(e.data() as Map<String, dynamic>);
-                              if (value.user!.currentProgram!.contains(plan.id)) {
+                              int showOnce = 0;
+
+                              if (value.user!.currentProgram!.any((element) => element.id == plan.id)) {
+                                int time = value
+                                    .user!
+                                    .currentProgram![
+                                        value.user!.currentProgram!.indexWhere((element) => element.id == plan.id)]
+                                    .date;
+                                showOnce++;
                                 return Column(
                                   children: [
-                                    SizedBox(
-                                      height: 30,
-                                    ),
+                                    showOnce == 1
+                                        ? Column(
+                                            children: [
+                                              SizedBox(
+                                                height: 20,
+                                              ),
+                                              Divider(
+                                                color: Theme.of(context).dividerColor,
+                                              ),
+                                              SizedBox(
+                                                height: 10,
+                                              ),
+                                              Text(
+                                                value.user!.currentProgram!.length == 0
+                                                    ? 'No plans :('
+                                                    : 'Successfully ${plan.title}ING since ${Jiffy(DateTime.fromMillisecondsSinceEpoch(time)).fromNow()}',
+                                                style: AppConstants.bulkinDaysTextStyle,
+                                              ),
+                                              value.user!.currentProgram!.length == 0
+                                                  ? Container()
+                                                  : IconButton(
+                                                      onPressed: () {},
+                                                      icon: ImageIcon(
+                                                        AssetImage(
+                                                          Images.share,
+                                                        ),
+                                                      ),
+                                                      iconSize: 20,
+                                                      color: Theme.of(context).dividerColor,
+                                                    ),
+                                              SizedBox(
+                                                height: 10,
+                                              ),
+                                              Divider(
+                                                color: Theme.of(context).dividerColor,
+                                              ),
+                                              SizedBox(
+                                                height: 10,
+                                              ),
+                                              GestureDetector(
+                                                onTap: () {
+                                                  Get.to(() => SnacksScreen());
+                                                },
+                                                child: Text(
+                                                  'SNACKS',
+                                                  style: AppConstants.buttonTextStyle.copyWith(
+                                                      color: AppColors.darkerBlueBorder,
+                                                      decoration: TextDecoration.underline),
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                height: 30,
+                                              ),
+                                            ],
+                                          )
+                                        : Container(),
                                     Text(
                                       plan.title,
                                       style: AppConstants.toneTextStyle.copyWith(

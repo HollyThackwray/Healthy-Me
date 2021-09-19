@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hollythackwray/models/current_plan_model.dart';
 
 import 'package:hollythackwray/models/day_model.dart';
 import 'package:hollythackwray/models/plan_model.dart';
@@ -41,20 +42,30 @@ class _ProgramDetailsScreenState extends State<ProgramDetailsScreen> {
               actions: [
                 GestureDetector(
                   onTap: () async {
-                    if (value.user!.currentProgram!.contains(widget.planModel.id)) {
+                    if (value.user!.currentProgram!.any((element) => element.id == widget.planModel.id)) {
                       await FirebaseFirestore.instance.collection("users").doc(value.user!.userId!).update({
-                        "currentProgram": FieldValue.arrayRemove([widget.planModel.id])
+                        "currentProgram": FieldValue.arrayRemove([
+                          value
+                              .user!
+                              .currentProgram![value.user!.currentProgram!
+                                  .indexWhere((element) => element.id == widget.planModel.id)]
+                              .toMap(),
+                        ])
                       });
                     } else {
                       await FirebaseFirestore.instance.collection("users").doc(value.user!.userId!).update({
-                        "currentProgram": FieldValue.arrayUnion([widget.planModel.id])
+                        "currentProgram": FieldValue.arrayUnion([
+                          CurrentPlanModel(id: widget.planModel.id, date: DateTime.now().millisecondsSinceEpoch).toMap()
+                        ])
                       });
                     }
                   },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                     child: Text(
-                      value.user!.currentProgram!.contains(widget.planModel.id) ? 'Remove' : 'Set',
+                      value.user!.currentProgram!.any((element) => element.id == widget.planModel.id)
+                          ? 'Remove'
+                          : 'Set',
                       style: AppConstants.labelStyle.copyWith(
                         color: Theme.of(context).primaryColor,
                       ),
