@@ -11,6 +11,7 @@ class UserModel {
   final String? profilePic;
   final String? lastName;
   final String? userId;
+  final bool? professionalAccount;
   final List<CurrentPlanModel>? currentProgram;
   final bool? notifications;
   UserModel({
@@ -20,6 +21,7 @@ class UserModel {
     this.profilePic,
     this.lastName,
     this.userId,
+    this.professionalAccount,
     this.currentProgram,
     this.notifications,
   });
@@ -31,6 +33,7 @@ class UserModel {
     String? profilePic,
     String? lastName,
     String? userId,
+    bool? professionalAccount,
     List<CurrentPlanModel>? currentProgram,
     bool? notifications,
   }) {
@@ -41,6 +44,7 @@ class UserModel {
       profilePic: profilePic ?? this.profilePic,
       lastName: lastName ?? this.lastName,
       userId: userId ?? this.userId,
+      professionalAccount: professionalAccount ?? this.professionalAccount,
       currentProgram: currentProgram ?? this.currentProgram,
       notifications: notifications ?? this.notifications,
     );
@@ -54,6 +58,7 @@ class UserModel {
       'profilePic': profilePic,
       'lastName': lastName,
       'userId': userId,
+      'professionalAccount': professionalAccount,
       'currentProgram': currentProgram?.map((x) => x.toMap()).toList(),
       'notifications': notifications,
     };
@@ -67,6 +72,7 @@ class UserModel {
       profilePic: map['profilePic'],
       lastName: map['lastName'],
       userId: map['userId'],
+      professionalAccount: map['professionalAccount'],
       currentProgram: List<CurrentPlanModel>.from(map['currentProgram']?.map((x) => CurrentPlanModel.fromMap(x))),
       notifications: map['notifications'],
     );
@@ -78,7 +84,7 @@ class UserModel {
 
   @override
   String toString() {
-    return 'UserModel(username: $username, email: $email, firstName: $firstName, profilePic: $profilePic, lastName: $lastName, userId: $userId, currentProgram: $currentProgram, notifications: $notifications)';
+    return 'UserModel(username: $username, email: $email, firstName: $firstName, profilePic: $profilePic, lastName: $lastName, userId: $userId, professionalAccount: $professionalAccount, currentProgram: $currentProgram, notifications: $notifications)';
   }
 
   @override
@@ -92,6 +98,7 @@ class UserModel {
       other.profilePic == profilePic &&
       other.lastName == lastName &&
       other.userId == userId &&
+      other.professionalAccount == professionalAccount &&
       listEquals(other.currentProgram, currentProgram) &&
       other.notifications == notifications;
   }
@@ -104,6 +111,7 @@ class UserModel {
       profilePic.hashCode ^
       lastName.hashCode ^
       userId.hashCode ^
+      professionalAccount.hashCode ^
       currentProgram.hashCode ^
       notifications.hashCode;
   }

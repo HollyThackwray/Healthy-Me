@@ -137,6 +137,7 @@ class FirebaseProvider extends BaseProvider {
       currentProgram: [],
       firstName: fName,
       lastName: lName,
+      professionalAccount: false,
       profilePic: null,
       email: email,
       userId: _user!.uid,

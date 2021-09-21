@@ -45,7 +45,7 @@ class AppConstants {
     fontSize: 23,
     fontWeight: FontWeight.w300,
   );
-  
+
   static TextStyle journelStyle = TextStyle(
     fontSize: 48,
   );
