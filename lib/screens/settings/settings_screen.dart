@@ -286,13 +286,22 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       child: Row(
                         children: [
                           Text(
-                            'Switch to Professional Account',
+                            value.user!.professionalAccount!
+                                ? 'Switch to Client Account'
+                                : 'Switch to Professional Account',
                             style: AppConstants.switchProfAccStyle,
                           ),
                           Spacer(),
                           GestureDetector(
-                            onTap: () {
-                              Get.to(() => GetProfAccScreen());
+                            onTap: () async {
+                              value.user!.professionalAccount!
+                                  ? await FirebaseFirestore.instance
+                                      .collection('users')
+                                      .doc(value.user!.userId!)
+                                      .update({
+                                      'professionalAccount': false,
+                                    })
+                                  : Get.to(() => GetProfAccScreen());
                             },
                             child: Container(
                               decoration: BoxDecoration(

@@ -134,6 +134,7 @@ class FirebaseProvider extends BaseProvider {
   ) async {
     user = UserModel(
       username: name,
+      trainers: [],
       currentProgram: [],
       firstName: fName,
       lastName: lName,
@@ -278,5 +279,24 @@ class FirebaseProvider extends BaseProvider {
     } catch (e) {
       print(e);
     }
+  }
+
+  Future<bool> addTrainer(String id) async {
+    try {
+      setLoadingState(true);
+      await FirebaseFirestore.instance.collection('users').doc(id).update({
+        'trainers': FieldValue.arrayUnion([user!.userId!]),
+      });
+      setLoadingState(false);
+    } on SocketException catch (_) {
+      setLoadingState(false);
+      showPlatformDialogue(title: "Network Connection Error");
+      return false;
+    } catch (e) {
+      setLoadingState(false);
+      showPlatformDialogue(title: 'Something went wrong');
+    }
+    setLoadingState(false);
+    return true;
   }
 }

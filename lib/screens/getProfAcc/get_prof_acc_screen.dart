@@ -6,6 +6,7 @@ import 'package:hollythackwray/providers/firebase_provider.dart';
 import 'package:hollythackwray/res/app_colors.dart';
 import 'package:hollythackwray/res/app_constants.dart';
 import 'package:hollythackwray/res/platform_dialogue.dart';
+import 'package:hollythackwray/screens/change_program/change_program_screen.dart';
 import 'package:hollythackwray/screens/notPurchasedJournel/not_purchased_journel_screen.dart';
 import 'package:hollythackwray/widgets/button_widget.dart';
 import 'package:hollythackwray/widgets/top_banner_sub_heading_widget.dart';
@@ -111,7 +112,7 @@ class _GetProfAccScreenState extends State<GetProfAccScreen> {
                         await FirebaseFirestore.instance.collection('users').doc(value.user!.userId!).update({
                           'professionalAccount': true,
                         });
-                        Get.to(() => NotPurchasedJournelScreen());
+                        Get.to(() => ChangeProgramScreen());
                       } else
                         showPlatformDialogue(title: 'Please Select a gym');
                     },

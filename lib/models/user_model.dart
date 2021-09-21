@@ -14,6 +14,7 @@ class UserModel {
   final bool? professionalAccount;
   final List<CurrentPlanModel>? currentProgram;
   final bool? notifications;
+  final List<String> trainers;
   UserModel({
     this.username,
     this.email,
@@ -24,6 +25,7 @@ class UserModel {
     this.professionalAccount,
     this.currentProgram,
     this.notifications,
+    required this.trainers,
   });
 
   UserModel copyWith({
@@ -36,6 +38,7 @@ class UserModel {
     bool? professionalAccount,
     List<CurrentPlanModel>? currentProgram,
     bool? notifications,
+    List<String>? clients,
   }) {
     return UserModel(
       username: username ?? this.username,
@@ -47,6 +50,7 @@ class UserModel {
       professionalAccount: professionalAccount ?? this.professionalAccount,
       currentProgram: currentProgram ?? this.currentProgram,
       notifications: notifications ?? this.notifications,
+      trainers: clients ?? this.trainers,
     );
   }
 
@@ -61,6 +65,7 @@ class UserModel {
       'professionalAccount': professionalAccount,
       'currentProgram': currentProgram?.map((x) => x.toMap()).toList(),
       'notifications': notifications,
+      'trainers': trainers,
     };
   }
 
@@ -75,6 +80,7 @@ class UserModel {
       professionalAccount: map['professionalAccount'],
       currentProgram: List<CurrentPlanModel>.from(map['currentProgram']?.map((x) => CurrentPlanModel.fromMap(x))),
       notifications: map['notifications'],
+      trainers: List<String>.from(map['trainers']),
     );
   }
 
@@ -84,7 +90,7 @@ class UserModel {
 
   @override
   String toString() {
-    return 'UserModel(username: $username, email: $email, firstName: $firstName, profilePic: $profilePic, lastName: $lastName, userId: $userId, professionalAccount: $professionalAccount, currentProgram: $currentProgram, notifications: $notifications)';
+    return 'UserModel(username: $username, email: $email, firstName: $firstName, profilePic: $profilePic, lastName: $lastName, userId: $userId, professionalAccount: $professionalAccount, currentProgram: $currentProgram, notifications: $notifications, trainers: $trainers)';
   }
 
   @override
@@ -100,7 +106,8 @@ class UserModel {
       other.userId == userId &&
       other.professionalAccount == professionalAccount &&
       listEquals(other.currentProgram, currentProgram) &&
-      other.notifications == notifications;
+      other.notifications == notifications &&
+      listEquals(other.trainers, trainers);
   }
 
   @override
@@ -113,6 +120,7 @@ class UserModel {
       userId.hashCode ^
       professionalAccount.hashCode ^
       currentProgram.hashCode ^
-      notifications.hashCode;
+      notifications.hashCode ^
+      trainers.hashCode;
   }
 }
