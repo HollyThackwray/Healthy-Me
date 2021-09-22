@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 
 import 'package:hollythackwray/models/current_plan_model.dart';
+import 'package:hollythackwray/models/program_model.dart';
 
 class UserModel {
   final String? username;
@@ -14,7 +15,9 @@ class UserModel {
   final bool? professionalAccount;
   final List<CurrentPlanModel>? currentProgram;
   final bool? notifications;
-  final List<String> trainers;
+  final List<ProgramModel>? programs;
+  final List<double>? weight;
+  final List<String>? trainers;
   UserModel({
     this.username,
     this.email,
@@ -25,6 +28,8 @@ class UserModel {
     this.professionalAccount,
     this.currentProgram,
     this.notifications,
+    required this.programs,
+    required this.weight,
     required this.trainers,
   });
 
@@ -38,7 +43,9 @@ class UserModel {
     bool? professionalAccount,
     List<CurrentPlanModel>? currentProgram,
     bool? notifications,
-    List<String>? clients,
+    List<ProgramModel>? programs,
+    List<double>? weight,
+    List<String>? trainers,
   }) {
     return UserModel(
       username: username ?? this.username,
@@ -50,7 +57,9 @@ class UserModel {
       professionalAccount: professionalAccount ?? this.professionalAccount,
       currentProgram: currentProgram ?? this.currentProgram,
       notifications: notifications ?? this.notifications,
-      trainers: clients ?? this.trainers,
+      programs: programs ?? this.programs,
+      weight: weight ?? this.weight,
+      trainers: trainers ?? this.trainers,
     );
   }
 
@@ -65,6 +74,8 @@ class UserModel {
       'professionalAccount': professionalAccount,
       'currentProgram': currentProgram?.map((x) => x.toMap()).toList(),
       'notifications': notifications,
+      'programs': programs!.map((x) => x.toMap()).toList(),
+      'weight': weight,
       'trainers': trainers,
     };
   }
@@ -80,6 +91,8 @@ class UserModel {
       professionalAccount: map['professionalAccount'],
       currentProgram: List<CurrentPlanModel>.from(map['currentProgram']?.map((x) => CurrentPlanModel.fromMap(x))),
       notifications: map['notifications'],
+      programs: List<ProgramModel>.from(map['programs']?.map((x) => ProgramModel.fromMap(x))),
+      weight: List<double>.from(map['weight']),
       trainers: List<String>.from(map['trainers']),
     );
   }
@@ -90,37 +103,41 @@ class UserModel {
 
   @override
   String toString() {
-    return 'UserModel(username: $username, email: $email, firstName: $firstName, profilePic: $profilePic, lastName: $lastName, userId: $userId, professionalAccount: $professionalAccount, currentProgram: $currentProgram, notifications: $notifications, trainers: $trainers)';
+    return 'UserModel(username: $username, email: $email, firstName: $firstName, profilePic: $profilePic, lastName: $lastName, userId: $userId, professionalAccount: $professionalAccount, currentProgram: $currentProgram, notifications: $notifications, programs: $programs, weight: $weight, trainers: $trainers)';
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-  
+
     return other is UserModel &&
-      other.username == username &&
-      other.email == email &&
-      other.firstName == firstName &&
-      other.profilePic == profilePic &&
-      other.lastName == lastName &&
-      other.userId == userId &&
-      other.professionalAccount == professionalAccount &&
-      listEquals(other.currentProgram, currentProgram) &&
-      other.notifications == notifications &&
-      listEquals(other.trainers, trainers);
+        other.username == username &&
+        other.email == email &&
+        other.firstName == firstName &&
+        other.profilePic == profilePic &&
+        other.lastName == lastName &&
+        other.userId == userId &&
+        other.professionalAccount == professionalAccount &&
+        listEquals(other.currentProgram, currentProgram) &&
+        other.notifications == notifications &&
+        listEquals(other.programs, programs) &&
+        listEquals(other.weight, weight) &&
+        listEquals(other.trainers, trainers);
   }
 
   @override
   int get hashCode {
     return username.hashCode ^
-      email.hashCode ^
-      firstName.hashCode ^
-      profilePic.hashCode ^
-      lastName.hashCode ^
-      userId.hashCode ^
-      professionalAccount.hashCode ^
-      currentProgram.hashCode ^
-      notifications.hashCode ^
-      trainers.hashCode;
+        email.hashCode ^
+        firstName.hashCode ^
+        profilePic.hashCode ^
+        lastName.hashCode ^
+        userId.hashCode ^
+        professionalAccount.hashCode ^
+        currentProgram.hashCode ^
+        notifications.hashCode ^
+        programs.hashCode ^
+        weight.hashCode ^
+        trainers.hashCode;
   }
 }

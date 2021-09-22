@@ -137,6 +137,8 @@ class FirebaseProvider extends BaseProvider {
       trainers: [],
       currentProgram: [],
       firstName: fName,
+      weight: [],
+      programs: [],
       lastName: lName,
       professionalAccount: false,
       profilePic: null,

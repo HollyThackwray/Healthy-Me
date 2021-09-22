@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:hollythackwray/models/user_model.dart';
 import 'package:hollythackwray/providers/firebase_provider.dart';
 import 'package:hollythackwray/res/app_colors.dart';
@@ -19,15 +18,6 @@ class Journel8Screen extends StatefulWidget {
 }
 
 class _Journel8ScreenState extends State<Journel8Screen> {
-  final List<String> clients = [
-    'HThack_02',
-    'EBaguley',
-    'Jamie.Smit',
-    'Gym.Bud',
-    'Com_Fit',
-    'Micheal_88',
-  ];
-
   late TextEditingController _searchController;
   @override
   void initState() {
@@ -136,13 +126,13 @@ class _Journel8ScreenState extends State<Journel8Screen> {
                           }
                           if (snapshot.data!.docs.length == 0) {
                             return Center(
-                              child: Text("No Users Founf.", style: AppConstants.labelStyle),
+                              child: Text("No Users Found.", style: AppConstants.labelStyle),
                             );
                           }
                           return Column(
                             children: snapshot.data!.docs.map((e) {
                               UserModel user = UserModel.fromMap(e.data() as Map<String, dynamic>);
-                              return value.user!.userId! == user.userId! || user.trainers.contains(value.user!.userId!)
+                              return value.user!.userId! == user.userId! || user.trainers!.contains(value.user!.userId!)
                                   ? Container()
                                   : Column(
                                       children: [

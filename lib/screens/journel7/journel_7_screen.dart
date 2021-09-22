@@ -1,20 +1,24 @@
 import 'package:charts_painter/chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hollythackwray/screens/scan/scan_screen.dart';
 import 'package:intl/intl.dart';
+import 'package:sliding_up_panel/sliding_up_panel.dart';
+
+import 'package:hollythackwray/models/user_model.dart';
 import 'package:hollythackwray/res/app_colors.dart';
 import 'package:hollythackwray/res/app_constants.dart';
 import 'package:hollythackwray/res/images.dart';
+import 'package:hollythackwray/screens/scan/scan_screen.dart';
 import 'package:hollythackwray/widgets/top_banner_sub_heading_widget.dart';
-import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class Journel7Screen extends StatefulWidget {
   Journel7Screen({
     Key? key,
     required this.date,
+    this.userModel,
   }) : super(key: key);
   final DateTime date;
+  final UserModel? userModel;
 
   @override
   _Journel7ScreenState createState() => _Journel7ScreenState();
@@ -22,6 +26,7 @@ class Journel7Screen extends StatefulWidget {
 
 class _Journel7ScreenState extends State<Journel7Screen> {
   PanelController _panelController = PanelController();
+  int days = 7;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -49,27 +54,47 @@ class _Journel7ScreenState extends State<Journel7Screen> {
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Image.asset(
-                    Images.back_arrow,
-                    color: Theme.of(context).dividerColor,
-                    height: 30,
-                    width: 30,
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        if (days == 7 && widget.userModel!.weight!.length > 7)
+                          days = 100;
+                        else
+                          days = 7;
+                      });
+                    },
+                    child: Image.asset(
+                      Images.back_arrow,
+                      color: Theme.of(context).dividerColor,
+                      height: 30,
+                      width: 30,
+                    ),
                   ),
                   SizedBox(
                     width: 10,
                   ),
                   Text(
-                    '7 Days',
+                    '$days Days',
                     style: AppConstants.labelStyle,
                   ),
                   SizedBox(
                     width: 10,
                   ),
-                  Image.asset(
-                    Images.forward_arrow,
-                    color: Theme.of(context).dividerColor,
-                    height: 30,
-                    width: 30,
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        if (days == 7 && widget.userModel!.weight!.length > 7)
+                          days = 100;
+                        else
+                          days = 7;
+                      });
+                    },
+                    child: Image.asset(
+                      Images.forward_arrow,
+                      color: Theme.of(context).dividerColor,
+                      height: 30,
+                      width: 30,
+                    ),
                   ),
                 ],
               ),
@@ -78,15 +103,9 @@ class _Journel7ScreenState extends State<Journel7Screen> {
                 child: Chart(
                   state: ChartState.bar(
                     ChartData.fromList(
-                      <double>[
-                        100,
-                        90,
-                        80,
-                        75,
-                        60,
-                        55,
-                        70,
-                      ].map((e) => BarValue<void>(e)).toList(),
+                      days == 7 && widget.userModel!.weight!.length > 7
+                          ? widget.userModel!.weight!.sublist(0, 7).map((e) => BarValue<void>(e)).toList()
+                          : widget.userModel!.weight!.map((e) => BarValue<void>(e)).toList(),
                     ),
                     foregroundDecorations: [
                       BorderDecoration(color: AppColors.lightBlue, borderWidth: 0, endWithChart: false),
@@ -167,7 +186,7 @@ class _Journel7ScreenState extends State<Journel7Screen> {
             color: Colors.grey.withOpacity(0.5),
             spreadRadius: 5,
             blurRadius: 7,
-            offset: Offset(0, 3), 
+            offset: Offset(0, 3),
           ),
         ],
         collapsed: Container(

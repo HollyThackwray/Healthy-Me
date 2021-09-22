@@ -7,19 +7,12 @@ import 'package:hollythackwray/res/app_colors.dart';
 import 'package:hollythackwray/res/app_constants.dart';
 import 'package:hollythackwray/res/images.dart';
 import 'package:hollythackwray/screens/journel8/journel_8_screen.dart';
+import 'package:hollythackwray/screens/journel9/journel9Screen.dart';
 import 'package:hollythackwray/widgets/top_banner_sub_heading_widget.dart';
 import 'package:provider/provider.dart';
 
 class Journel6Scren extends StatelessWidget {
   Journel6Scren({Key? key}) : super(key: key);
-  final List<String> clients = [
-    'HThack_02',
-    'EBaguley',
-    'Jamie.Smit',
-    'Gym.Bud',
-    'Com_Fit',
-    'Micheal_88',
-  ];
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -78,7 +71,6 @@ class Journel6Scren extends StatelessWidget {
                         if (snapshot.hasError) {
                           return Text('Something went wrong');
                         }
-
                         if (snapshot.connectionState == ConnectionState.waiting) {
                           return Container(
                             height: size.height * 0.3,
@@ -175,17 +167,25 @@ class Journel6Scren extends StatelessWidget {
                                             style: AppConstants.buttonTextStyle,
                                           ),
                                           Spacer(),
-                                          Container(
-                                            decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.circular(30),
-                                              color: AppColors.lightBlue,
-                                            ),
-                                            child: Padding(
-                                              padding: const EdgeInsets.only(left: 40, top: 10, bottom: 10, right: 10),
-                                              child: Image.asset(
-                                                Images.forward_arrow,
-                                                height: 12,
-                                                color: Theme.of(context).primaryColor,
+                                          GestureDetector(
+                                            onTap: () {
+                                              Get.to(()=> Journel9Screen(
+                                                userModel: user,
+                                              ));
+                                            },
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(30),
+                                                color: AppColors.lightBlue,
+                                              ),
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.only(left: 40, top: 10, bottom: 10, right: 10),
+                                                child: Image.asset(
+                                                  Images.forward_arrow,
+                                                  height: 12,
+                                                  color: Theme.of(context).primaryColor,
+                                                ),
                                               ),
                                             ),
                                           ),

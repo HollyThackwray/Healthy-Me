@@ -3,7 +3,7 @@ import 'dart:convert';
 class ExerciseModel {
   final int? sets;
   final int? reps;
-  final int duration;
+  final int? duration;
   final String? name;
   final String? notes;
   ExerciseModel({
