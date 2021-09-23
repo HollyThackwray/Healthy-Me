@@ -24,6 +24,7 @@ class FirebaseProvider extends BaseProvider {
     Timer(
       Duration(seconds: 3),
       () async {
+        // signOut();
         _user = _auth.currentUser;
         if (_user == null) {
           Get.offAll(() => LoginScreen());
@@ -138,7 +139,7 @@ class FirebaseProvider extends BaseProvider {
       currentProgram: [],
       firstName: fName,
       weight: [],
-      programs: [],
+      programs: null,
       lastName: lName,
       professionalAccount: false,
       profilePic: null,

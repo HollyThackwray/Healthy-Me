@@ -42,13 +42,13 @@ class _ProgramDetailsScreenState extends State<ProgramDetailsScreen> {
               actions: [
                 GestureDetector(
                   onTap: () async {
-                    if (value.user!.currentProgram!.any((element) => element.id == widget.planModel.id)) {
+                    if (value.user!.currentProgram!.any((element) => element!.id == widget.planModel.id)) {
                       await FirebaseFirestore.instance.collection("users").doc(value.user!.userId!).update({
                         "currentProgram": FieldValue.arrayRemove([
                           value
                               .user!
                               .currentProgram![value.user!.currentProgram!
-                                  .indexWhere((element) => element.id == widget.planModel.id)]
+                                  .indexWhere((element) => element!.id == widget.planModel.id)]!
                               .toMap(),
                         ])
                       });
@@ -63,7 +63,7 @@ class _ProgramDetailsScreenState extends State<ProgramDetailsScreen> {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                     child: Text(
-                      value.user!.currentProgram!.any((element) => element.id == widget.planModel.id)
+                      value.user!.currentProgram!.any((element) => element!.id == widget.planModel.id)
                           ? 'Remove'
                           : 'Set',
                       style: AppConstants.labelStyle.copyWith(

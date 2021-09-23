@@ -252,11 +252,11 @@ class _HealtthyMeScreenState extends State<HealtthyMeScreen> {
                               PlanModel plan = PlanModel.fromMap(e.data() as Map<String, dynamic>);
                               int showOnce = 0;
 
-                              if (value.user!.currentProgram!.any((element) => element.id == plan.id)) {
+                              if (value.user!.currentProgram!.any((element) => element!.id == plan.id)) {
                                 int time = value
                                     .user!
                                     .currentProgram![
-                                        value.user!.currentProgram!.indexWhere((element) => element.id == plan.id)]
+                                        value.user!.currentProgram!.indexWhere((element) => element!.id == plan.id)]!
                                     .date;
                                 showOnce++;
                                 return Column(

@@ -13,9 +13,9 @@ class UserModel {
   final String? lastName;
   final String? userId;
   final bool? professionalAccount;
-  final List<CurrentPlanModel>? currentProgram;
+  final List<CurrentPlanModel?>? currentProgram;
   final bool? notifications;
-  final List<ProgramModel>? programs;
+  final ProgramModel? programs;
   final List<double>? weight;
   final List<String>? trainers;
   UserModel({
@@ -28,9 +28,9 @@ class UserModel {
     this.professionalAccount,
     this.currentProgram,
     this.notifications,
-    required this.programs,
-    required this.weight,
-    required this.trainers,
+    this.programs,
+    this.weight,
+    this.trainers,
   });
 
   UserModel copyWith({
@@ -43,7 +43,7 @@ class UserModel {
     bool? professionalAccount,
     List<CurrentPlanModel>? currentProgram,
     bool? notifications,
-    List<ProgramModel>? programs,
+    ProgramModel? programs,
     List<double>? weight,
     List<String>? trainers,
   }) {
@@ -72,9 +72,9 @@ class UserModel {
       'lastName': lastName,
       'userId': userId,
       'professionalAccount': professionalAccount,
-      'currentProgram': currentProgram?.map((x) => x.toMap()).toList(),
+      'currentProgram': currentProgram?.map((x) => x!.toMap()).toList(),
       'notifications': notifications,
-      'programs': programs!.map((x) => x.toMap()).toList(),
+      'programs': programs?.toMap(),
       'weight': weight,
       'trainers': trainers,
     };
@@ -91,7 +91,7 @@ class UserModel {
       professionalAccount: map['professionalAccount'],
       currentProgram: List<CurrentPlanModel>.from(map['currentProgram']?.map((x) => CurrentPlanModel.fromMap(x))),
       notifications: map['notifications'],
-      programs: List<ProgramModel>.from(map['programs']?.map((x) => ProgramModel.fromMap(x))),
+      programs: map['programs'] == null ? null : ProgramModel.fromMap(map['programs']),
       weight: List<double>.from(map['weight']),
       trainers: List<String>.from(map['trainers']),
     );
@@ -120,7 +120,7 @@ class UserModel {
         other.professionalAccount == professionalAccount &&
         listEquals(other.currentProgram, currentProgram) &&
         other.notifications == notifications &&
-        listEquals(other.programs, programs) &&
+        other.programs == programs &&
         listEquals(other.weight, weight) &&
         listEquals(other.trainers, trainers);
   }
