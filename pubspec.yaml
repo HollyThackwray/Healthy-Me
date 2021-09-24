@@ -25,6 +25,7 @@ dependencies:
   intl: ^0.17.0
   just_audio: ^0.9.9
   jiffy: ^4.1.0
+  duration_picker: ^1.0.1
   loading_overlay: ^0.3.0
   lottie: ^1.1.0
   paged_vertical_calendar: ^1.0.2

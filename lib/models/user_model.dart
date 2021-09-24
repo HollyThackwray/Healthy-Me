@@ -15,7 +15,7 @@ class UserModel {
   final bool? professionalAccount;
   final List<CurrentPlanModel?>? currentProgram;
   final bool? notifications;
-  final ProgramModel? programs;
+  final ProgramModel programs;
   final List<double>? weight;
   final List<String>? trainers;
   UserModel({
@@ -28,7 +28,7 @@ class UserModel {
     this.professionalAccount,
     this.currentProgram,
     this.notifications,
-    this.programs,
+    required this.programs,
     this.weight,
     this.trainers,
   });
@@ -74,7 +74,7 @@ class UserModel {
       'professionalAccount': professionalAccount,
       'currentProgram': currentProgram?.map((x) => x!.toMap()).toList(),
       'notifications': notifications,
-      'programs': programs?.toMap(),
+      'programs': programs.toMap(),
       'weight': weight,
       'trainers': trainers,
     };
@@ -91,7 +91,7 @@ class UserModel {
       professionalAccount: map['professionalAccount'],
       currentProgram: List<CurrentPlanModel>.from(map['currentProgram']?.map((x) => CurrentPlanModel.fromMap(x))),
       notifications: map['notifications'],
-      programs: map['programs'] == null ? null : ProgramModel.fromMap(map['programs']),
+      programs: ProgramModel.fromMap(map['programs']),
       weight: List<double>.from(map['weight']),
       trainers: List<String>.from(map['trainers']),
     );

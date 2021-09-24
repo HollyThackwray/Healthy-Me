@@ -393,7 +393,7 @@ class _Journel7ScreenState extends State<Journel7Screen> {
                           size: size,
                           reps: '15',
                           notes: 'I got tired after 2 sets, and had a  longer break than usual.',
-                        )
+                        ),
                       ],
                     ),
                   ),

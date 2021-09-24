@@ -59,6 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       hint: '',
                       controller: _emailController,
                       label: 'E-mail',
+                      keyBoardType: TextInputType.emailAddress,
                       obs: false,
                       showForgetPass: false,
                       validator: Validators.emailValidator,
@@ -70,6 +71,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       controller: _passwordController,
                       label: 'Password',
                       hint: '',
+                      keyBoardType: TextInputType.text,
                       obs: true,
                       showForgetPass: true,
                       endWidget: Text(

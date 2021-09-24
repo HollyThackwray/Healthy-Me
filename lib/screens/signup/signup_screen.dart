@@ -65,6 +65,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       controller: _fNameController,
                       label: 'First Name',
                       hint: '',
+                      keyBoardType: TextInputType.text,
+
                       obs: false,
                       showForgetPass: false,
                       validator: Validators.emptyValidator,
@@ -76,6 +78,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       controller: _lNameController,
                       hint: '',
                       label: 'Last Name',
+                      keyBoardType: TextInputType.text,
+
                       obs: false,
                       showForgetPass: false,
                       validator: Validators.emptyValidator,
@@ -87,6 +91,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       controller: _emailController,
                       label: 'E-mail',
                       hint: '',
+                      keyBoardType: TextInputType.emailAddress,
+
                       obs: false,
                       showForgetPass: false,
                       validator: Validators.emailValidator,
@@ -100,6 +106,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       obs: false,
                       showForgetPass: false,
                       hint: '',
+                      keyBoardType: TextInputType.text,
+
                       validator: Validators.emptyValidator,
                     ),
                   ),
@@ -111,6 +119,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       obs: true,
                       showForgetPass: false,
                       hint: '',
+                      keyBoardType: TextInputType.text,
+
                       validator: Validators.passwordValidator,
                     ),
                   ),
@@ -120,6 +130,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       controller: _confirmPasswordController,
                       label: 'Confirm Password',
                       obs: true,
+                      keyBoardType: TextInputType.text,
+
                       hint: '',
                       showForgetPass: false,
                       validator: Validators.passwordValidator,

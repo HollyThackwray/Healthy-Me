@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:get/get.dart';
+import 'package:hollythackwray/models/program_model.dart';
+import 'package:hollythackwray/models/strech_model.dart';
 import 'package:hollythackwray/models/user_model.dart';
 import 'package:hollythackwray/res/platform_dialogue.dart';
 import 'package:hollythackwray/screens/healthyMe/healthy_me_screen.dart';
@@ -139,7 +141,7 @@ class FirebaseProvider extends BaseProvider {
       currentProgram: [],
       firstName: fName,
       weight: [],
-      programs: null,
+      programs: ProgramModel(exercises: [], streches: [], notes: []),
       lastName: lName,
       professionalAccount: false,
       profilePic: null,
@@ -289,6 +291,25 @@ class FirebaseProvider extends BaseProvider {
       setLoadingState(true);
       await FirebaseFirestore.instance.collection('users').doc(id).update({
         'trainers': FieldValue.arrayUnion([user!.userId!]),
+      });
+      setLoadingState(false);
+    } on SocketException catch (_) {
+      setLoadingState(false);
+      showPlatformDialogue(title: "Network Connection Error");
+      return false;
+    } catch (e) {
+      setLoadingState(false);
+      showPlatformDialogue(title: 'Something went wrong');
+    }
+    setLoadingState(false);
+    return true;
+  }
+
+  addStretch(String uId, ProgramModel stretch) async {
+    try {
+      setLoadingState(true);
+      await FirebaseFirestore.instance.collection('users').doc(uId).update({
+        'programs': stretch.toMap(),
       });
       setLoadingState(false);
     } on SocketException catch (_) {

@@ -142,6 +142,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         obs: false,
                         showForgetPass: false,
                         label: 'Change Username',
+                        keyBoardType: TextInputType.text,
+
                         hint: value.user!.username!,
                         controller: _userNameController,
                       ),
@@ -156,6 +158,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         child: CustomTextField(
                           obs: false,
                           showForgetPass: false,
+                          keyBoardType: TextInputType.emailAddress,
+
                           label: 'Change Email',
                           hint: value.user!.email!,
                           controller: _emailController,
@@ -225,6 +229,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         child: CustomTextField(
                           controller: _paswordController,
                           label: 'Password',
+                          keyBoardType: TextInputType.text,
+
                           hint: value.user!.email!,
                           obs: true,
                           showForgetPass: true,

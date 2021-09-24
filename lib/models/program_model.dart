@@ -6,18 +6,18 @@ import 'package:hollythackwray/models/exercise_model.dart';
 import 'package:hollythackwray/models/strech_model.dart';
 
 class ProgramModel {
-  final List<ExerciseModel?>? exercises;
-  final List<StrechModel?>? streches;
+  List<ExerciseModel> exercises;
+  List<StrechModel> streches;
   final int? date;
-  final List<String?>? myNotes;
+  final List<String>? myNotes;
   final bool? completedStrech;
   final bool? completedExercise;
   final bool? clientUpdate;
   final bool? professionalUpdate;
-  final List<String?>? notes;
+  List<String> notes;
   ProgramModel({
-    this.exercises,
-    this.streches,
+    required this.exercises,
+    required this.streches,
     this.date,
     this.myNotes,
     this.completedStrech,
@@ -53,8 +53,8 @@ class ProgramModel {
 
   Map<String, dynamic> toMap() {
     return {
-      'exercises': exercises?.map((x) => x!.toMap()).toList(),
-      'streches': streches?.map((x) => x!.toMap()).toList(),
+      'exercises': exercises.map((x) => x.toMap()).toList(),
+      'streches': streches.map((x) => x.toMap()).toList(),
       'date': date,
       'myNotes': myNotes,
       'completedStrech': completedStrech,
@@ -70,7 +70,7 @@ class ProgramModel {
       exercises: List<ExerciseModel>.from(map['exercises']?.map((x) => ExerciseModel.fromMap(x))),
       streches: List<StrechModel>.from(map['streches']?.map((x) => StrechModel.fromMap(x))),
       date: map['date'],
-      myNotes: List<String>.from(map['myNotes']),
+      myNotes: map['myNotes'] == null ? null : List<String>.from(map['myNotes']),
       completedStrech: map['completedStrech'],
       completedExercise: map['completedExercise'],
       clientUpdate: map['clientUpdate'],

@@ -4,12 +4,13 @@ class CustomTextField extends StatelessWidget {
   const CustomTextField({
     Key? key,
     required this.obs,
+    this.endWidget,
     required this.showForgetPass,
     required this.label,
     required this.hint,
     this.validator,
-    this.endWidget,
     required this.controller,
+    required this.keyBoardType,
   }) : super(key: key);
   final bool obs;
   final Widget? endWidget;
@@ -18,13 +19,14 @@ class CustomTextField extends StatelessWidget {
   final String hint;
   final String? Function(String?)? validator;
   final TextEditingController controller;
-
+  final TextInputType keyBoardType;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
       validator: validator,
       obscureText: obs,
+      keyboardType: keyBoardType,
       decoration: InputDecoration(
         hintText: hint,
         suffixIconConstraints: BoxConstraints(

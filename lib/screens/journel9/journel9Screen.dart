@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hollythackwray/res/app_constants.dart';
 import 'package:hollythackwray/screens/journel7/journel_7_screen.dart';
+import 'package:hollythackwray/screens/program_3/program3screen.dart';
 import 'package:paged_vertical_calendar/paged_vertical_calendar.dart';
 
 import 'package:hollythackwray/models/user_model.dart';
@@ -92,6 +93,11 @@ class _Journel9ScreenState extends State<Journel9Screen> {
                       SizedBox(height: 30),
                       Center(
                           child: GestureDetector(
+                        onTap: () {
+                          Get.to(() => Program3screen(
+                                userModel: widget.userModel,
+                              ));
+                        },
                         child: Text(
                           'Edit Program',
                           style: AppConstants.nameTextStyle.copyWith(
