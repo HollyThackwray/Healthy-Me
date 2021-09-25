@@ -8,7 +8,6 @@ import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:get/get.dart';
 import 'package:hollythackwray/models/program_model.dart';
-import 'package:hollythackwray/models/strech_model.dart';
 import 'package:hollythackwray/models/user_model.dart';
 import 'package:hollythackwray/res/platform_dialogue.dart';
 import 'package:hollythackwray/screens/healthyMe/healthy_me_screen.dart';
