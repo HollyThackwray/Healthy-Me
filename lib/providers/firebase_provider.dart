@@ -7,8 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:get/get.dart';
+import 'package:hollythackwray/models/exercise_model.dart';
 import 'package:hollythackwray/models/program_model.dart';
 import 'package:hollythackwray/models/user_model.dart';
+import 'package:hollythackwray/models/user_program_model.dart';
 import 'package:hollythackwray/res/platform_dialogue.dart';
 import 'package:hollythackwray/screens/healthyMe/healthy_me_screen.dart';
 import 'package:hollythackwray/screens/login/login_screen.dart';
@@ -140,7 +142,7 @@ class FirebaseProvider extends BaseProvider {
       currentProgram: [],
       firstName: fName,
       weight: [],
-      programs: ProgramModel(exercises: [], streches: [], notes: []),
+      programs: ProgramModel(exercises: [], streches: [], notes: [], myNotes: []),
       lastName: lName,
       professionalAccount: false,
       profilePic: null,
@@ -319,6 +321,49 @@ class FirebaseProvider extends BaseProvider {
       setLoadingState(false);
       showPlatformDialogue(title: 'Something went wrong');
     }
+    setLoadingState(false);
+    return true;
+  }
+
+  addNewExcercise(
+    String type,
+    UserProgramModel userProgramModel,
+  ) async {
+    if (DateTime.fromMillisecondsSinceEpoch(userProgramModel.date).day == DateTime.now().day &&
+        DateTime.fromMillisecondsSinceEpoch(userProgramModel.date).month == DateTime.now().month &&
+        DateTime.fromMillisecondsSinceEpoch(userProgramModel.date).year == DateTime.now().year) {
+      try {
+        setLoadingState(true);
+        await FirebaseFirestore.instance.collection('userPrograms').doc(userProgramModel.programId).update(
+              userProgramModel.toMap(),
+            );
+        setLoadingState(false);
+      } on SocketException catch (_) {
+        setLoadingState(false);
+        showPlatformDialogue(title: "Network Connection Error");
+        return false;
+      } catch (e) {
+        setLoadingState(false);
+        showPlatformDialogue(title: 'Something went wrong');
+      }
+    } else {
+      try {
+        setLoadingState(true);
+        var ref = FirebaseFirestore.instance.collection("userPrograms").doc().id;
+        await FirebaseFirestore.instance.collection('userPrograms').doc(ref).set(
+              userProgramModel.toMap(),
+            );
+        setLoadingState(false);
+      } on SocketException catch (_) {
+        setLoadingState(false);
+        showPlatformDialogue(title: "Network Connection Error");
+        return false;
+      } catch (e) {
+        setLoadingState(false);
+        showPlatformDialogue(title: 'Something went wrong');
+      }
+    }
+
     setLoadingState(false);
     return true;
   }

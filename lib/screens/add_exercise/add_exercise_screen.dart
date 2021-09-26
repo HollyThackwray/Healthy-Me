@@ -277,6 +277,7 @@ class _AddExerciseScreenState extends State<AddExerciseScreen> {
                             ExerciseModel(
                               duration: pickedTime!.inSeconds,
                               name: _nameController.text,
+                              isCompleted: false,
                               notes: _notesController.text,
                               reps: int.parse(_repsController.text),
                               sets: int.parse(_setsController.text),

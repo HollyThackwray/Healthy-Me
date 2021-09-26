@@ -1,10 +1,12 @@
 import 'package:charts_painter/chart.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 import 'package:hollythackwray/models/user_model.dart';
+import 'package:hollythackwray/models/user_program_model.dart';
 import 'package:hollythackwray/res/app_colors.dart';
 import 'package:hollythackwray/res/app_constants.dart';
 import 'package:hollythackwray/res/images.dart';
@@ -15,16 +17,39 @@ class Journel7Screen extends StatefulWidget {
   Journel7Screen({
     Key? key,
     required this.date,
-    this.userModel,
+    required this.userModel,
+    required this.userProgramModel,
   }) : super(key: key);
   final DateTime date;
   final UserModel? userModel;
+  final UserProgramModel userProgramModel;
 
   @override
   _Journel7ScreenState createState() => _Journel7ScreenState();
 }
 
 class _Journel7ScreenState extends State<Journel7Screen> {
+  getTrainersNames() async {
+    for (var i = 0; i < widget.userModel!.programs.notes.length; i++) {
+      var doc =
+          await FirebaseFirestore.instance.collection('users').doc(widget.userModel!.programs.notes[i].userId).get();
+      UserModel userModel = UserModel.fromMap(doc.data() as Map<String, dynamic>);
+      trainerNames.add(userModel.firstName!);
+    }
+    setState(() {
+      isLoading = false;
+    });
+  }
+
+  int notesName = 0;
+  @override
+  void initState() {
+    getTrainersNames();
+    super.initState();
+  }
+
+  bool isLoading = true;
+  List<String> trainerNames = [];
   PanelController _panelController = PanelController();
   int days = 7;
   @override
@@ -98,81 +123,81 @@ class _Journel7ScreenState extends State<Journel7Screen> {
                   ),
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.all(20),
-                child: Chart(
-                  state: ChartState.bar(
-                    ChartData.fromList(
-                      days == 7 && widget.userModel!.weight!.length > 7
-                          ? widget.userModel!.weight!.sublist(0, 7).map((e) => BarValue<void>(e)).toList()
-                          : widget.userModel!.weight!.map((e) => BarValue<void>(e)).toList(),
-                    ),
-                    foregroundDecorations: [
-                      BorderDecoration(color: AppColors.lightBlue, borderWidth: 0, endWithChart: false),
-                    ],
-                    backgroundDecorations: [
-                      GridDecoration(
-                        showHorizontalValues: true,
-                        textStyle: AppConstants.labelStyle.copyWith(
-                          fontSize: 10,
-                          color: Theme.of(context).dividerColor,
+              widget.userModel!.weight!.length == 0
+                  ? Container(
+                      height: size.height * 0.25,
+                      child: Center(child: Text('No Weight Added')),
+                    )
+                  : Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: Chart(
+                        state: ChartState.bar(
+                          ChartData.fromList(
+                            days == 7 && widget.userModel!.weight!.length > 7
+                                ? widget.userModel!.weight!.sublist(0, 7).map((e) => BarValue<void>(e)).toList()
+                                : widget.userModel!.weight!.map((e) => BarValue<void>(e)).toList(),
+                          ),
+                          foregroundDecorations: [
+                            BorderDecoration(color: AppColors.lightBlue, borderWidth: 0, endWithChart: false),
+                          ],
+                          backgroundDecorations: [
+                            GridDecoration(
+                              showHorizontalValues: true,
+                              textStyle: AppConstants.labelStyle.copyWith(
+                                fontSize: 10,
+                                color: Theme.of(context).dividerColor,
+                              ),
+                              horizontalAxisValueFromValue: (value) {
+                                if (value % 10 == 0) {
+                                  return value.toString();
+                                }
+                                return '';
+                              },
+                              horizontalLegendPosition: HorizontalLegendPosition.start,
+                              horizontalValuesPadding: EdgeInsets.only(right: 10),
+                              gridColor: Colors.transparent,
+                            ),
+                            BorderDecoration(
+                              color: Colors.transparent,
+                              borderWidth: 0,
+                            ),
+                          ],
+                          itemOptions: BarItemOptions(
+                            padding: const EdgeInsets.symmetric(horizontal: 2.0),
+                            radius: BorderRadius.circular(40),
+                            color: AppColors.lightBlue,
+                          ),
                         ),
-                        horizontalAxisValueFromValue: (value) {
-                          if (value % 10 == 0) {
-                            return value.toString();
-                          }
-                          return '';
-                        },
-                        horizontalLegendPosition: HorizontalLegendPosition.start,
-                        horizontalValuesPadding: EdgeInsets.only(right: 10),
-                        gridColor: Colors.transparent,
                       ),
-                      BorderDecoration(
-                        color: Colors.transparent,
-                        borderWidth: 0,
+                    ),
+              SizedBox(
+                height: 30,
+              ),
+              Column(
+                children: widget.userModel!.programs.notes.map((e) {
+                  notesName++;
+                  return Column(
+                    children: [
+                      Text(
+                        'Personal Trainer (${trainerNames[notesName]})',
+                        style: AppConstants.labelStyle.copyWith(
+                          color: AppColors.darkerBlueBorder,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: Text(
+                          e.note,
+                          style: AppConstants.bulkinDaysTextStyle,
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 30,
                       ),
                     ],
-                    itemOptions: BarItemOptions(
-                      padding: const EdgeInsets.symmetric(horizontal: 2.0),
-                      radius: BorderRadius.circular(40),
-                      color: AppColors.lightBlue,
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              Text(
-                'Personal Trainer (Micheal)',
-                style: AppConstants.labelStyle.copyWith(
-                  color: AppColors.darkerBlueBorder,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(20),
-                child: Text(
-                  'Great job so far! Keep doing that for the next week, but add lunges - 3 reps of 10 sets. Then next week, add another set to each exercise.',
-                  style: AppConstants.bulkinDaysTextStyle,
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              Text(
-                'Physiotherapist (Robin)',
-                style: AppConstants.labelStyle.copyWith(
-                  color: AppColors.darkerBlueBorder,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(20),
-                child: Text(
-                  'Add an ankle and hamstring stretch to your routine to help with your leg pain.',
-                  style: AppConstants.bulkinDaysTextStyle,
-                  textAlign: TextAlign.center,
-                ),
+                  );
+                }).toList(),
               ),
               SizedBox(
                 height: 30,
@@ -257,7 +282,7 @@ class _Journel7ScreenState extends State<Journel7Screen> {
                         children: [
                           GestureDetector(
                             onTap: () {
-                              Get.to(() => ScanScreen());
+                              // Get.to(() => ScanScreen());
                             },
                             child: Image.asset(
                               Images.qr_code,
@@ -291,72 +316,56 @@ class _Journel7ScreenState extends State<Journel7Screen> {
                       children: [
                         DisplayRow(
                           title: 'Weight:',
-                          des: '55',
+                          des: widget.userModel!.weight!.length == 0 ? '0.0' : widget.userModel!.weight![-1].toString(),
                         ),
                         SizedBox(height: 30),
                         Text(
                           'Stretches:',
                           style: AppConstants.labelStyle,
                         ),
-                        Container(
-                          margin: EdgeInsets.only(
-                            left: 10,
-                          ),
-                          child: Text(
-                            'Lunge with Spinal twist',
-                            style: AppConstants.labelStyle.copyWith(
-                              color: AppColors.darkerBlueBorder,
-                            ),
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.only(
-                            left: 20,
-                          ),
-                          child: Row(
-                            children: [
-                              Text('Duration:', style: AppConstants.bulkinDaysTextStyle),
-                              Text(
-                                'Held for 30 seconds, twice',
-                                style: AppConstants.bulkinDaysTextStyle.copyWith(
-                                  color: AppColors.darkerBlueBorder,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.only(
-                            left: 10,
-                            top: 20,
-                          ),
-                          child: Text(
-                            'Triceps stretch',
-                            style: AppConstants.labelStyle.copyWith(
-                              color: AppColors.darkerBlueBorder,
-                            ),
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.only(left: 20, bottom: 30),
-                          child: Row(
-                            children: [
-                              Text('Duration:', style: AppConstants.bulkinDaysTextStyle),
-                              Text(
-                                'Held for 30 seconds, twice',
-                                style: AppConstants.bulkinDaysTextStyle.copyWith(
-                                  color: AppColors.darkerBlueBorder,
-                                ),
-                              ),
-                            ],
-                          ),
+                        SizedBox(
+                          height: 10,
                         ),
                         Text(
-                          '+ Stretch',
-                          style: AppConstants.bulkinDaysTextStyle.copyWith(
-                            color: AppColors.darkerBlueBorder,
-                          ),
+                          '+ Stretches',
+                          style: AppConstants.bulkinDaysTextStyle.copyWith(color: AppColors.darkerBlueBorder),
                         ),
+                        Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: widget.userProgramModel.streches
+                                .map((e) => Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                          margin: EdgeInsets.only(
+                                            left: 10,
+                                          ),
+                                          child: Text(
+                                            e.name!,
+                                            style: AppConstants.labelStyle.copyWith(
+                                              color: AppColors.darkerBlueBorder,
+                                            ),
+                                          ),
+                                        ),
+                                        Container(
+                                          margin: EdgeInsets.only(
+                                            left: 20,
+                                          ),
+                                          child: Row(
+                                            children: [
+                                              Text('Duration:', style: AppConstants.bulkinDaysTextStyle),
+                                              Text(
+                                                'Held for ${e.duration!} seconds, ${e.reps}',
+                                                style: AppConstants.bulkinDaysTextStyle.copyWith(
+                                                  color: AppColors.darkerBlueBorder,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ))
+                                .toList()),
                         SizedBox(
                           height: 30,
                         ),
@@ -387,12 +396,21 @@ class _Journel7ScreenState extends State<Journel7Screen> {
                         SizedBox(
                           height: 40,
                         ),
-                        ExcersizeBlockWidget(
-                          excersize: 'Push-ups',
-                          sets: '3',
-                          size: size,
-                          reps: '15',
-                          notes: 'I got tired after 2 sets, and had a  longer break than usual.',
+                        Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: widget.userProgramModel.exercises
+                                .map(
+                                  (e) => ExcersizeBlockWidget(
+                                    excersize: e.name!,
+                                    sets: e.sets.toString(),
+                                    size: size,
+                                    reps: e.reps!.toString(),
+                                    notes: e.notes!,
+                                  ),
+                                )
+                                .toList()),
+                        SizedBox(
+                          height: 100,
                         ),
                       ],
                     ),

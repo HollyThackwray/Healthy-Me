@@ -36,7 +36,7 @@ class _ScanScreenState extends State<ScanScreen> {
           ),
           GestureDetector(
             onTap: () {
-              Get.to(() => TradeMilScreen());
+              // Get.to(() => TradeMilScreen());
             },
             child: Text(
               'Scanning',
