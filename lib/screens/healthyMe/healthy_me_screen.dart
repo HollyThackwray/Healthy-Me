@@ -243,7 +243,7 @@ class _HealtthyMeScreenState extends State<HealtthyMeScreen> {
                           }
                           if (value.user!.currentProgram!.length == 0) {
                             return Center(
-                              child: Text("No Plans.", style: AppConstants.labelStyle),
+                              child: Text("No Program Selected", style: AppConstants.labelStyle),
                             );
                           }
 
@@ -275,7 +275,7 @@ class _HealtthyMeScreenState extends State<HealtthyMeScreen> {
                                               ),
                                               Text(
                                                 value.user!.currentProgram!.length == 0
-                                                    ? 'No plans :('
+                                                    ? 'No Program Selected :('
                                                     : 'Successfully ${plan.title}ING since ${Jiffy(DateTime.fromMillisecondsSinceEpoch(time)).fromNow()}',
                                                 style: AppConstants.bulkinDaysTextStyle,
                                               ),

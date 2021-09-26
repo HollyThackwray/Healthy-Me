@@ -40,7 +40,7 @@ class ChangeProgramScreen extends StatelessWidget {
               }
               if (snapshot.data!.docs.length == 0) {
                 return Center(
-                  child: Text("No Plans."),
+                  child: Text("No Program Selected."),
                 );
               }
               return ListView(

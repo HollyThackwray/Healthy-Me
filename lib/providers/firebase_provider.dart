@@ -335,7 +335,15 @@ class FirebaseProvider extends BaseProvider {
       try {
         setLoadingState(true);
         await FirebaseFirestore.instance.collection('userPrograms').doc(userProgramModel.programId).update(
-              userProgramModel.toMap(),
+              userProgramModel
+                  .copyWith(
+                    clientUpdate: true,
+                    completedExercise: false,
+                    completedStrech: false,
+                    userId: user!.userId,
+                    professionalUpdate: false,
+                  )
+                  .toMap(),
             );
         setLoadingState(false);
       } on SocketException catch (_) {
@@ -344,14 +352,24 @@ class FirebaseProvider extends BaseProvider {
         return false;
       } catch (e) {
         setLoadingState(false);
-        showPlatformDialogue(title: 'Something went wrong');
+        await showPlatformDialogue(title: 'Something went wrong');
+        return false;
       }
     } else {
       try {
         setLoadingState(true);
         var ref = FirebaseFirestore.instance.collection("userPrograms").doc().id;
         await FirebaseFirestore.instance.collection('userPrograms').doc(ref).set(
-              userProgramModel.toMap(),
+              userProgramModel
+                  .copyWith(
+                    userId: user!.userId!,
+                    clientUpdate: false,
+                    completedExercise: false,
+                    completedStrech: false,
+                    programId: ref,
+                    date: DateTime.now().millisecondsSinceEpoch,
+                  )
+                  .toMap(),
             );
         setLoadingState(false);
       } on SocketException catch (_) {
@@ -360,7 +378,9 @@ class FirebaseProvider extends BaseProvider {
         return false;
       } catch (e) {
         setLoadingState(false);
-        showPlatformDialogue(title: 'Something went wrong');
+        print(e);
+        await showPlatformDialogue(title: 'Something went wrong');
+        return false;
       }
     }
 

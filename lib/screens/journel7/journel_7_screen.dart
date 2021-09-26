@@ -2,6 +2,7 @@ import 'package:charts_painter/chart.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hollythackwray/screens/tradeMil/trade_mil_screen.dart';
 import 'package:intl/intl.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
@@ -282,7 +283,7 @@ class _Journel7ScreenState extends State<Journel7Screen> {
                         children: [
                           GestureDetector(
                             onTap: () {
-                              // Get.to(() => ScanScreen());
+                              Get.to(() => ScanScreen());
                             },
                             child: Image.asset(
                               Images.qr_code,
@@ -326,9 +327,14 @@ class _Journel7ScreenState extends State<Journel7Screen> {
                         SizedBox(
                           height: 10,
                         ),
-                        Text(
-                          '+ Stretches',
-                          style: AppConstants.bulkinDaysTextStyle.copyWith(color: AppColors.darkerBlueBorder),
+                        GestureDetector(
+                          onTap: () {
+                            Get.to(() => TradeMilScreen(type: 'Stretch', userProgramModel: widget.userProgramModel));
+                          },
+                          child: Text(
+                            '+ Stretches',
+                            style: AppConstants.bulkinDaysTextStyle.copyWith(color: AppColors.darkerBlueBorder),
+                          ),
                         ),
                         Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -389,9 +395,14 @@ class _Journel7ScreenState extends State<Journel7Screen> {
                         SizedBox(
                           height: 10,
                         ),
-                        Text(
-                          '+ Exercises',
-                          style: AppConstants.bulkinDaysTextStyle.copyWith(color: AppColors.darkerBlueBorder),
+                        GestureDetector(
+                          onTap: () {
+                            Get.to(() => TradeMilScreen(type: 'Exercise', userProgramModel: widget.userProgramModel));
+                          },
+                          child: Text(
+                            '+ Exercises',
+                            style: AppConstants.bulkinDaysTextStyle.copyWith(color: AppColors.darkerBlueBorder),
+                          ),
                         ),
                         SizedBox(
                           height: 40,

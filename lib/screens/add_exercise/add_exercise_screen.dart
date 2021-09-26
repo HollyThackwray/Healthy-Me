@@ -70,7 +70,7 @@ class _AddExerciseScreenState extends State<AddExerciseScreen> {
                       obs: false,
                       showForgetPass: false,
                       label: 'Title',
-                      hint: 'Triceps stretch',
+                      hint: 'Plank',
                       controller: _nameController,
                       keyBoardType: TextInputType.text,
                     ),

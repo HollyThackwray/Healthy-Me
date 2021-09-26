@@ -52,7 +52,7 @@ class ExerciseModel {
       duration: map['duration'],
       name: map['name'],
       notes: map['notes'],
-      isCompleted: map['isCompleted'],
+      isCompleted: map['isCompleted'] ?? false,
     );
   }
 
@@ -68,23 +68,18 @@ class ExerciseModel {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-  
+
     return other is ExerciseModel &&
-      other.sets == sets &&
-      other.reps == reps &&
-      other.duration == duration &&
-      other.name == name &&
-      other.notes == notes &&
-      other.isCompleted == isCompleted;
+        other.sets == sets &&
+        other.reps == reps &&
+        other.duration == duration &&
+        other.name == name &&
+        other.notes == notes &&
+        other.isCompleted == isCompleted;
   }
 
   @override
   int get hashCode {
-    return sets.hashCode ^
-      reps.hashCode ^
-      duration.hashCode ^
-      name.hashCode ^
-      notes.hashCode ^
-      isCompleted.hashCode;
+    return sets.hashCode ^ reps.hashCode ^ duration.hashCode ^ name.hashCode ^ notes.hashCode ^ isCompleted.hashCode;
   }
 }

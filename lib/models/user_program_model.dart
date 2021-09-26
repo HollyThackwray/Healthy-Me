@@ -10,7 +10,7 @@ class UserProgramModel {
   List<ExerciseModel> streches;
   int date;
   String userId;
-  List<String>? myNotes;
+  List<String> myNotes;
   bool? completedStrech;
   bool? completedExercise;
   bool? clientUpdate;
@@ -22,7 +22,7 @@ class UserProgramModel {
     required this.streches,
     required this.date,
     required this.userId,
-    this.myNotes,
+   required this.myNotes,
     this.completedStrech,
     this.completedExercise,
     this.clientUpdate,

@@ -174,6 +174,8 @@ class _Journel2ScreenState extends State<Journel2Screen> {
   }
 
   UserProgramModel getToday(DateTime date, List<UserProgramModel> programs) {
+    print(DateTime.fromMillisecondsSinceEpoch(programs[1].date).day == date.day);
+    print(date);
     if (programs.any((element) =>
         DateTime.fromMillisecondsSinceEpoch(element.date).day == date.day &&
         DateTime.fromMillisecondsSinceEpoch(element.date).month == date.month &&
@@ -183,7 +185,14 @@ class _Journel2ScreenState extends State<Journel2Screen> {
           DateTime.fromMillisecondsSinceEpoch(element.date).month == date.month &&
           DateTime.fromMillisecondsSinceEpoch(element.date).year == date.year)];
     } else {
-      return UserProgramModel(exercises: [], streches: [], userId: '', notes: [],programId: '', date: DateTime.now().millisecondsSinceEpoch);
+      return UserProgramModel(
+          exercises: [],
+          myNotes: [],
+          streches: [],
+          userId: '',
+          notes: [],
+          programId: '',
+          date: DateTime(2020).millisecondsSinceEpoch);
     }
   }
 }
