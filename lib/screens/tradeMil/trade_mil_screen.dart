@@ -2,6 +2,7 @@ import 'package:duration_picker/duration_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hollythackwray/models/exercise_model.dart';
+import 'package:hollythackwray/widgets/custom_text_form_field_widget.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 import 'package:provider/provider.dart';
 
@@ -31,6 +32,7 @@ class _TradeMilScreenState extends State<TradeMilScreen> {
   TextEditingController _repsController = TextEditingController();
   TextEditingController _durationController = TextEditingController();
   TextEditingController _notesController = TextEditingController();
+  TextEditingController _nameController = TextEditingController();
   Duration? pickedTime = Duration();
   late UserProgramModel userProgramModel;
   @override
@@ -62,22 +64,29 @@ class _TradeMilScreenState extends State<TradeMilScreen> {
                 SizedBox(
                   height: size.height * 0.2,
                 ),
-                Text(
-                  'TREDMILL',
-                  style: AppConstants.nameTextStyle,
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Image.asset(
-                  Images.running_person,
-                  height: 44,
-                  fit: BoxFit.fill,
-                  color: AppColors.lightBlue,
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 50),
+                  child: CustomTextField(
+                    obs: false,
+                    showForgetPass: false,
+                    label: 'Title',
+                    hint: 'Plank',
+                    controller: _nameController,
+                    keyBoardType: TextInputType.text,
+                  ),
                 ),
                 SizedBox(
                   height: 20,
                 ),
+                // Image.asset(
+                //   Images.running_person,
+                //   height: 44,
+                //   fit: BoxFit.fill,
+                //   color: AppColors.lightBlue,
+                // ),
+                // SizedBox(
+                //   height: 20,
+                // ),
                 Container(
                   width: double.infinity,
                   height: size.height * 0.45,
@@ -269,7 +278,7 @@ class _TradeMilScreenState extends State<TradeMilScreen> {
                         userProgramModel.exercises.add(
                           ExerciseModel(
                             duration: pickedTime!.inSeconds,
-                            name: 'Tread Mill',
+                            name: _nameController.text,
                             isCompleted: false,
                             notes: _notesController.text,
                             reps: int.parse(_repsController.text),
@@ -280,7 +289,7 @@ class _TradeMilScreenState extends State<TradeMilScreen> {
                         userProgramModel.streches.add(
                           ExerciseModel(
                             duration: pickedTime!.inSeconds,
-                            name: 'Tread Mill',
+                            name: _nameController.text,
                             isCompleted: false,
                             notes: _notesController.text,
                             reps: int.parse(_repsController.text),

@@ -361,7 +361,7 @@ class _Journel7ScreenState extends State<Journel7Screen> {
                                             children: [
                                               Text('Duration:', style: AppConstants.bulkinDaysTextStyle),
                                               Text(
-                                                'Held for ${e.duration!} seconds, ${e.reps}',
+                                                'Held for ${e.duration!} seconds, ${e.reps} Times',
                                                 style: AppConstants.bulkinDaysTextStyle.copyWith(
                                                   color: AppColors.darkerBlueBorder,
                                                 ),

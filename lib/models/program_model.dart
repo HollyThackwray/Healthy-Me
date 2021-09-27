@@ -21,7 +21,7 @@ class ProgramModel {
     required this.exercises,
     required this.streches,
     this.date,
-  required  this.myNotes,
+    required this.myNotes,
     this.completedStrech,
     this.completedExercise,
     this.clientUpdate,

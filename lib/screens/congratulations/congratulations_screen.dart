@@ -80,7 +80,7 @@ class _CongratulationsScreenState extends State<CongratulationsScreen> {
                   Get.back();
                   Get.back();
                   Get.back();
-                  Get.back();
+                  // Get.back();
                 },
                 title: 'Contine',
                 isTransparent: false),
