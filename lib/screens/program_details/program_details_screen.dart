@@ -11,6 +11,8 @@ import 'package:hollythackwray/res/app_constants.dart';
 import 'package:hollythackwray/res/images.dart';
 import 'package:hollythackwray/screens/challenge/challenge_screen.dart';
 import 'package:hollythackwray/screens/more_information/bulk_more_information_screen.dart';
+import 'package:hollythackwray/screens/more_information/slim_more_information.dart';
+import 'package:hollythackwray/screens/more_information/tone_more_information_screen.dart';
 import 'package:provider/provider.dart';
 
 class ProgramDetailsScreen extends StatefulWidget {
@@ -235,7 +237,15 @@ class _ProgramDetailsScreenState extends State<ProgramDetailsScreen> {
                         ),
                         GestureDetector(
                           onTap: () {
-                            Get.to(() => widget.planModel.title == 'BULK' ? BulkMoreInformationScreen() : Container());
+                            Get.to(
+                              () => widget.planModel.title == 'BULK'
+                                  ? BulkMoreInformationScreen()
+                                  : widget.planModel.title == 'SLIM'
+                                      ? SlimMoreInformation()
+                                      : widget.planModel.title == 'TONE'
+                                          ? ToneMoreInformationScreen()
+                                          : Container(),
+                            );
                           },
                           child: Text(
                             'More information',

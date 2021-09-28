@@ -78,7 +78,7 @@ class _TradeMilScreenState extends State<TradeMilScreen> {
                 SizedBox(
                   height: 20,
                 ),
-                // Image.asset(
+                // Image.asset(bbbbbbbbbbbbbbbbbbbbbbbbb
                 //   Images.running_person,
                 //   height: 44,
                 //   fit: BoxFit.fill,

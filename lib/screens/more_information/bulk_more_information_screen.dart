@@ -48,6 +48,10 @@ class BulkMoreInformationScreen extends StatelessWidget {
             SizedBox(
               height: 10,
             ),
+            Text('Breakfasts', style: AppConstants.labelStyle),
+            SizedBox(
+              height: 10,
+            ),
             DisplayContainer(
               title: 'Eggs any style',
               subtitle: 'Include: cheese, lentils and a glass of milk',
@@ -112,9 +116,10 @@ class BulkMoreInformationScreen extends StatelessWidget {
             DisplayContainer(title: 'Smoothie', subtitle: 'Include: Fresh fruits, avocado and milk'),
             DisplayContainer(title: 'Chicken breast', subtitle: 'Include: Soybeans and Cottage cheese'),
             DisplayContainerScrollable(
-                title: 'Tuna:',
-                subtitle:
-                    'In addition to 20 grams of protein per 3-ounce (85-gram) serving, tuna contains high amounts of vitamin A and several B vitamins, including B12, niacin and B6. These nutrients are important for optimal health, energy and exercise performance.\n\nAdditionally, tuna provides large amounts of omega-3 fatty acids, which may support muscle health.\n\nThis may be particularly important for older adults. Research has shown that omega-3 fatty acids can slow the loss of muscle mass and strength that occurs with age.'),
+              title: 'Tuna:',
+              subtitle:
+                  'In addition to 20 grams of protein per 3-ounce (85-gram) serving, tuna contains high amounts of vitamin A and several B vitamins, including B12, niacin and B6. These nutrients are important for optimal health, energy and exercise performance.\n\nAdditionally, tuna provides large amounts of omega-3 fatty acids, which may support muscle health.\n\nThis may be particularly important for older adults. Research has shown that omega-3 fatty acids can slow the loss of muscle mass and strength that occurs with age.',
+            ),
             DisplayContainerScrollable(
                 title: 'Salmon:',
                 subtitle:
