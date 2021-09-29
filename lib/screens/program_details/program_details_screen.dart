@@ -11,8 +11,16 @@ import 'package:hollythackwray/res/app_constants.dart';
 import 'package:hollythackwray/res/images.dart';
 import 'package:hollythackwray/screens/challenge/challenge_screen.dart';
 import 'package:hollythackwray/screens/more_information/bulk_more_information_screen.dart';
+import 'package:hollythackwray/screens/more_information/fitness_more_information_screen.dart';
+import 'package:hollythackwray/screens/more_information/food_more_information_screen.dart';
+import 'package:hollythackwray/screens/more_information/gain_more_information_screen.dart';
+import 'package:hollythackwray/screens/more_information/gluten_free_more_information_screen.dart';
+import 'package:hollythackwray/screens/more_information/keto_more_information_screen.dart';
+import 'package:hollythackwray/screens/more_information/pescetarian_more_information_screen.dart';
 import 'package:hollythackwray/screens/more_information/slim_more_information.dart';
 import 'package:hollythackwray/screens/more_information/tone_more_information_screen.dart';
+import 'package:hollythackwray/screens/more_information/vegan_more_information_screen.dart';
+import 'package:hollythackwray/screens/more_information/vegetarian_more_information_screen.dart';
 import 'package:provider/provider.dart';
 
 class ProgramDetailsScreen extends StatefulWidget {
@@ -244,7 +252,23 @@ class _ProgramDetailsScreenState extends State<ProgramDetailsScreen> {
                                       ? SlimMoreInformation()
                                       : widget.planModel.title == 'TONE'
                                           ? ToneMoreInformationScreen()
-                                          : Container(),
+                                          : widget.planModel.title == 'GAIN'
+                                              ? GainMoreInformationScreen()
+                                              : widget.planModel.title == 'FITNESS'
+                                                  ? FitnessMoreInformationScreen()
+                                                  : widget.planModel.title == 'FOOD'
+                                                      ? FoodMoreInformationScreen()
+                                                      : widget.planModel.title == 'VEGAN'
+                                                          ? VeganMoreInformationScreen()
+                                                          : widget.planModel.title == 'VEGETARIAN'
+                                                              ? VegetarianMoreInformationScreen()
+                                                              : widget.planModel.title == 'PESCETARIAN'
+                                                                  ? PescetarianMoreInformationScreen()
+                                                                  : widget.planModel.title == 'GLUTEN FREE'
+                                                                      ? GlutenFreeMoreInformationScreen()
+                                                                      : widget.planModel.title == 'KETO'
+                                                                          ? KetoMoreInformationScreen()
+                                                                          : Container(),
                             );
                           },
                           child: Text(

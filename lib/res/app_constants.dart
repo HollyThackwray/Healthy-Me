@@ -29,7 +29,7 @@ class AppConstants {
   );
 
   static TextStyle toneTextStyle = TextStyle(
-    fontSize: 70,
+    fontSize: 50,
     fontWeight: FontWeight.w300,
   );
   static TextStyle labelStyle = TextStyle(
@@ -45,7 +45,10 @@ class AppConstants {
     fontSize: 23,
     fontWeight: FontWeight.w300,
   );
-
+  static TextStyle moreInfo = TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.w300,
+  );
   static TextStyle journelStyle = TextStyle(
     fontSize: 48,
   );
