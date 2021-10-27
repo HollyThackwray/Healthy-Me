@@ -111,7 +111,9 @@ class _GetProfAccScreenState extends State<GetProfAccScreen> {
                         await FirebaseFirestore.instance.collection('users').doc(value.user!.userId!).update({
                           'professionalAccount': true,
                         });
-                        Get.to(() => ChangeProgramScreen());
+                        Get.to(() => ChangeProgramScreen(
+                              isAftergym: true,
+                            ));
                       } else
                         showPlatformDialogue(title: 'Please Select a gym');
                     },

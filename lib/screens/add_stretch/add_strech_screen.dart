@@ -71,7 +71,7 @@ class _AddStretchScreenState extends State<AddStretchScreen> {
                       obs: false,
                       showForgetPass: false,
                       label: 'Title',
-                      hint: 'Plank',
+                      hint: '',
                       controller: _nameController,
                       keyBoardType: TextInputType.text,
                     ),

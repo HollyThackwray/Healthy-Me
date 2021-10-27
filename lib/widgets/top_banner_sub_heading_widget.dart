@@ -11,11 +11,13 @@ class TopBannerSubHeadingWidget extends StatelessWidget {
     required this.title,
     required this.subTitle,
     required this.size,
+    this.afterGym,
     required this.isCongo,
   }) : super(key: key);
   final String title;
   final String subTitle;
   final Size size;
+  final bool? afterGym;
   final bool isCongo;
   @override
   Widget build(BuildContext context) {
@@ -55,6 +57,7 @@ class TopBannerSubHeadingWidget extends StatelessWidget {
                   style: AppConstants.topBarTextStyle.copyWith(
                     color: Theme.of(context).primaryColor,
                   ),
+                  textAlign: TextAlign.center,
                 ),
               ),
             ),
@@ -71,6 +74,11 @@ class TopBannerSubHeadingWidget extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () {
+                    if (afterGym != null) {
+                      Get.back();
+                      Get.back();
+                      Get.back();
+                    }
                     Get.back();
                   },
                   child: Container(

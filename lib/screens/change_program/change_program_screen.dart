@@ -2,6 +2,8 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+
 import 'package:hollythackwray/models/plan_model.dart';
 import 'package:hollythackwray/providers/firebase_provider.dart';
 import 'package:hollythackwray/res/app_colors.dart';
@@ -13,10 +15,13 @@ import 'package:hollythackwray/screens/journel6/journel_6_screen.dart';
 import 'package:hollythackwray/screens/notPurchasedJournel/not_purchased_journel_screen.dart';
 import 'package:hollythackwray/screens/program_details/program_details_screen.dart';
 import 'package:hollythackwray/widgets/top_banner_sub_heading_widget.dart';
-import 'package:provider/provider.dart';
 
 class ChangeProgramScreen extends StatelessWidget {
-  const ChangeProgramScreen({Key? key}) : super(key: key);
+  final bool? isAftergym;
+  const ChangeProgramScreen({
+    Key? key,
+    this.isAftergym,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +57,7 @@ class ChangeProgramScreen extends StatelessWidget {
                   ),
                   TopBannerSubHeadingWidget(
                     size: size,
+                    afterGym: isAftergym,
                     isCongo: false,
                     title: 'HEALTHY ME',
                     subTitle: 'CHANGE PROGRAM',

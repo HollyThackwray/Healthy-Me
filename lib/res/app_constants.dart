@@ -4,7 +4,7 @@ import 'package:hollythackwray/res/app_colors.dart';
 
 class AppConstants {
   static TextStyle topBarTextStyle = TextStyle(
-    fontSize: 59,
+    fontSize: 50,
     fontWeight: FontWeight.w300,
   );
   static TextStyle forgetPassTextStyle = TextStyle(
@@ -33,7 +33,7 @@ class AppConstants {
     fontWeight: FontWeight.w300,
   );
   static TextStyle labelStyle = TextStyle(
-    fontSize: 25,
+    fontSize: 23,
     fontWeight: FontWeight.w300,
   );
 

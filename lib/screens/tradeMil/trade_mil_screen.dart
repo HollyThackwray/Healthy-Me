@@ -299,7 +299,7 @@ class _TradeMilScreenState extends State<TradeMilScreen> {
                       if (await value.addNewExcercise(widget.type, userProgramModel))
                         Get.to(() => CongratulationsScreen());
                     },
-                    title: 'Contine',
+                    title: 'Continue',
                     isTransparent: false),
                 SizedBox(
                   height: 40,
