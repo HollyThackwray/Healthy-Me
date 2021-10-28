@@ -192,7 +192,7 @@ class ChangeProgramScreen extends StatelessWidget {
                   ),
                   SizedBox(
                     height: 40,
-                  ),
+                  ), 
                   Column(
                       children: snapshot.data!.docs.map((e) {
                     PlanModel plan = PlanModel.fromMap(e.data() as Map<String, dynamic>);

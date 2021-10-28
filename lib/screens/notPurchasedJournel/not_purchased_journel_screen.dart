@@ -402,6 +402,7 @@ class RoundedContainerWidget extends StatelessWidget {
                   style: AppConstants.bulkinDaysTextStyle.copyWith(
                     color: Theme.of(context).dividerColor == Colors.black ? AppColors.lightBlackHeading : Colors.white,
                   ),
+                  textAlign: TextAlign.center,
                 ),
                 SizedBox(
                   width: 10,

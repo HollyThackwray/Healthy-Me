@@ -125,30 +125,7 @@ class _ProgramDetailsScreenState extends State<ProgramDetailsScreen> {
                                 ),
                               ),
                             )
-                            .toList()
-                        //  [
-                        // Image.asset(
-                        //   Images.dumble,
-                        //   height: 30,
-                        //   fit: BoxFit.fill,
-                        //   color: Theme.of(context).primaryColor,
-                        // ),
-                        // SizedBox(width: 20),
-                        // Image.asset(
-                        //   Images.running_person,
-                        //   height: 30,
-                        //   fit: BoxFit.fill,
-                        //   color: Theme.of(context).primaryColor,
-                        // ),
-                        // SizedBox(width: 20),
-                        // Image.asset(
-                        //   Images.spoons,
-                        //   height: 30,
-                        //   fit: BoxFit.fill,
-                        //   color: Theme.of(context).primaryColor,
-                        // ),
-                        // ],
-                        ),
+                            .toList()),
                     Spacer(),
                     GestureDetector(
                       onTap: () {
@@ -297,30 +274,6 @@ class _ProgramDetailsScreenState extends State<ProgramDetailsScreen> {
                           )
                           .toList(),
                     )
-                    // DayRoutineWidget(
-                    //   size: size,
-                    //   day: widget.tuesday,
-                    // ),
-                    // DayRoutineWidget(
-                    //   size: size,
-                    //   day: widget.wedday,
-                    // ),
-                    // DayRoutineWidget(
-                    //   size: size,
-                    //   day: widget.thursday,
-                    // ),
-                    // DayRoutineWidget(
-                    //   size: size,
-                    //   day: widget.friday,
-                    // ),
-                    // DayRoutineWidget(
-                    //   size: size,
-                    //   day: widget.satday,
-                    // ),
-                    // DayRoutineWidget(
-                    //   size: size,
-                    //   day: widget.sunday,
-                    // ),
                   ],
                 ),
               ),
@@ -378,22 +331,6 @@ class DayRoutineWidget extends StatelessWidget {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        // Row(
-                        //   children: [
-                        //     SizedBox(
-                        //       width: 50,
-                        //     ),
-                        //     e.notification!.isEmpty
-                        //         ? Container()
-                        //         : Text(
-                        //             e.notification!,
-                        //             style: AppConstants.bulkinDaysTextStyle.copyWith(fontSize: 7),
-                        //           ),
-                        //   ],
-                        // ),
-                        // SizedBox(
-                        //   height: 10,
-                        // ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -409,7 +346,8 @@ class DayRoutineWidget extends StatelessWidget {
                             Image.asset(
                               e.icon!,
                               height: 22,
-                              fit: BoxFit.fill,
+                              width: 20,
+                              fit: BoxFit.contain,
                               color: AppColors.lightBlackHeading,
                             ),
                             SizedBox(

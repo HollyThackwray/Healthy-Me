@@ -7,6 +7,8 @@ import 'package:hollythackwray/res/app_colors.dart';
 import 'package:hollythackwray/res/app_constants.dart';
 import 'package:hollythackwray/res/images.dart';
 import 'package:hollythackwray/screens/change_program/change_program_screen.dart';
+import 'package:hollythackwray/screens/program_details/program_details_screen.dart';
+import 'package:hollythackwray/screens/scan/scan_screen.dart';
 import 'package:hollythackwray/screens/settings/settings_screen.dart';
 import 'package:hollythackwray/screens/snacks/snacks_screen.dart';
 import 'package:jiffy/jiffy.dart';
@@ -95,11 +97,16 @@ class _HealtthyMeScreenState extends State<HealtthyMeScreen> {
                         padding: const EdgeInsets.symmetric(horizontal: 40),
                         child: Row(
                           children: [
-                            Image.asset(
-                              Images.qr_code,
-                              color: Theme.of(context).iconTheme.color,
-                              height: 33,
-                              fit: BoxFit.fill,
+                            GestureDetector(
+                              onTap: () {
+                                Get.to(() => ScanScreen());
+                              },
+                              child: Image.asset(
+                                Images.qr_code,
+                                color: Theme.of(context).iconTheme.color,
+                                height: 33,
+                                fit: BoxFit.fill,
+                              ),
                             ),
                             Spacer(),
                             GestureDetector(
@@ -278,6 +285,7 @@ class _HealtthyMeScreenState extends State<HealtthyMeScreen> {
                                                     ? 'No Program Selected :('
                                                     : 'Successfully ${plan.title}ING since ${Jiffy(DateTime.fromMillisecondsSinceEpoch(time)).fromNow()}',
                                                 style: AppConstants.bulkinDaysTextStyle,
+                                                textAlign: TextAlign.center,
                                               ),
                                               value.user!.currentProgram!.length == 0
                                                   ? Container()
@@ -317,10 +325,19 @@ class _HealtthyMeScreenState extends State<HealtthyMeScreen> {
                                             ],
                                           )
                                         : Container(),
-                                    Text(
-                                      plan.title,
-                                      style: AppConstants.toneTextStyle.copyWith(
-                                        color: Theme.of(context).dividerColor,
+                                    GestureDetector(
+                                      onTap: () {
+                                        Get.to(
+                                          () => ProgramDetailsScreen(
+                                            planModel: plan,
+                                          ),
+                                        );
+                                      },
+                                      child: Text(
+                                        plan.title,
+                                        style: AppConstants.toneTextStyle.copyWith(
+                                          color: Theme.of(context).dividerColor,
+                                        ),
                                       ),
                                     ),
                                     SizedBox(
