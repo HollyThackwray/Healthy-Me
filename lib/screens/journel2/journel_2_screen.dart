@@ -174,7 +174,7 @@ class _Journel2ScreenState extends State<Journel2Screen> {
   }
 
   UserProgramModel getToday(DateTime date, List<UserProgramModel> programs) {
-    print(DateTime.fromMillisecondsSinceEpoch(programs[1].date).day == date.day);
+    // print(DateTime.fromMillisecondsSinceEpoch(programs[1].date).day == date.day);
     print(date);
     if (programs.any((element) =>
         DateTime.fromMillisecondsSinceEpoch(element.date).day == date.day &&

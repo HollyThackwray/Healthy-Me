@@ -5,12 +5,10 @@ import 'package:hollythackwray/models/exercise_model.dart';
 import 'package:hollythackwray/widgets/custom_text_form_field_widget.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 import 'package:provider/provider.dart';
-
 import 'package:hollythackwray/models/user_program_model.dart';
 import 'package:hollythackwray/providers/firebase_provider.dart';
 import 'package:hollythackwray/res/app_colors.dart';
 import 'package:hollythackwray/res/app_constants.dart';
-import 'package:hollythackwray/res/images.dart';
 import 'package:hollythackwray/screens/congratulations/congratulations_screen.dart';
 import 'package:hollythackwray/widgets/button_widget.dart';
 import 'package:hollythackwray/widgets/top_banner_sub_heading_widget.dart';
@@ -59,7 +57,7 @@ class _TradeMilScreenState extends State<TradeMilScreen> {
                   size: size,
                   title: 'HEALTHY ME',
                   isCongo: false,
-                  subTitle: 'HThack_02',
+                  subTitle: widget.type,
                 ),
                 SizedBox(
                   height: size.height * 0.2,
@@ -157,7 +155,7 @@ class _TradeMilScreenState extends State<TradeMilScreen> {
                                   disabledBorder: InputBorder.none,
                                   focusedErrorBorder: InputBorder.none,
                                   hintStyle: TextStyle(
-                                    color: Theme.of(context).dividerColor,
+                                    color: Colors.black,
                                   ),
                                 ),
                               ),
@@ -189,7 +187,7 @@ class _TradeMilScreenState extends State<TradeMilScreen> {
                                   disabledBorder: InputBorder.none,
                                   focusedErrorBorder: InputBorder.none,
                                   hintStyle: TextStyle(
-                                    color: Theme.of(context).dividerColor,
+                                    color: Colors.black,
                                   ),
                                 ),
                               ),
@@ -213,7 +211,7 @@ class _TradeMilScreenState extends State<TradeMilScreen> {
                                 onTap: () async {
                                   pickedTime = await showDurationPicker(
                                     context: context,
-                                    initialTime: Duration(minutes: 30),
+                                    initialTime: Duration(minutes: 1),
                                   );
                                   setState(() {
                                     _durationController.text = pickedTime.toString().substring(0, 8);
@@ -230,7 +228,7 @@ class _TradeMilScreenState extends State<TradeMilScreen> {
                                   disabledBorder: InputBorder.none,
                                   focusedErrorBorder: InputBorder.none,
                                   hintStyle: TextStyle(
-                                    color: Theme.of(context).dividerColor,
+                                    color: Colors.black,
                                   ),
                                 ),
                               ),
@@ -245,7 +243,7 @@ class _TradeMilScreenState extends State<TradeMilScreen> {
                                 color: AppColors.lightGrey,
                                 borderRadius: BorderRadius.circular(15),
                                 border: Border.all(
-                                  color: Theme.of(context).dividerColor,
+                                  color: Colors.black,
                                 )),
                             child: Center(
                               child: TextField(
