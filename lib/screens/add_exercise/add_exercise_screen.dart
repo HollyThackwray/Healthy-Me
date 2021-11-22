@@ -1,4 +1,5 @@
 import 'package:duration_picker/duration_picker.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hollythackwray/models/exercise_model.dart';
@@ -31,12 +32,20 @@ class _AddExerciseScreenState extends State<AddExerciseScreen> {
   TextEditingController timeinput = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   late UserModel user;
-  @override
   void initState() {
     super.initState();
+
+    secondsListPop();
     user = widget.userModel;
   }
 
+  List<int> secondsList = [];
+  int selectedSeconds = 0;
+  secondsListPop() {
+    for (var i = 1; i < 60; i++) {
+      secondsList.add(i);
+    }
+  }
   Duration? pickedTime = Duration();
   @override
   Widget build(BuildContext context) {
@@ -191,42 +200,53 @@ class _AddExerciseScreenState extends State<AddExerciseScreen> {
                             SizedBox(
                               height: 10,
                             ),
-                            Container(
-                              width: 100,
-                              height: 40,
-                              decoration: BoxDecoration(
-                                  color: AppColors.lightGrey,
-                                  borderRadius: BorderRadius.circular(15),
-                                  border: Border.all(
-                                    color: Theme.of(context).dividerColor,
-                                  )),
-                              child: Center(
-                                child: TextFormField(
-                                  controller: timeinput,
-                                  maxLines: 1,
-                                  textAlign: TextAlign.center,
-                                  decoration: InputDecoration(
-                                    hintText: '00.00',
-                                    border: InputBorder.none,
-                                    errorBorder: InputBorder.none,
-                                    enabledBorder: InputBorder.none,
-                                    focusedBorder: InputBorder.none,
-                                    disabledBorder: InputBorder.none,
-                                    focusedErrorBorder: InputBorder.none,
-                                    hintStyle: TextStyle(
+                            GestureDetector(
+                              onTap: showPicker,
+                              child: Container(
+                                width: 100,
+                                height: 40,
+                                decoration: BoxDecoration(
+                                    color: AppColors.lightGrey,
+                                    borderRadius: BorderRadius.circular(15),
+                                    border: Border.all(
                                       color: Theme.of(context).dividerColor,
-                                    ),
+                                    )),
+                                child: Center(
+                                  child: Stack(
+                                    children: [
+                                      TextField(
+                                        maxLines: 1,
+                                        // onTap: () async {
+                                        //   // pickedTime = await showDurationPicker(
+                                        //   //   context: context,
+                                        //   //   initialTime: Duration(minutes: 1),
+                                        //   // );
+                                        //   // setState(() {
+                                        //   //   _durationController.text = pickedTime.toString().substring(0, 8);
+                                        //   // });
+                                        // },
+                                        textAlign: TextAlign.center,
+                                        controller: timeinput,
+                                        decoration: InputDecoration(
+                                          hintText: '00.00',
+                                          border: InputBorder.none,
+                                          errorBorder: InputBorder.none,
+                                          enabledBorder: InputBorder.none,
+                                          focusedBorder: InputBorder.none,
+                                          disabledBorder: InputBorder.none,
+                                          focusedErrorBorder: InputBorder.none,
+                                          hintStyle: TextStyle(
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                      ),
+                                      Container(
+                                        color: Colors.transparent,
+                                        width: 100,
+                                        height: 40,
+                                      ),
+                                    ],
                                   ),
-                                  onTap: () async {
-                                    pickedTime = await showDurationPicker(
-                                      context: context,
-                                      initialTime: Duration(minutes: 30),
-                                    );
-
-                                    setState(() {
-                                      timeinput.text = pickedTime.toString().substring(0, 8);
-                                    });
-                                  },
                                 ),
                               ),
                             ),
@@ -275,7 +295,7 @@ class _AddExerciseScreenState extends State<AddExerciseScreen> {
                         if (_formKey.currentState?.validate() ?? false) {
                           user.programs.exercises.add(
                             ExerciseModel(
-                              duration: pickedTime!.inSeconds,
+                              duration: selectedSeconds,
                               name: _nameController.text,
                               isCompleted: false,
                               notes: _notesController.text,
@@ -302,5 +322,37 @@ class _AddExerciseScreenState extends State<AddExerciseScreen> {
         ),
       ),
     );
+  }
+  
+  showPicker() {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext context) {
+          return Container(
+            height: 400,
+            child: CupertinoPicker(
+              looping: true,
+              backgroundColor: Theme.of(context).primaryColor,
+              onSelectedItemChanged: (value) {
+                value++;
+                setState(() {
+                  timeinput.text = '00:${(value.toString().length > 1) ? value.toString() : '0' + value.toString()}';
+                  selectedSeconds = value;
+                });
+              },
+              itemExtent: 32.0,
+              children: secondsList
+                  .map(
+                    (e) => Text(
+                      '00:${(e.toString().length > 1) ? e.toString() : '0' + e.toString()} seconds',
+                      style: TextStyle(
+                        color: Theme.of(context).dividerColor,
+                      ),
+                    ),
+                  )
+                  .toList(),
+            ),
+          );
+        });
   }
 }

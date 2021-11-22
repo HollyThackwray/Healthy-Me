@@ -1,10 +1,6 @@
 import 'dart:convert';
-
 import 'package:flutter/foundation.dart';
-
 import 'package:hollythackwray/models/exercise_model.dart';
-import 'package:hollythackwray/models/strech_model.dart';
-
 import 'notes_model.dart';
 
 class ProgramModel {

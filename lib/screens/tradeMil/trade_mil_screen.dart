@@ -1,4 +1,5 @@
 import 'package:duration_picker/duration_picker.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hollythackwray/models/exercise_model.dart';
@@ -33,12 +34,21 @@ class _TradeMilScreenState extends State<TradeMilScreen> {
   TextEditingController _nameController = TextEditingController();
   Duration? pickedTime = Duration();
   late UserProgramModel userProgramModel;
+  secondsListPop() {
+    for (var i = 1; i < 60; i++) {
+      secondsList.add(i);
+    }
+  }
+
   @override
   void initState() {
     super.initState();
+    secondsListPop();
     userProgramModel = widget.userProgramModel;
   }
 
+  List<int> secondsList = [];
+  int selectedSeconds = 0;
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
@@ -196,40 +206,52 @@ class _TradeMilScreenState extends State<TradeMilScreen> {
                           SizedBox(
                             height: 10,
                           ),
-                          Container(
-                            width: 100,
-                            height: 40,
-                            decoration: BoxDecoration(
-                                color: AppColors.lightGrey,
-                                borderRadius: BorderRadius.circular(15),
-                                border: Border.all(
-                                  color: Theme.of(context).dividerColor,
-                                )),
-                            child: Center(
-                              child: TextField(
-                                maxLines: 1,
-                                onTap: () async {
-                                  pickedTime = await showDurationPicker(
-                                    context: context,
-                                    initialTime: Duration(minutes: 1),
-                                  );
-                                  setState(() {
-                                    _durationController.text = pickedTime.toString().substring(0, 8);
-                                  });
-                                },
-                                textAlign: TextAlign.center,
-                                controller: _durationController,
-                                decoration: InputDecoration(
-                                  hintText: '00.00',
-                                  border: InputBorder.none,
-                                  errorBorder: InputBorder.none,
-                                  enabledBorder: InputBorder.none,
-                                  focusedBorder: InputBorder.none,
-                                  disabledBorder: InputBorder.none,
-                                  focusedErrorBorder: InputBorder.none,
-                                  hintStyle: TextStyle(
-                                    color: Colors.black,
-                                  ),
+                          GestureDetector(
+                            onTap: showPicker,
+                            child: Container(
+                              width: 100,
+                              height: 40,
+                              decoration: BoxDecoration(
+                                  color: AppColors.lightGrey,
+                                  borderRadius: BorderRadius.circular(15),
+                                  border: Border.all(
+                                    color: Theme.of(context).dividerColor,
+                                  )),
+                              child: Center(
+                                child: Stack(
+                                  children: [
+                                    TextField(
+                                      maxLines: 1,
+                                      // onTap: () async {
+                                      //   // pickedTime = await showDurationPicker(
+                                      //   //   context: context,
+                                      //   //   initialTime: Duration(minutes: 1),
+                                      //   // );
+                                      //   // setState(() {
+                                      //   //   _durationController.text = pickedTime.toString().substring(0, 8);
+                                      //   // });
+                                      // },
+                                      textAlign: TextAlign.center,
+                                      controller: _durationController,
+                                      decoration: InputDecoration(
+                                        hintText: '00.00',
+                                        border: InputBorder.none,
+                                        errorBorder: InputBorder.none,
+                                        enabledBorder: InputBorder.none,
+                                        focusedBorder: InputBorder.none,
+                                        disabledBorder: InputBorder.none,
+                                        focusedErrorBorder: InputBorder.none,
+                                        hintStyle: TextStyle(
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      color: Colors.transparent,
+                                      width: 100,
+                                      height: 40,
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),
@@ -275,7 +297,7 @@ class _TradeMilScreenState extends State<TradeMilScreen> {
                       if (widget.type == 'Exercise') {
                         userProgramModel.exercises.add(
                           ExerciseModel(
-                            duration: pickedTime!.inSeconds,
+                            duration: selectedSeconds,
                             name: _nameController.text,
                             isCompleted: false,
                             notes: _notesController.text,
@@ -286,7 +308,7 @@ class _TradeMilScreenState extends State<TradeMilScreen> {
                       } else
                         userProgramModel.streches.add(
                           ExerciseModel(
-                            duration: pickedTime!.inSeconds,
+                            duration: selectedSeconds,
                             name: _nameController.text,
                             isCompleted: false,
                             notes: _notesController.text,
@@ -308,5 +330,38 @@ class _TradeMilScreenState extends State<TradeMilScreen> {
         ),
       ),
     );
+  }
+
+  showPicker() {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext context) {
+          return Container(
+            height: 400,
+            child: CupertinoPicker(
+              looping: true,
+              backgroundColor: Theme.of(context).primaryColor,
+              onSelectedItemChanged: (value) {
+                value++;
+                setState(() {
+                  _durationController.text =
+                      '00:${(value.toString().length > 1) ? value.toString() : '0' + value.toString()}';
+                  selectedSeconds = value;
+                });
+              },
+              itemExtent: 32.0,
+              children: secondsList
+                  .map(
+                    (e) => Text(
+                      '00:${(e.toString().length > 1) ? e.toString() : '0' + e.toString()} seconds',
+                      style: TextStyle(
+                        color: Theme.of(context).dividerColor,
+                      ),
+                    ),
+                  )
+                  .toList(),
+            ),
+          );
+        });
   }
 }
