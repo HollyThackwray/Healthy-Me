@@ -1,6 +1,7 @@
 import 'package:duration_picker/duration_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
 import 'package:get/get.dart';
 import 'package:hollythackwray/models/exercise_model.dart';
 import 'package:hollythackwray/models/user_model.dart';
@@ -10,6 +11,7 @@ import 'package:hollythackwray/res/app_constants.dart';
 import 'package:hollythackwray/widgets/button_widget.dart';
 import 'package:hollythackwray/widgets/custom_text_form_field_widget.dart';
 import 'package:hollythackwray/widgets/top_banner_sub_heading_widget.dart';
+import 'package:intl/intl.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 import 'package:provider/provider.dart';
 
@@ -46,7 +48,7 @@ class _AddExerciseScreenState extends State<AddExerciseScreen> {
       secondsList.add(i);
     }
   }
-  Duration? pickedTime = Duration();
+  Duration pickedTime = Duration();
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -295,7 +297,7 @@ class _AddExerciseScreenState extends State<AddExerciseScreen> {
                         if (_formKey.currentState?.validate() ?? false) {
                           user.programs.exercises.add(
                             ExerciseModel(
-                              duration: selectedSeconds,
+                              duration: pickedTime.inSeconds,
                               name: _nameController.text,
                               isCompleted: false,
                               notes: _notesController.text,
@@ -324,35 +326,77 @@ class _AddExerciseScreenState extends State<AddExerciseScreen> {
     );
   }
   
+
+  DateTime selectedDate = DateTime(2021);
   showPicker() {
-    showModalBottomSheet(
-        context: context,
-        builder: (BuildContext context) {
-          return Container(
-            height: 400,
-            child: CupertinoPicker(
-              looping: true,
-              backgroundColor: Theme.of(context).primaryColor,
-              onSelectedItemChanged: (value) {
-                value++;
-                setState(() {
-                  timeinput.text = '00:${(value.toString().length > 1) ? value.toString() : '0' + value.toString()}';
-                  selectedSeconds = value;
-                });
-              },
-              itemExtent: 32.0,
-              children: secondsList
-                  .map(
-                    (e) => Text(
-                      '00:${(e.toString().length > 1) ? e.toString() : '0' + e.toString()} seconds',
-                      style: TextStyle(
-                        color: Theme.of(context).dividerColor,
-                      ),
-                    ),
-                  )
-                  .toList(),
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(40))),
+          child: Container(
+            height: 300,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: Theme.of(context).primaryColor,
+              borderRadius: BorderRadius.circular(40),
             ),
-          );
-        });
+            child: Column(
+              children: [
+                SizedBox(height: 30),
+                Spacer(),
+                Center(
+                  child: TimePickerSpinner(
+                    is24HourMode: true,
+                    onTimeChange: (date) {
+                      print(date.second);
+                      selectedDate = date;
+                      setState(() {
+                        //
+                        selectedSeconds = date.second;
+                      });
+                    },
+                    isForce2Digits: true,
+                    highlightedTextStyle: TextStyle(
+                      color: AppColors.darkerBlueBorder,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    itemHeight: 35,
+                    isShowSeconds: true,
+                    normalTextStyle: TextStyle(
+                      color: Theme.of(context).dividerColor,
+                    ),
+                    time: selectedDate,
+                    alignment: Alignment.center,
+                  ),
+                ),
+                Spacer(),
+                GestureDetector(
+                  onTap: () {
+                    Get.back();
+                    timeinput.text = DateFormat('HH:mm:ss').format(selectedDate);
+                    setState(() {
+                      pickedTime = Duration(
+                        hours: selectedDate.hour,
+                        minutes: selectedDate.minute,
+                        seconds: selectedDate.second,
+                      );
+                    });
+                  },
+                  child: Text(
+                    'Select',
+                    style: AppConstants.nameTextStyle.copyWith(
+                      color: AppColors.darkerBlueBorder,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 30),
+              ],
+            ),
+          ),
+        );
+      },
+    );
   }
 }

@@ -1,9 +1,11 @@
 import 'package:duration_picker/duration_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
 import 'package:get/get.dart';
 import 'package:hollythackwray/models/exercise_model.dart';
 import 'package:hollythackwray/widgets/custom_text_form_field_widget.dart';
+import 'package:intl/intl.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 import 'package:provider/provider.dart';
 import 'package:hollythackwray/models/user_program_model.dart';
@@ -32,7 +34,7 @@ class _TradeMilScreenState extends State<TradeMilScreen> {
   TextEditingController _durationController = TextEditingController();
   TextEditingController _notesController = TextEditingController();
   TextEditingController _nameController = TextEditingController();
-  Duration? pickedTime = Duration();
+  Duration pickedTime = Duration();
   late UserProgramModel userProgramModel;
   secondsListPop() {
     for (var i = 1; i < 60; i++) {
@@ -297,7 +299,7 @@ class _TradeMilScreenState extends State<TradeMilScreen> {
                       if (widget.type == 'Exercise') {
                         userProgramModel.exercises.add(
                           ExerciseModel(
-                            duration: selectedSeconds,
+                            duration: pickedTime.inSeconds,
                             name: _nameController.text,
                             isCompleted: false,
                             notes: _notesController.text,
@@ -308,7 +310,7 @@ class _TradeMilScreenState extends State<TradeMilScreen> {
                       } else
                         userProgramModel.streches.add(
                           ExerciseModel(
-                            duration: selectedSeconds,
+                            duration: pickedTime.inSeconds,
                             name: _nameController.text,
                             isCompleted: false,
                             notes: _notesController.text,
@@ -332,36 +334,76 @@ class _TradeMilScreenState extends State<TradeMilScreen> {
     );
   }
 
+  DateTime selectedDate = DateTime(2021);
   showPicker() {
-    showModalBottomSheet(
-        context: context,
-        builder: (BuildContext context) {
-          return Container(
-            height: 400,
-            child: CupertinoPicker(
-              looping: true,
-              backgroundColor: Theme.of(context).primaryColor,
-              onSelectedItemChanged: (value) {
-                value++;
-                setState(() {
-                  _durationController.text =
-                      '00:${(value.toString().length > 1) ? value.toString() : '0' + value.toString()}';
-                  selectedSeconds = value;
-                });
-              },
-              itemExtent: 32.0,
-              children: secondsList
-                  .map(
-                    (e) => Text(
-                      '00:${(e.toString().length > 1) ? e.toString() : '0' + e.toString()} seconds',
-                      style: TextStyle(
-                        color: Theme.of(context).dividerColor,
-                      ),
-                    ),
-                  )
-                  .toList(),
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(40))),
+          child: Container(
+            height: 300,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: Theme.of(context).primaryColor,
+              borderRadius: BorderRadius.circular(40),
             ),
-          );
-        });
+            child: Column(
+              children: [
+                SizedBox(height: 30),
+                Spacer(),
+                Center(
+                  child: TimePickerSpinner(
+                    is24HourMode: true,
+                    onTimeChange: (date) {
+                      print(date.second);
+                      selectedDate = date;
+                      setState(() {
+                        //
+                        selectedSeconds = date.second;
+                      });
+                    },
+                    isForce2Digits: true,
+                    highlightedTextStyle: TextStyle(
+                      color: AppColors.darkerBlueBorder,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    itemHeight: 35,
+                    isShowSeconds: true,
+                    normalTextStyle: TextStyle(
+                      color: Theme.of(context).dividerColor,
+                    ),
+                    time: selectedDate,
+                    alignment: Alignment.center,
+                  ),
+                ),
+                Spacer(),
+                GestureDetector(
+                  onTap: () {
+                    Get.back();
+                    _durationController.text = DateFormat('HH:mm:ss').format(selectedDate);
+                    setState(() {
+                      pickedTime = Duration(
+                        hours: selectedDate.hour,
+                        minutes: selectedDate.minute,
+                        seconds: selectedDate.second,
+                      );
+                    });
+                  },
+                  child: Text(
+                    'Select',
+                    style: AppConstants.nameTextStyle.copyWith(
+                      color: AppColors.darkerBlueBorder,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 30),
+              ],
+            ),
+          ),
+        );
+      },
+    );
   }
 }
