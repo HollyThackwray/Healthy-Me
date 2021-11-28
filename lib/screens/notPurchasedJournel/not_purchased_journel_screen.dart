@@ -364,11 +364,11 @@ class RoundedContainerWidget extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        margin: EdgeInsets.only(
-          bottom: 30,
-        ),
-        height: size.height * 0.3,
-        width: size.width * 0.45,
+        // margin: EdgeInsets.only(
+        //   bottom: 30,
+        // ),
+        height: size.height * 0.4,
+        width: size.width * 0.55,
         decoration: BoxDecoration(
           color: AppColors.lightBlue,
           shape: BoxShape.circle,
@@ -379,7 +379,7 @@ class RoundedContainerWidget extends StatelessWidget {
           children: [
             top,
             SizedBox(
-              height: 10,
+              height: 5,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -405,7 +405,7 @@ class RoundedContainerWidget extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(
-                  width: 10,
+                  width: 5,
                 ),
                 Image.asset(
                   Images.forward_arrow,

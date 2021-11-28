@@ -48,6 +48,7 @@ class _AddExerciseScreenState extends State<AddExerciseScreen> {
       secondsList.add(i);
     }
   }
+
   Duration pickedTime = Duration();
   @override
   Widget build(BuildContext context) {
@@ -163,6 +164,9 @@ class _AddExerciseScreenState extends State<AddExerciseScreen> {
                                       color: Theme.of(context).dividerColor,
                                     ),
                                   ),
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                  ),
                                 ),
                               ),
                             ),
@@ -195,6 +199,9 @@ class _AddExerciseScreenState extends State<AddExerciseScreen> {
                                     hintStyle: TextStyle(
                                       color: Theme.of(context).dividerColor,
                                     ),
+                                  ),
+                                  style: TextStyle(
+                                    color: Colors.black,
                                   ),
                                 ),
                               ),
@@ -241,6 +248,9 @@ class _AddExerciseScreenState extends State<AddExerciseScreen> {
                                             color: Colors.black,
                                           ),
                                         ),
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                        ),
                                       ),
                                       Container(
                                         color: Colors.transparent,
@@ -279,6 +289,9 @@ class _AddExerciseScreenState extends State<AddExerciseScreen> {
                                     hintStyle: TextStyle(
                                       color: Theme.of(context).dividerColor,
                                     ),
+                                  ),
+                                  style: TextStyle(
+                                    color: Colors.black,
                                   ),
                                 ),
                               ),
@@ -325,7 +338,6 @@ class _AddExerciseScreenState extends State<AddExerciseScreen> {
       ),
     );
   }
-  
 
   DateTime selectedDate = DateTime(2021);
   showPicker() {

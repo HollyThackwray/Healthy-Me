@@ -165,6 +165,9 @@ class _AddStretchScreenState extends State<AddStretchScreen> {
                                       color: Theme.of(context).dividerColor,
                                     ),
                                   ),
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                  ),
                                 ),
                               ),
                             ),
@@ -197,6 +200,9 @@ class _AddStretchScreenState extends State<AddStretchScreen> {
                                     hintStyle: TextStyle(
                                       color: Theme.of(context).dividerColor,
                                     ),
+                                  ),
+                                  style: TextStyle(
+                                    color: Colors.black,
                                   ),
                                 ),
                               ),
@@ -243,6 +249,9 @@ class _AddStretchScreenState extends State<AddStretchScreen> {
                                             color: Colors.black,
                                           ),
                                         ),
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                        ),
                                       ),
                                       Container(
                                         color: Colors.transparent,
@@ -281,6 +290,9 @@ class _AddStretchScreenState extends State<AddStretchScreen> {
                                     hintStyle: TextStyle(
                                       color: Theme.of(context).dividerColor,
                                     ),
+                                  ),
+                                  style: TextStyle(
+                                    color: Colors.black,
                                   ),
                                 ),
                               ),

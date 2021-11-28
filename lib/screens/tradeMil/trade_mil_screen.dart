@@ -170,6 +170,9 @@ class _TradeMilScreenState extends State<TradeMilScreen> {
                                     color: Colors.black,
                                   ),
                                 ),
+                                style: TextStyle(
+                                  color: Colors.black,
+                                ),
                               ),
                             ),
                           ),
@@ -180,11 +183,12 @@ class _TradeMilScreenState extends State<TradeMilScreen> {
                             width: 100,
                             height: 40,
                             decoration: BoxDecoration(
-                                color: AppColors.lightGrey,
-                                borderRadius: BorderRadius.circular(15),
-                                border: Border.all(
-                                  color: Theme.of(context).dividerColor,
-                                )),
+                              color: AppColors.lightGrey,
+                              borderRadius: BorderRadius.circular(15),
+                              border: Border.all(
+                                color: Theme.of(context).dividerColor,
+                              ),
+                            ),
                             child: Center(
                               child: TextField(
                                 maxLines: 1,
@@ -201,6 +205,9 @@ class _TradeMilScreenState extends State<TradeMilScreen> {
                                   hintStyle: TextStyle(
                                     color: Colors.black,
                                   ),
+                                ),
+                                style: TextStyle(
+                                  color: Colors.black,
                                 ),
                               ),
                             ),
@@ -247,6 +254,9 @@ class _TradeMilScreenState extends State<TradeMilScreen> {
                                           color: Colors.black,
                                         ),
                                       ),
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                      ),
                                     ),
                                     Container(
                                       color: Colors.transparent,
@@ -284,6 +294,9 @@ class _TradeMilScreenState extends State<TradeMilScreen> {
                                   hintStyle: TextStyle(
                                     color: Theme.of(context).dividerColor,
                                   ),
+                                ),
+                                style: TextStyle(
+                                  color: Colors.black,
                                 ),
                               ),
                             ),
