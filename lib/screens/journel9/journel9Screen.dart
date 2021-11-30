@@ -150,8 +150,27 @@ class _Journel9ScreenState extends State<Journel9Screen> {
                                       child: Padding(
                                         padding: const EdgeInsets.all(10),
                                         child: Center(
-                                          child: Text(
-                                            date.day.toString(),
+                                          child: Center(
+                                            child: Column(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  date.day.toString(),
+                                                ),
+                                                if (today.clientUpdate ?? false)
+                                                  Container(
+                                                    height: 5,
+                                                    width: 5,
+                                                    decoration: BoxDecoration(
+                                                      border: Border.all(
+                                                        color: AppColors.lightBlue,
+                                                      ),
+                                                      shape: BoxShape.circle,
+                                                      color: AppColors.greenColor,
+                                                    ),
+                                                  )
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ),

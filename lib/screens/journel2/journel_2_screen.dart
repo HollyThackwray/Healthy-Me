@@ -149,8 +149,25 @@ class _Journel2ScreenState extends State<Journel2Screen> {
                                       child: Padding(
                                         padding: const EdgeInsets.all(10),
                                         child: Center(
-                                          child: Text(
-                                            date.day.toString(),
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                date.day.toString(),
+                                              ),
+                                              if (today.professionalUpdate ?? false)
+                                                Container(
+                                                  height: 5,
+                                                  width: 5,
+                                                  decoration: BoxDecoration(
+                                                    border: Border.all(
+                                                      color: AppColors.darkerBlueBorder,
+                                                    ),
+                                                    shape: BoxShape.circle,
+                                                    color: AppColors.darkerBlueBorder,
+                                                  ),
+                                                )
+                                            ],
                                           ),
                                         ),
                                       ),

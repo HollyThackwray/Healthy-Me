@@ -7,6 +7,7 @@ import 'package:hollythackwray/res/app_colors.dart';
 import 'package:hollythackwray/res/app_constants.dart';
 import 'package:hollythackwray/res/images.dart';
 import 'package:hollythackwray/screens/change_program/change_program_screen.dart';
+import 'package:hollythackwray/screens/journel2/journel_2_screen.dart';
 import 'package:hollythackwray/screens/program_details/program_details_screen.dart';
 import 'package:hollythackwray/screens/scan/scan_screen.dart';
 import 'package:hollythackwray/screens/settings/settings_screen.dart';
@@ -216,22 +217,27 @@ class _HealtthyMeScreenState extends State<HealtthyMeScreen> {
                       SizedBox(
                         height: 30,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Update Journal',
-                            style: AppConstants.buttonTextStyle.copyWith(color: AppColors.darkerBlueBorder),
-                          ),
-                          SizedBox(
-                            width: 20,
-                          ),
-                          Image.asset(
-                            Images.pencil,
-                            height: 18,
-                            color: AppColors.darkerBlueBorder,
-                          ),
-                        ],
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(() => Journel2Screen());
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Update Journal',
+                              style: AppConstants.buttonTextStyle.copyWith(color: AppColors.darkerBlueBorder),
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Image.asset(
+                              Images.pencil,
+                              height: 18,
+                              color: AppColors.darkerBlueBorder,
+                            ),
+                          ],
+                        ),
                       ),
                       StreamBuilder<QuerySnapshot>(
                         stream: FirebaseFirestore.instance.collection('plans').snapshots(),

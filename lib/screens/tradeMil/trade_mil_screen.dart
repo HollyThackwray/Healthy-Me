@@ -231,15 +231,6 @@ class _TradeMilScreenState extends State<TradeMilScreen> {
                                   children: [
                                     TextField(
                                       maxLines: 1,
-                                      // onTap: () async {
-                                      //   // pickedTime = await showDurationPicker(
-                                      //   //   context: context,
-                                      //   //   initialTime: Duration(minutes: 1),
-                                      //   // );
-                                      //   // setState(() {
-                                      //   //   _durationController.text = pickedTime.toString().substring(0, 8);
-                                      //   // });
-                                      // },
                                       textAlign: TextAlign.center,
                                       controller: _durationController,
                                       decoration: InputDecoration(
@@ -260,8 +251,8 @@ class _TradeMilScreenState extends State<TradeMilScreen> {
                                     ),
                                     Container(
                                       color: Colors.transparent,
-                                      width: 100,
-                                      height: 40,
+                                      width: 110,
+                                      height: 50,
                                     ),
                                   ],
                                 ),
@@ -316,8 +307,8 @@ class _TradeMilScreenState extends State<TradeMilScreen> {
                             name: _nameController.text,
                             isCompleted: false,
                             notes: _notesController.text,
-                            reps: int.parse(_repsController.text),
-                            sets: int.parse(_setsController.text),
+                            reps: _repsController.text.isNotEmpty ? int.parse(_repsController.text) : 0,
+                            sets: _setsController.text.isNotEmpty ? int.parse(_setsController.text) : 0,
                           ),
                         );
                       } else
@@ -327,8 +318,8 @@ class _TradeMilScreenState extends State<TradeMilScreen> {
                             name: _nameController.text,
                             isCompleted: false,
                             notes: _notesController.text,
-                            reps: int.parse(_repsController.text),
-                            sets: int.parse(_setsController.text),
+                            reps: _repsController.text.isNotEmpty ? int.parse(_repsController.text) : 0,
+                            sets: _setsController.text.isNotEmpty ? int.parse(_setsController.text) : 0,
                           ),
                         );
                       if (await value.addNewExcercise(widget.type, userProgramModel))

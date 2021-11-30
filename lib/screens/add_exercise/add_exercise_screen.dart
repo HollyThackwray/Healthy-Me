@@ -225,15 +225,6 @@ class _AddExerciseScreenState extends State<AddExerciseScreen> {
                                     children: [
                                       TextField(
                                         maxLines: 1,
-                                        // onTap: () async {
-                                        //   // pickedTime = await showDurationPicker(
-                                        //   //   context: context,
-                                        //   //   initialTime: Duration(minutes: 1),
-                                        //   // );
-                                        //   // setState(() {
-                                        //   //   _durationController.text = pickedTime.toString().substring(0, 8);
-                                        //   // });
-                                        // },
                                         textAlign: TextAlign.center,
                                         controller: timeinput,
                                         decoration: InputDecoration(
@@ -307,24 +298,24 @@ class _AddExerciseScreenState extends State<AddExerciseScreen> {
                   ButtonWidget(
                       size: size,
                       onTap: () async {
-                        if (_formKey.currentState?.validate() ?? false) {
-                          user.programs.exercises.add(
-                            ExerciseModel(
-                              duration: pickedTime.inSeconds,
-                              name: _nameController.text,
-                              isCompleted: false,
-                              notes: _notesController.text,
-                              reps: int.parse(_repsController.text),
-                              sets: int.parse(_setsController.text),
-                            ),
-                          );
-                          await value.addStretch(
-                            user.userId!,
-                            user.programs,
-                          );
-                          Get.back();
-                        }
+                        // if (_formKey.currentState?.validate() ?? false) {
+                        user.programs.exercises.add(
+                          ExerciseModel(
+                            duration: pickedTime.inSeconds,
+                            name: _nameController.text,
+                            isCompleted: false,
+                            notes: _notesController.text,
+                            reps: _repsController.text.isNotEmpty ? int.parse(_repsController.text) : 0,
+                            sets: _setsController.text.isNotEmpty ? int.parse(_setsController.text) : 0,
+                          ),
+                        );
+                        await value.addStretch(
+                          user.userId!,
+                          user.programs,
+                        );
+                        Get.back();
                       },
+                      // },
                       title: 'Add',
                       isTransparent: false),
                   SizedBox(

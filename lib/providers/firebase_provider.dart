@@ -351,6 +351,7 @@ class FirebaseProvider extends BaseProvider {
         showPlatformDialogue(title: "Network Connection Error");
         return false;
       } catch (e) {
+        print(e);
         setLoadingState(false);
         await showPlatformDialogue(title: 'Something went wrong');
         return false;
@@ -365,7 +366,7 @@ class FirebaseProvider extends BaseProvider {
                     userId: user!.userId!,
                     clientUpdate: false,
                     completedExercise: false,
-                    completedStrech: false,
+                    completedStrech: false, 
                     programId: ref,
                     date: DateTime.now().millisecondsSinceEpoch,
                   )
