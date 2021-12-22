@@ -161,7 +161,7 @@ class _AddStretchScreenState extends State<AddStretchScreen> {
                                     disabledBorder: InputBorder.none,
                                     focusedErrorBorder: InputBorder.none,
                                     hintStyle: TextStyle(
-                                      color: Theme.of(context).dividerColor,
+                                      color: Colors.black,
                                     ),
                                   ),
                                   style: TextStyle(
@@ -197,7 +197,7 @@ class _AddStretchScreenState extends State<AddStretchScreen> {
                                     disabledBorder: InputBorder.none,
                                     focusedErrorBorder: InputBorder.none,
                                     hintStyle: TextStyle(
-                                      color: Theme.of(context).dividerColor,
+                                      color: Colors.black,
                                     ),
                                   ),
                                   style: TextStyle(
@@ -278,7 +278,7 @@ class _AddStretchScreenState extends State<AddStretchScreen> {
                                     disabledBorder: InputBorder.none,
                                     focusedErrorBorder: InputBorder.none,
                                     hintStyle: TextStyle(
-                                      color: Theme.of(context).dividerColor,
+                                      color: Colors.black,
                                     ),
                                   ),
                                   style: TextStyle(

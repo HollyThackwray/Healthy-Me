@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:hollythackwray/res/app_colors.dart';
 import 'package:hollythackwray/res/app_constants.dart';
 import 'package:hollythackwray/res/images.dart';
-import 'package:hollythackwray/widgets/top_banner_sub_heading_widget.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 class ScanScreen extends StatefulWidget {
@@ -30,7 +29,7 @@ class _ScanScreenState extends State<ScanScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    // Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: AppColors.lightBlackHeading,
       body: Column(

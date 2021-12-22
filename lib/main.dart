@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         theme: MyThemes.lightTheme,
         title: 'HollyThackwray',
         debugShowCheckedModeBanner: false,
-        themeMode: ThemeMode.light,
+        themeMode: ThemeMode.dark,
         home: SplashScreen(),
       ),
     );

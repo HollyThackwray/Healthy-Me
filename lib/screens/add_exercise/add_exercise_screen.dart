@@ -1,4 +1,3 @@
-import 'package:duration_picker/duration_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
@@ -161,7 +160,7 @@ class _AddExerciseScreenState extends State<AddExerciseScreen> {
                                     disabledBorder: InputBorder.none,
                                     focusedErrorBorder: InputBorder.none,
                                     hintStyle: TextStyle(
-                                      color: Theme.of(context).dividerColor,
+                                      color: Colors.black,
                                     ),
                                   ),
                                   style: TextStyle(
@@ -197,7 +196,7 @@ class _AddExerciseScreenState extends State<AddExerciseScreen> {
                                     disabledBorder: InputBorder.none,
                                     focusedErrorBorder: InputBorder.none,
                                     hintStyle: TextStyle(
-                                      color: Theme.of(context).dividerColor,
+                                      color: Colors.black,
                                     ),
                                   ),
                                   style: TextStyle(
@@ -278,7 +277,7 @@ class _AddExerciseScreenState extends State<AddExerciseScreen> {
                                     disabledBorder: InputBorder.none,
                                     focusedErrorBorder: InputBorder.none,
                                     hintStyle: TextStyle(
-                                      color: Theme.of(context).dividerColor,
+                                      color: Colors.black,
                                     ),
                                   ),
                                   style: TextStyle(

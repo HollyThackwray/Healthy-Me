@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:get/get.dart';
-import 'package:hollythackwray/models/exercise_model.dart';
 import 'package:hollythackwray/models/program_model.dart';
 import 'package:hollythackwray/models/user_model.dart';
 import 'package:hollythackwray/models/user_program_model.dart';
@@ -366,7 +365,7 @@ class FirebaseProvider extends BaseProvider {
                     userId: user!.userId!,
                     clientUpdate: false,
                     completedExercise: false,
-                    completedStrech: false, 
+                    completedStrech: false,
                     programId: ref,
                     date: DateTime.now().millisecondsSinceEpoch,
                   )
@@ -387,5 +386,13 @@ class FirebaseProvider extends BaseProvider {
 
     setLoadingState(false);
     return true;
+  }
+
+  updateWeight(double weight) {
+    setLoadingState(true);
+    FirebaseFirestore.instance.collection('users').doc(user!.userId).update({
+      'weight': FieldValue.arrayUnion([weight]),
+    });
+    setLoadingState(false);
   }
 }
