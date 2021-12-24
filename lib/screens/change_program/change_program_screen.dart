@@ -104,7 +104,7 @@ class ChangeProgramScreen extends StatelessWidget {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        'Update',
+                                        'Upgrade',
                                         style: AppConstants.updateStyle.copyWith(
                                           color: AppColors.darkerBlueBorder,
                                         ),
@@ -166,7 +166,7 @@ class ChangeProgramScreen extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  'Update',
+                                  'Upgrade',
                                   style: AppConstants.updateStyle.copyWith(
                                     color: Theme.of(context).dividerColor == Colors.black
                                         ? AppColors.lightBlackHeading

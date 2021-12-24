@@ -334,7 +334,9 @@ class _Journel7ScreenState extends State<Journel7Screen> {
                               }
                             }
                           },
-                          initialValue: value.user?.weight?[-1].toString() ?? null,
+                          initialValue: (value.user?.weight?.length ?? 0) == 0
+                              ? null
+                              : value.user?.weight?[-1].toString() ?? null,
                           textAlign: TextAlign.center,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(

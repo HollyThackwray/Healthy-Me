@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -147,28 +148,28 @@ class _Journel2ScreenState extends State<Journel2Screen> {
                                         shape: BoxShape.circle,
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsets.all(10),
-                                        child: Center(
-                                          child: Column(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                date.day.toString(),
-                                              ),
-                                              if (today.professionalUpdate ?? false)
-                                                Container(
-                                                  height: 5,
-                                                  width: 5,
-                                                  decoration: BoxDecoration(
-                                                    border: Border.all(
-                                                      color: AppColors.darkerBlueBorder,
-                                                    ),
-                                                    shape: BoxShape.circle,
+                                        padding: const EdgeInsets.all(5),
+                                        child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: [
+                                            AutoSizeText(
+                                              date.day.toString(),
+                                              maxLines: 1,
+                                            ),
+                                            if (today.professionalUpdate ?? false)
+                                              Container(
+                                                height: 5,
+                                                width: 5,
+                                                decoration: BoxDecoration(
+                                                  border: Border.all(
                                                     color: AppColors.darkerBlueBorder,
                                                   ),
-                                                )
-                                            ],
-                                          ),
+                                                  shape: BoxShape.circle,
+                                                  color: AppColors.darkerBlueBorder,
+                                                ),
+                                              )
+                                          ],
                                         ),
                                       ),
                                     ),
