@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hollythackwray/res/app_colors.dart';
 import 'package:hollythackwray/res/app_constants.dart';
+import 'package:hollythackwray/screens/change_program/change_program_screen.dart';
 import 'package:hollythackwray/widgets/button_widget.dart';
 import 'package:hollythackwray/widgets/top_banner_sub_heading_widget.dart';
 import 'package:just_audio/just_audio.dart';
@@ -80,7 +81,7 @@ class _CongratulationsScreenState extends State<CongratulationsScreen> {
                   Get.back();
                   Get.back();
                   Get.back();
-                  // Get.back();
+                  Get.back();
                 },
                 title: 'Contine',
                 isTransparent: false),

@@ -191,7 +191,6 @@ class _Journel9ScreenState extends State<Journel9Screen> {
   }
 
   UserProgramModel getToday(DateTime date, List<UserProgramModel> programs) {
-    print(DateTime.fromMillisecondsSinceEpoch(programs[0].date).day == date.day);
     if (programs.any((element) =>
         DateTime.fromMillisecondsSinceEpoch(element.date).day == date.day &&
         DateTime.fromMillisecondsSinceEpoch(element.date).month == date.month &&

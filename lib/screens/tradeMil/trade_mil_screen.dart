@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
 import 'package:get/get.dart';
@@ -79,7 +78,7 @@ class _TradeMilScreenState extends State<TradeMilScreen> {
                     obs: false,
                     showForgetPass: false,
                     label: 'Title',
-                    hint: 'Plank',
+                    hint: widget.type == 'Exercise' ? 'Plank' : 'Neck Stretch',
                     controller: _nameController,
                     keyBoardType: TextInputType.text,
                   ),
@@ -87,15 +86,6 @@ class _TradeMilScreenState extends State<TradeMilScreen> {
                 SizedBox(
                   height: 20,
                 ),
-                // Image.asset(bbbbbbbbbbbbbbbbbbbbbbbbb
-                //   Images.running_person,
-                //   height: 44,
-                //   fit: BoxFit.fill,
-                //   color: AppColors.lightBlue,
-                // ),
-                // SizedBox(
-                //   height: 20,
-                // ),
                 Container(
                   width: double.infinity,
                   height: size.height * 0.45,

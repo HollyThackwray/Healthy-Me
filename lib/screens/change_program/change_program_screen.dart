@@ -100,25 +100,27 @@ class ChangeProgramScreen extends StatelessWidget {
                                       color: AppColors.lightBlue,
                                     ),
                                   ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        'Upgrade',
-                                        style: AppConstants.updateStyle.copyWith(
-                                          color: AppColors.darkerBlueBorder,
+                                  value.user!.professionalAccount!
+                                      ? Container()
+                                      : Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              'Upgrade',
+                                              style: AppConstants.updateStyle.copyWith(
+                                                color: AppColors.darkerBlueBorder,
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: 10,
+                                            ),
+                                            Image.asset(
+                                              Images.forward_arrow,
+                                              height: 18,
+                                              color: AppColors.darkerBlueBorder,
+                                            ),
+                                          ],
                                         ),
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Image.asset(
-                                        Images.forward_arrow,
-                                        height: 18,
-                                        color: AppColors.darkerBlueBorder,
-                                      ),
-                                    ],
-                                  ),
                                 ],
                               ),
                             ),
@@ -162,29 +164,31 @@ class ChangeProgramScreen extends StatelessWidget {
                                     : Colors.white,
                               ),
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  'Upgrade',
-                                  style: AppConstants.updateStyle.copyWith(
-                                    color: Theme.of(context).dividerColor == Colors.black
-                                        ? AppColors.lightBlackHeading
-                                        : Colors.white,
+                            value.user!.professionalAccount!
+                                ? Container()
+                                : Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        'Upgrade',
+                                        style: AppConstants.updateStyle.copyWith(
+                                          color: Theme.of(context).dividerColor == Colors.black
+                                              ? AppColors.lightBlackHeading
+                                              : Colors.white,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Image.asset(
+                                        Images.forward_arrow,
+                                        height: 18,
+                                        color: Theme.of(context).dividerColor == Colors.black
+                                            ? AppColors.lightBlackHeading
+                                            : Colors.white,
+                                      ),
+                                    ],
                                   ),
-                                ),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                Image.asset(
-                                  Images.forward_arrow,
-                                  height: 18,
-                                  color: Theme.of(context).dividerColor == Colors.black
-                                      ? AppColors.lightBlackHeading
-                                      : Colors.white,
-                                ),
-                              ],
-                            ),
                           ],
                         ),
                       ),
@@ -192,7 +196,7 @@ class ChangeProgramScreen extends StatelessWidget {
                   ),
                   SizedBox(
                     height: 40,
-                  ), 
+                  ),
                   Column(
                       children: snapshot.data!.docs.map((e) {
                     PlanModel plan = PlanModel.fromMap(e.data() as Map<String, dynamic>);
