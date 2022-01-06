@@ -164,6 +164,7 @@ class _ProgramScreenState extends State<ProgramScreen> {
                                   (e) => ExcersizeBlockWidget(
                                     excersize: e.name!,
                                     sets: e.sets.toString(),
+                                    duration: e.duration ?? 0,
                                     size: size,
                                     reps: e.reps!.toString(),
                                     notes: e.notes!,

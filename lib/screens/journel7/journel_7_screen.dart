@@ -1,18 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hollythackwray/providers/firebase_provider.dart';
-import 'package:hollythackwray/screens/tradeMil/trade_mil_screen.dart';
 import 'package:intl/intl.dart';
+import 'package:loading_overlay/loading_overlay.dart';
+import 'package:provider/provider.dart';
+
 import 'package:hollythackwray/models/user_model.dart';
 import 'package:hollythackwray/models/user_program_model.dart';
+import 'package:hollythackwray/providers/firebase_provider.dart';
 import 'package:hollythackwray/res/app_colors.dart';
 import 'package:hollythackwray/res/app_constants.dart';
 import 'package:hollythackwray/res/images.dart';
 import 'package:hollythackwray/screens/scan/scan_screen.dart';
+import 'package:hollythackwray/screens/tradeMil/trade_mil_screen.dart';
 import 'package:hollythackwray/widgets/top_banner_sub_heading_widget.dart';
-import 'package:loading_overlay/loading_overlay.dart';
-import 'package:provider/provider.dart';
 
 class Journel7Screen extends StatefulWidget {
   Journel7Screen({
@@ -47,9 +48,6 @@ class _Journel7ScreenState extends State<Journel7Screen> {
         });
       }
     });
-    // setState(() {
-
-    // });
   }
 
   getUserStream() {}
@@ -515,6 +513,7 @@ class _Journel7ScreenState extends State<Journel7Screen> {
                                         (e) => ExcersizeBlockWidget(
                                           excersize: e.name!,
                                           sets: e.sets.toString(),
+                                          duration: e.duration ?? 0,
                                           size: size,
                                           reps: e.reps!.toString(),
                                           notes: e.notes!,
@@ -543,12 +542,14 @@ class ExcersizeBlockWidget extends StatelessWidget {
     Key? key,
     required this.excersize,
     required this.sets,
+    required this.duration,
     required this.reps,
     required this.size,
     required this.notes,
   }) : super(key: key);
   final String excersize;
   final String sets;
+  final int duration;
   final String reps;
   final Size size;
   final String notes;
@@ -558,6 +559,7 @@ class ExcersizeBlockWidget extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 20),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.end,
@@ -575,6 +577,7 @@ class ExcersizeBlockWidget extends StatelessWidget {
                 'Reps:  ',
                 style: AppConstants.labelStyle,
               ),
+              Text('Duration:  ', style: AppConstants.labelStyle),
               Text(
                 'Notes:  ',
                 style: AppConstants.labelStyle,
@@ -598,6 +601,7 @@ class ExcersizeBlockWidget extends StatelessWidget {
                   reps,
                   style: AppConstants.labelStyle.copyWith(color: AppColors.darkerBlueBorder),
                 ),
+                Text('$duration seconds', style: AppConstants.labelStyle.copyWith(color: AppColors.darkerBlueBorder)),
                 Text(
                   notes,
                   style: AppConstants.labelStyle.copyWith(color: AppColors.darkerBlueBorder),

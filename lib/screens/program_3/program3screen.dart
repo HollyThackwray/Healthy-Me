@@ -389,6 +389,7 @@ class _Program3screenState extends State<Program3screen> {
                                     excersize: e.name!,
                                     sets: e.sets.toString(),
                                     size: size,
+                                    duration: e.duration ?? 0,
                                     reps: e.reps!.toString(),
                                     notes: e.notes!,
                                   ),

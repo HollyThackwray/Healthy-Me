@@ -361,7 +361,7 @@ class _HealtthyMeScreenState extends State<HealtthyMeScreen> {
                                                 child: Image.asset(
                                                   e,
                                                   height: 28,
-                                                  fit: BoxFit.fill,
+                                                  // fit: BoxFit.contain,
                                                   color: AppColors.lightBlue,
                                                 ),
                                               ),
