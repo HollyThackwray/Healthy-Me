@@ -451,10 +451,11 @@ class _Journel7ScreenState extends State<Journel7Screen> {
                                                   left: 20,
                                                 ),
                                                 child: Row(
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
                                                   children: [
                                                     Text('Duration:', style: AppConstants.bulkinDaysTextStyle),
                                                     Text(
-                                                      'Held for ${e.duration!} seconds, ${e.reps} Times',
+                                                      'Held for ${printDuration(Duration(seconds: e.duration ?? 0))} \n${e.reps} Reps\n${e.sets} Sets',
                                                       style: AppConstants.bulkinDaysTextStyle.copyWith(
                                                         color: AppColors.darkerBlueBorder,
                                                       ),
@@ -601,7 +602,8 @@ class ExcersizeBlockWidget extends StatelessWidget {
                   reps,
                   style: AppConstants.labelStyle.copyWith(color: AppColors.darkerBlueBorder),
                 ),
-                Text('$duration seconds', style: AppConstants.labelStyle.copyWith(color: AppColors.darkerBlueBorder)),
+                Text('${printDuration(Duration(seconds: duration))}',
+                    style: AppConstants.labelStyle.copyWith(color: AppColors.darkerBlueBorder)),
                 Text(
                   notes,
                   style: AppConstants.labelStyle.copyWith(color: AppColors.darkerBlueBorder),

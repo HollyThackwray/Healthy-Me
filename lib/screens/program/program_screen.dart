@@ -136,7 +136,7 @@ class _ProgramScreenState extends State<ProgramScreen> {
                                             children: [
                                               Text('Duration:', style: AppConstants.bulkinDaysTextStyle),
                                               Text(
-                                                'Held for ${e.duration!} seconds, ${e.reps} Times',
+                                                'Held for ${printDuration(Duration(seconds: e.duration ?? 0))} \n${e.reps} Reps\n${e.sets} Sets',
                                                 style: AppConstants.bulkinDaysTextStyle.copyWith(
                                                   color: AppColors.darkerBlueBorder,
                                                 ),
