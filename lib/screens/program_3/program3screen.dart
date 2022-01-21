@@ -47,17 +47,8 @@ class _Program3screenState extends State<Program3screen> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      // floatingActionButton: Container(
-      //   height: size.height * 0.12,
-      //   child: ButtonWidget(
-      //     size: size,
-      //     onTap: () {},
-      //     title: 'Update',
-      //     isTransparent: false,
-      //   ),
-      // ),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: SlidingUpPanel(
+        color: Theme.of(context).primaryColor,
         controller: _panelController,
         panel: SingleChildScrollView(
           child: Column(
@@ -153,14 +144,17 @@ class _Program3screenState extends State<Program3screen> {
                                 fontSize: 10,
                                 color: Theme.of(context).dividerColor,
                               ),
-                              horizontalAxisValueFromValue: (value) {
-                                if (value % 10 == 0) {
-                                  return value.toString();
-                                }
-                                return '';
-                              },
+                              horizontalAxisStep: 10,
+                              // showHorizontalGrid: true,
+                              // horizontalAxisValueFromValue: (value) {
+                              //   if (value % 10 == 0) {
+                              //     print(value);
+                              //     return value.toString();
+                              //   }
+                              //   return '';
+                              // },
                               horizontalLegendPosition: HorizontalLegendPosition.start,
-                              horizontalValuesPadding: EdgeInsets.only(right: 10),
+                              horizontalValuesPadding: EdgeInsets.only(right: 50),
                               gridColor: Colors.transparent,
                             ),
                             BorderDecoration(
@@ -189,21 +183,22 @@ class _Program3screenState extends State<Program3screen> {
               ),
               Consumer<FirebaseProvider>(
                 builder: (context, value, child) => ButtonWidget(
-                    size: size,
-                    onTap: () async {
-                      if (_notesController.text.isNotEmpty) {
-                        user.programs.notes.add(
-                          NotesModel(note: _notesController.text, userId: value.user!.userId!),
-                        );
-                        await value.addStretch(
-                          user.userId!,
-                          user.programs,
-                        );
-                        Get.back();
-                      }
-                    },
-                    title: 'Update',
-                    isTransparent: false),
+                  size: size,
+                  onTap: () async {
+                    if (_notesController.text.isNotEmpty) {
+                      user.programs.notes.add(
+                        NotesModel(note: _notesController.text, userId: value.user!.userId!),
+                      );
+                      await value.addStretch(
+                        user.userId!,
+                        user.programs,
+                      );
+                      Get.back();
+                    }
+                  },
+                  title: 'Update',
+                  isTransparent: false,
+                ),
               ),
               SizedBox(
                 height: 10,
@@ -329,7 +324,7 @@ class _Program3screenState extends State<Program3screen> {
                                           left: 10,
                                         ),
                                         child: Text(
-                                          e.name!,
+                                          e.name ?? '',
                                           style: AppConstants.labelStyle.copyWith(
                                             color: AppColors.darkerBlueBorder,
                                           ),
@@ -343,7 +338,7 @@ class _Program3screenState extends State<Program3screen> {
                                           children: [
                                             Text('Duration:', style: AppConstants.bulkinDaysTextStyle),
                                             Text(
-                                              'Held for ${e.duration!} seconds, ${e.reps} Times',
+                                              'Held for ${printDuration(Duration(seconds: e.duration ?? 0))} \n${e.reps} Reps\n${e.sets} Sets\n${e.notes}',
                                               style: AppConstants.bulkinDaysTextStyle.copyWith(
                                                 color: AppColors.darkerBlueBorder,
                                               ),
@@ -355,7 +350,7 @@ class _Program3screenState extends State<Program3screen> {
                                   ),
                                 )
                                 .toList()),
-                        SizedBox(height: 30),
+                        SizedBox(height: 40),
                         Text(
                           'Exercises:',
                           style: AppConstants.labelStyle,
@@ -396,7 +391,7 @@ class _Program3screenState extends State<Program3screen> {
                                 )
                                 .toList()),
                         SizedBox(
-                          height: 50,
+                          height: size.height * 0.2,
                         )
                       ],
                     ),

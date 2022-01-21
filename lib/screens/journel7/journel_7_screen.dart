@@ -70,6 +70,8 @@ class _Journel7ScreenState extends State<Journel7Screen> {
     await FirebaseFirestore.instance.collection('users').doc(userStream!.userId).update({
       'weight': FieldValue.arrayUnion([weight]),
     });
+    _weightController.text =
+        (userStream?.weight?.length ?? 0) == 0 ? '0.0' : userStream?.weight?.last.toString() ?? '0.0';
     setState(() {
       isLoading = false;
     });
@@ -343,51 +345,19 @@ class _Journel7ScreenState extends State<Journel7Screen> {
                         SizedBox(
                           height: 40,
                         ),
-                        Container(
-                          width: 100,
-                          height: 40,
-                          decoration: BoxDecoration(
-                              color: AppColors.lightGrey,
-                              borderRadius: BorderRadius.circular(15),
-                              border: Border.all(
-                                color: Theme.of(context).dividerColor,
-                              )),
-                          child: Center(
-                            child: TextFormField(
-                              controller: _weightController,
-                              maxLines: 1,
-                              onFieldSubmitted: (newValue) {
-                                if (newValue.isNotEmpty) {
-                                  if (newValue.isNotEmpty) {
-                                    updateWeight(double.parse(newValue));
-                                  }
-                                }
-                              },
-                              // initialValue: (value.user?.weight?.length ?? 0) == 0
-                              //     ? null
-                              //     : value.user?.weight?.last.toString() ?? null,
-                              textAlign: TextAlign.center,
-                              keyboardType: TextInputType.number,
-                              decoration: InputDecoration(
-                                hintText: (userStream?.weight?.length ?? 0) == 0
-                                    ? 'Weight'
-                                    : userStream?.weight?.last.toString() ?? 'Weight',
-                                border: InputBorder.none,
-                                errorBorder: InputBorder.none,
-                                enabledBorder: InputBorder.none,
-                                focusedBorder: InputBorder.none,
-                                disabledBorder: InputBorder.none,
-                                focusedErrorBorder: InputBorder.none,
-                                hintStyle: TextStyle(
-                                  color: Colors.black,
-                                ),
-                              ),
-                              style: TextStyle(
-                                color: Colors.black,
-                              ),
-                            ),
-                          ),
-                        ),
+                        // Container(
+                        //   width: 100,
+                        //   height: 40,
+                        //   decoration: BoxDecoration(
+                        //       color: AppColors.lightGrey,
+                        //       borderRadius: BorderRadius.circular(15),
+                        //       border: Border.all(
+                        //         color: Theme.of(context).dividerColor,
+                        //       )),
+                        //   child: Center(
+                        //     child: ,
+                        //   ),
+                        // ),
                         SizedBox(
                           height: 10,
                         ),
@@ -397,18 +367,50 @@ class _Journel7ScreenState extends State<Journel7Screen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Text(
                                     'Weight: ',
                                     style: AppConstants.labelStyle,
                                   ),
-                                  SizedBox(
-                                    width: 20,
-                                  ),
-                                  Text(
-                                    userStream!.weight!.length == 0 ? '0.0' : userStream!.weight!.last.toString(),
-                                    style: AppConstants.labelStyle.copyWith(color: AppColors.lightBlue),
+                                  Container(
+                                    width: size.width * 0.15,
+                                    child: TextFormField(
+                                      controller: _weightController,
+                                      maxLines: 1,
+                                      onFieldSubmitted: (newValue) {
+                                        if (newValue.isNotEmpty) {
+                                          updateWeight(double.parse(newValue));
+                                        }
+                                      },
+                                      textAlign: TextAlign.center,
+                                      keyboardType: TextInputType.number,
+                                      decoration: InputDecoration(
+                                        hintText: (userStream?.weight?.length ?? 0) == 0
+                                            ? '0.0'
+                                            : userStream?.weight?.last.toString() ?? 'Weight',
+                                        border: InputBorder.none,
+                                        alignLabelWithHint: true,
+                                        errorBorder: InputBorder.none,
+                                        enabledBorder: InputBorder.none,
+                                        focusedBorder: InputBorder.none,
+                                        disabledBorder: InputBorder.none,
+                                        focusedErrorBorder: InputBorder.none,
+                                        hintStyle: TextStyle(
+                                          color: AppColors.lightBlue,
+                                          fontSize: 23,
+                                        ),
+                                      ),
+                                      style: TextStyle(
+                                        color: AppColors.lightBlue,
+                                        fontSize: 23,
+                                      ),
+                                    ),
                                   )
+                                  // Text(
+                                  //   userStream!.weight!.length == 0 ? '0.0' : userStream!.weight!.last.toString(),
+                                  //   style: AppConstants.labelStyle.copyWith(color: AppColors.lightBlue),
+                                  // )
                                 ],
                               ),
                               SizedBox(height: 30),
@@ -440,7 +442,7 @@ class _Journel7ScreenState extends State<Journel7Screen> {
                                                   left: 10,
                                                 ),
                                                 child: Text(
-                                                  e.name!,
+                                                  e.name ?? '',
                                                   style: AppConstants.labelStyle.copyWith(
                                                     color: AppColors.darkerBlueBorder,
                                                   ),
@@ -455,7 +457,7 @@ class _Journel7ScreenState extends State<Journel7Screen> {
                                                   children: [
                                                     Text('Duration:', style: AppConstants.bulkinDaysTextStyle),
                                                     Text(
-                                                      'Held for ${printDuration(Duration(seconds: e.duration ?? 0))} \n${e.reps} Reps\n${e.sets} Sets',
+                                                      'Held for ${printDuration(Duration(seconds: e.duration ?? 0))} \n${e.reps} Reps\n${e.sets} Sets\n${e.notes}',
                                                       style: AppConstants.bulkinDaysTextStyle.copyWith(
                                                         color: AppColors.darkerBlueBorder,
                                                       ),
@@ -467,7 +469,7 @@ class _Journel7ScreenState extends State<Journel7Screen> {
                                           ))
                                       .toList()),
                               SizedBox(
-                                height: 30,
+                                height: 40,
                               ),
                               Row(
                                 children: [
