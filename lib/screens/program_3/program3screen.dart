@@ -265,7 +265,6 @@ class _Program3screenState extends State<Program3screen> {
                   if (snapshot.hasError) {
                     return Text('Something went wrong');
                   }
-
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return Container(
                       height: size.height * 0.3,
@@ -335,8 +334,9 @@ class _Program3screenState extends State<Program3screen> {
                                           left: 20,
                                         ),
                                         child: Row(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
-                                            Text('Duration:', style: AppConstants.bulkinDaysTextStyle),
+                                            Text('Duration: ', style: AppConstants.bulkinDaysTextStyle),
                                             Text(
                                               'Held for ${printDuration(Duration(seconds: e.duration ?? 0))} \n${e.reps} Reps\n${e.sets} Sets\n${e.notes}',
                                               style: AppConstants.bulkinDaysTextStyle.copyWith(

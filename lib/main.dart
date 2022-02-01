@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       child: GetMaterialApp(
         darkTheme: MyThemes.darkTheme,
         theme: MyThemes.lightTheme,
-        title: 'HollyThackwray',
+        title: 'Healthy Me',
         debugShowCheckedModeBanner: false,
         themeMode: ThemeMode.system,
         home: SplashScreen(),
