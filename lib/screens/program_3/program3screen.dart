@@ -99,12 +99,14 @@ class _Program3screenState extends State<Program3screen> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      setState(() {
-                        if (days == 7 && widget.userModel.weight!.length > 7)
-                          days = 100;
-                        else
-                          days = 7;
-                      });
+                      setState(
+                        () {
+                          if (days == 7 && widget.userModel.weight!.length > 7)
+                            days = 100;
+                          else
+                            days = 7;
+                        },
+                      );
                     },
                     child: Image.asset(
                       Images.forward_arrow,
@@ -135,7 +137,11 @@ class _Program3screenState extends State<Program3screen> {
                                     : widget.userModel.weight!.map((e) => BarValue<void>(e)).toList(),
                           ),
                           foregroundDecorations: [
-                            BorderDecoration(color: AppColors.lightBlue, borderWidth: 0, endWithChart: false),
+                            BorderDecoration(
+                              color: AppColors.lightBlue,
+                              borderWidth: 0,
+                              endWithChart: false,
+                            ),
                           ],
                           backgroundDecorations: [
                             GridDecoration(
@@ -145,14 +151,6 @@ class _Program3screenState extends State<Program3screen> {
                                 color: Theme.of(context).dividerColor,
                               ),
                               horizontalAxisStep: 10,
-                              // showHorizontalGrid: true,
-                              // horizontalAxisValueFromValue: (value) {
-                              //   if (value % 10 == 0) {
-                              //     print(value);
-                              //     return value.toString();
-                              //   }
-                              //   return '';
-                              // },
                               horizontalLegendPosition: HorizontalLegendPosition.start,
                               horizontalValuesPadding: EdgeInsets.only(right: 50),
                               gridColor: Colors.transparent,
@@ -187,7 +185,10 @@ class _Program3screenState extends State<Program3screen> {
                   onTap: () async {
                     if (_notesController.text.isNotEmpty) {
                       user.programs.notes.add(
-                        NotesModel(note: _notesController.text, userId: value.user!.userId!),
+                        NotesModel(
+                          note: _notesController.text,
+                          userId: value.user!.userId!,
+                        ),
                       );
                       await value.addStretch(
                         user.userId!,
@@ -212,7 +213,10 @@ class _Program3screenState extends State<Program3screen> {
             color: Colors.grey.withOpacity(0.5),
             spreadRadius: 5,
             blurRadius: 7,
-            offset: Offset(0, 3),
+            offset: Offset(
+              0,
+              3,
+            ),
           ),
         ],
         collapsed: Container(
@@ -224,12 +228,22 @@ class _Program3screenState extends State<Program3screen> {
                 height: 30,
                 width: 30,
               ),
-              Text('Notes', style: AppConstants.nameTextStyle.copyWith(color: AppColors.darkerBlueBorder))
+              Text(
+                'Notes',
+                style: AppConstants.nameTextStyle.copyWith(
+                  color: AppColors.darkerBlueBorder,
+                ),
+              ),
             ],
           ),
         ),
         isDraggable: true,
-        borderRadius: BorderRadius.only(topLeft: Radius.circular(50), topRight: Radius.circular(50)),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(50),
+          topRight: Radius.circular(
+            50,
+          ),
+        ),
         body: SingleChildScrollView(
           controller: _scrollController,
           child: Column(
@@ -263,7 +277,9 @@ class _Program3screenState extends State<Program3screen> {
                 stream: FirebaseFirestore.instance.collection('users').doc(widget.userModel.userId!).snapshots(),
                 builder: (context, snapshot) {
                   if (snapshot.hasError) {
-                    return Text('Something went wrong');
+                    return Text(
+                      'Something went wrong',
+                    );
                   }
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return Container(
@@ -275,7 +291,10 @@ class _Program3screenState extends State<Program3screen> {
                   }
                   if (!(snapshot.data!.exists)) {
                     return Center(
-                      child: Text("No User Found.", style: AppConstants.labelStyle),
+                      child: Text(
+                        "No User Found.",
+                        style: AppConstants.labelStyle,
+                      ),
                     );
                   }
                   UserModel user = UserModel.fromMap(snapshot.data!.data() as Map<String, dynamic>);
@@ -292,7 +311,11 @@ class _Program3screenState extends State<Program3screen> {
                         ),
                         GestureDetector(
                           onTap: () {
-                            Get.to(() => AddStretchScreen(userModel: widget.userModel));
+                            Get.to(
+                              () => AddStretchScreen(
+                                userModel: widget.userModel,
+                              ),
+                            );
                           },
                           child: Container(
                             margin: EdgeInsets.symmetric(vertical: 10),
@@ -336,7 +359,10 @@ class _Program3screenState extends State<Program3screen> {
                                         child: Row(
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
-                                            Text('Duration: ', style: AppConstants.bulkinDaysTextStyle),
+                                            Text(
+                                              'Duration: ',
+                                              style: AppConstants.bulkinDaysTextStyle,
+                                            ),
                                             Text(
                                               'Held for ${printDuration(Duration(seconds: e.duration ?? 0))} \n${e.reps} Reps\n${e.sets} Sets\n${e.notes}',
                                               style: AppConstants.bulkinDaysTextStyle.copyWith(
@@ -350,14 +376,20 @@ class _Program3screenState extends State<Program3screen> {
                                   ),
                                 )
                                 .toList()),
-                        SizedBox(height: 40),
+                        SizedBox(
+                          height: 40,
+                        ),
                         Text(
                           'Exercises:',
                           style: AppConstants.labelStyle,
                         ),
                         GestureDetector(
                           onTap: () {
-                            Get.to(() => AddExerciseScreen(userModel: widget.userModel));
+                            Get.to(
+                              () => AddExerciseScreen(
+                                userModel: widget.userModel,
+                              ),
+                            );
                           },
                           child: Container(
                             margin: EdgeInsets.symmetric(vertical: 10),
@@ -377,19 +409,20 @@ class _Program3screenState extends State<Program3screen> {
                           ),
                         ),
                         Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: user.programs.exercises
-                                .map(
-                                  (e) => ExcersizeBlockWidget(
-                                    excersize: e.name!,
-                                    sets: e.sets.toString(),
-                                    size: size,
-                                    duration: e.duration ?? 0,
-                                    reps: e.reps!.toString(),
-                                    notes: e.notes!,
-                                  ),
-                                )
-                                .toList()),
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: user.programs.exercises
+                              .map(
+                                (e) => ExcersizeBlockWidget(
+                                  excersize: e.name!,
+                                  sets: e.sets.toString(),
+                                  size: size,
+                                  duration: e.duration ?? 0,
+                                  reps: e.reps!.toString(),
+                                  notes: e.notes!,
+                                ),
+                              )
+                              .toList(),
+                        ),
                         SizedBox(
                           height: size.height * 0.2,
                         )
