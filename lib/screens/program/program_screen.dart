@@ -133,6 +133,7 @@ class _ProgramScreenState extends State<ProgramScreen> {
                                             left: 20,
                                           ),
                                           child: Row(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
                                               Text('Duration:', style: AppConstants.bulkinDaysTextStyle),
                                               Text(
