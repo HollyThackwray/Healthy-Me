@@ -45,7 +45,7 @@ class SnacksScreen extends StatelessWidget {
             Container(
               margin: EdgeInsets.symmetric(horizontal: 20),
               child: Text(
-                'Here are some healthy snacks for you to fill in the gaps with if you get hungry.',
+                'Here are some snack ideas to have if you get hungry!',
                 style: AppConstants.bulkinDaysTextStyle.copyWith(
                   color: Theme.of(context).dividerColor == Colors.black ? AppColors.lightBlackHeading : Colors.white,
                 ),

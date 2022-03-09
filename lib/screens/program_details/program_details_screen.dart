@@ -127,17 +127,17 @@ class _ProgramDetailsScreenState extends State<ProgramDetailsScreen> {
                             )
                             .toList()),
                     Spacer(),
-                    GestureDetector(
-                      onTap: () {
+                    IconButton(
+                      onPressed: () {
                         setState(() {
                           _pageController.nextPage(duration: Duration(milliseconds: 300), curve: Curves.easeIn);
                         });
                       },
-                      child: Image.asset(
-                        Images.down_arrow,
-                        color: Theme.of(context).primaryColor,
-                        height: 15,
-                        fit: BoxFit.fill,
+                      padding: EdgeInsets.zero,
+                      icon: Icon(
+                        Icons.keyboard_arrow_up,
+                        color: Theme.of(context).dividerColor,
+                        size: 60,
                       ),
                     ),
                     SizedBox(

@@ -3,11 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:loading_overlay/loading_overlay.dart';
-import 'package:provider/provider.dart';
 
 import 'package:hollythackwray/models/user_model.dart';
 import 'package:hollythackwray/models/user_program_model.dart';
-import 'package:hollythackwray/providers/firebase_provider.dart';
 import 'package:hollythackwray/res/app_colors.dart';
 import 'package:hollythackwray/res/app_constants.dart';
 import 'package:hollythackwray/res/images.dart';
@@ -304,7 +302,7 @@ class _Journel7ScreenState extends State<Journel7Screen> {
                           size: size,
                           isCongo: false,
                           title: 'HEALTHY ME',
-                          subTitle: DateFormat.MMMM().format(widget.date),
+                          subTitle: widget.userModel?.username ?? '',
                         ),
                         SizedBox(
                           height: size.height * 0.2,
@@ -316,11 +314,11 @@ class _Journel7ScreenState extends State<Journel7Screen> {
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                GestureDetector(
-                                  onTap: () {
+                                IconButton(
+                                  onPressed: () {
                                     Get.to(() => ScanScreen());
                                   },
-                                  child: Icon(
+                                  icon: Icon(
                                     Icons.qr_code_scanner,
                                     // Images.setting,
                                     size: 25,
@@ -480,11 +478,11 @@ class _Journel7ScreenState extends State<Journel7Screen> {
                                   SizedBox(
                                     width: 20,
                                   ),
-                                  GestureDetector(
-                                    onTap: () {
+                                  IconButton(
+                                    onPressed: () {
                                       Get.to(() => ScanScreen());
                                     },
-                                    child: Icon(
+                                    icon: Icon(
                                       Icons.qr_code_scanner,
                                       // Images.setting,
                                       size: 25,

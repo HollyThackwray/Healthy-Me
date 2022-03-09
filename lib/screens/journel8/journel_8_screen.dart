@@ -90,6 +90,9 @@ class _Journel8ScreenState extends State<Journel8Screen> {
                         padding: const EdgeInsets.all(8.0),
                         child: CupertinoSearchTextField(
                           itemColor: Theme.of(context).dividerColor,
+                          style: TextStyle(
+                            color: Theme.of(context).dividerColor,
+                          ),
                           controller: _searchController,
                           placeholder: 'Search With Username',
                           backgroundColor: Colors.transparent,

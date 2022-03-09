@@ -99,11 +99,11 @@ class _HealtthyMeScreenState extends State<HealtthyMeScreen> {
                         padding: const EdgeInsets.symmetric(horizontal: 40),
                         child: Row(
                           children: [
-                            GestureDetector(
-                              onTap: () {
+                            IconButton(
+                              onPressed: () {
                                 Get.to(() => ScanScreen());
                               },
-                              child: Icon(
+                              icon: Icon(
                                 Icons.qr_code_scanner,
                                 // Images.setting,
                                 size: 36,
@@ -111,11 +111,11 @@ class _HealtthyMeScreenState extends State<HealtthyMeScreen> {
                               ),
                             ),
                             Spacer(),
-                            GestureDetector(
-                              onTap: () {
+                            IconButton(
+                              onPressed: () {
                                 Get.to(() => SettingsScreen());
                               },
-                              child: Icon(
+                              icon: Icon(
                                 Icons.settings,
                                 // Images.setting,
                                 size: 36,
@@ -135,17 +135,17 @@ class _HealtthyMeScreenState extends State<HealtthyMeScreen> {
                         fit: BoxFit.fill,
                       ),
                       Spacer(),
-                      GestureDetector(
-                        onTap: () {
+                      IconButton(
+                        onPressed: () {
                           setState(() {
                             _pageController.nextPage(duration: Duration(milliseconds: 300), curve: Curves.easeIn);
                           });
                         },
-                        child: Image.asset(
-                          Images.down_arrow,
+                        padding: EdgeInsets.zero,
+                        icon: Icon(
+                          Icons.keyboard_arrow_down_outlined,
                           color: Theme.of(context).iconTheme.color,
-                          height: 13,
-                          fit: BoxFit.fill,
+                          size: 60,
                         ),
                       ),
                       SizedBox(
@@ -165,23 +165,23 @@ class _HealtthyMeScreenState extends State<HealtthyMeScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       SizedBox(
-                        height: 80,
+                        height: 50,
                       ),
-                      GestureDetector(
-                        onTap: () {
+                      IconButton(
+                        onPressed: () {
                           setState(() {
                             _pageController.previousPage(duration: Duration(milliseconds: 300), curve: Curves.easeIn);
                           });
                         },
-                        child: Image.asset(
-                          Images.up_arrow,
+                        padding: EdgeInsets.zero,
+                        icon: Icon(
+                          Icons.keyboard_arrow_up,
                           color: Theme.of(context).dividerColor,
-                          height: 13,
-                          fit: BoxFit.fill,
+                          size: 60,
                         ),
                       ),
                       SizedBox(
-                        height: 30,
+                        height: 40,
                       ),
                       Container(
                         height: 177,
@@ -379,7 +379,7 @@ class _HealtthyMeScreenState extends State<HealtthyMeScreen> {
                         },
                       ),
                       SizedBox(
-                        height: 30,
+                        height: 60,
                       ),
                       Align(
                         alignment: Alignment.bottomLeft,

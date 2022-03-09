@@ -10,23 +10,23 @@ dependencies:
   auto_size_text: ^3.0.0-nullsafety.0
   cached_network_image: ^3.1.0
   flutter_time_picker_spinner: ^2.0.0
-  charts_painter: ^1.0.0
-  cloud_firestore: ^2.1.0
+  charts_painter: ^2.0.0+1
+  cloud_firestore: ^3.1.10
   cupertino_icons: ^1.0.2
-  firebase_auth: ^1.1.4
+  firebase_auth: ^3.3.9
   firebase_core: ^1.1.1
-  firebase_storage: ^8.0.6
+  firebase_storage: ^10.2.9
   flutter:
     sdk: flutter
   flutter_image_compress: ^1.0.0
   flutter_launcher_icons: ^0.9.0
   get: ^4.3.8
-  qr_code_scanner: ^0.5.2
+  qr_code_scanner: ^0.7.0
   image_cropper: ^1.4.0
-  image_picker: ^0.7.5+3
+  image_picker: ^0.8.4+10
   intl: ^0.17.0
   just_audio: ^0.9.9
-  jiffy: ^4.1.0
+  jiffy: ^5.0.0
   duration_picker: ^1.0.1
   loading_overlay: ^0.3.0
   lottie: ^1.1.0

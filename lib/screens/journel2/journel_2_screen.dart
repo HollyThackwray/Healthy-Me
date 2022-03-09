@@ -97,18 +97,16 @@ class _Journel2ScreenState extends State<Journel2Screen> {
                         width: double.infinity,
                         child: Column(
                           children: [
-                            GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  _scrollController.animateTo(0,
-                                      duration: Duration(milliseconds: 300), curve: Curves.easeIn);
-                                });
+                            IconButton(
+                              onPressed: () {
+                                _scrollController.animateTo(0,
+                                    duration: Duration(milliseconds: 300), curve: Curves.easeIn);
                               },
-                              child: Image.asset(
-                                Images.up_arrow,
+                              padding: EdgeInsets.zero,
+                              icon: Icon(
+                                Icons.keyboard_arrow_up,
                                 color: Theme.of(context).dividerColor,
-                                height: 13,
-                                fit: BoxFit.fill,
+                                size: 50,
                               ),
                             ),
                             SizedBox(
@@ -128,6 +126,16 @@ class _Journel2ScreenState extends State<Journel2Screen> {
                             ),
                             Expanded(
                               child: PagedVerticalCalendar(
+                                endDate: DateTime(DateTime.now().year + 1),
+                                initialDate: DateTime.now(),
+                                startDate: DateTime(
+                                  DateTime.now().year,
+                                  DateTime.now().month == 1
+                                      ? 12
+                                      : DateTime.now().month == 12
+                                          ? 1
+                                          : DateTime.now().month - 1,
+                                ),
                                 dayBuilder: (context, date) {
                                   UserProgramModel today = getToday(date, userPrograms);
                                   return GestureDetector(
@@ -142,6 +150,9 @@ class _Journel2ScreenState extends State<Journel2Screen> {
                                     child: Container(
                                       margin: EdgeInsets.symmetric(horizontal: 10),
                                       decoration: BoxDecoration(
+                                        color: date.day == DateTime.now().day && date.month == DateTime.now().month
+                                            ? AppColors.lightBlue
+                                            : null,
                                         border: Border.all(
                                           color: AppColors.darkerBlueBorder,
                                         ),

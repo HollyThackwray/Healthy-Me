@@ -6,6 +6,7 @@ import 'package:hollythackwray/models/user_program_model.dart';
 import 'package:hollythackwray/res/app_constants.dart';
 import 'package:hollythackwray/screens/journel7/journel_7_screen.dart';
 import 'package:hollythackwray/screens/program_3/program3screen.dart';
+import 'package:hollythackwray/widgets/button_widget.dart';
 import 'package:paged_vertical_calendar/paged_vertical_calendar.dart';
 
 import 'package:hollythackwray/models/user_model.dart';
@@ -93,42 +94,53 @@ class _Journel9ScreenState extends State<Journel9Screen> {
                         subTitle: widget.userModel.username!,
                       ),
                       SizedBox(
-                        height: size.height * 0.2,
+                        height: size.height * 0.18,
                       ),
                       Container(
                         height: size.height * 0.85,
                         width: double.infinity,
                         child: Column(
                           children: [
-                            GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  _scrollController.animateTo(0,
-                                      duration: Duration(milliseconds: 300), curve: Curves.easeIn);
-                                });
+                            IconButton(
+                              onPressed: () {
+                                _scrollController.animateTo(0,
+                                    duration: Duration(milliseconds: 300), curve: Curves.easeIn);
                               },
-                              child: Image.asset(
-                                Images.up_arrow,
+                              padding: EdgeInsets.zero,
+                              icon: Icon(
+                                Icons.keyboard_arrow_up,
                                 color: Theme.of(context).dividerColor,
-                                height: 13,
-                                fit: BoxFit.fill,
+                                size: 50,
                               ),
                             ),
                             SizedBox(height: 30),
                             Center(
-                                child: GestureDetector(
-                              onTap: () {
-                                Get.to(() => Program3screen(
+                              child: GestureDetector(
+                                onTap: () {
+                                  Get.to(
+                                    () => Program3screen(
                                       userModel: widget.userModel,
-                                    ));
-                              },
-                              child: Text('Edit Program', style: AppConstants.buttonTextStyle),
-                            )),
+                                    ),
+                                  );
+                                },
+                                child: Text('Edit Program', style: AppConstants.buttonTextStyle),
+                              ),
+                            ),
                             SizedBox(
                               height: 30,
                             ),
                             Expanded(
                               child: PagedVerticalCalendar(
+                                endDate: DateTime(DateTime.now().year + 1),
+                                initialDate: DateTime.now(),
+                                startDate: DateTime(
+                                  DateTime.now().year,
+                                  DateTime.now().month == 1
+                                      ? 12
+                                      : DateTime.now().month == 12
+                                          ? 1
+                                          : DateTime.now().month - 1,
+                                ),
                                 dayBuilder: (context, date) {
                                   UserProgramModel today = getToday(date, userPrograms);
                                   return GestureDetector(
@@ -144,10 +156,14 @@ class _Journel9ScreenState extends State<Journel9Screen> {
                                     child: Container(
                                       margin: EdgeInsets.symmetric(horizontal: 10),
                                       decoration: BoxDecoration(
-                                          border: Border.all(
-                                            color: AppColors.darkerBlueBorder,
-                                          ),
-                                          shape: BoxShape.circle),
+                                        color: date.day == DateTime.now().day && date.month == DateTime.now().month
+                                            ? AppColors.lightBlue
+                                            : null,
+                                        border: Border.all(
+                                          color: AppColors.darkerBlueBorder,
+                                        ),
+                                        shape: BoxShape.circle,
+                                      ),
                                       child: Padding(
                                         padding: const EdgeInsets.all(5),
                                         child: Column(
