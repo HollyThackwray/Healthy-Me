@@ -1,14 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:loading_overlay/loading_overlay.dart';
+import 'package:provider/provider.dart';
+
 import 'package:hollythackwray/models/user_model.dart';
 import 'package:hollythackwray/providers/firebase_provider.dart';
 import 'package:hollythackwray/res/app_colors.dart';
 import 'package:hollythackwray/res/app_constants.dart';
 import 'package:hollythackwray/res/images.dart';
 import 'package:hollythackwray/widgets/top_banner_sub_heading_widget.dart';
-import 'package:loading_overlay/loading_overlay.dart';
-import 'package:provider/provider.dart';
 
 class Journel8Screen extends StatefulWidget {
   Journel8Screen({Key? key}) : super(key: key);
@@ -108,17 +109,18 @@ class _Journel8ScreenState extends State<Journel8Screen> {
                       height: 20,
                     ),
                     StreamBuilder<QuerySnapshot>(
-                        stream: _searchController.text.isEmpty
-                            ? FirebaseFirestore.instance.collection('users').snapshots()
-                            : FirebaseFirestore.instance
-                                .collection('users')
-                                .where('username', isEqualTo: _searchController.text)
-                                .snapshots(),
+                        stream: FirebaseFirestore.instance.collection('users').snapshots(),
+                        //  FirebaseFirestore.instance
+                        //     .collection('users')
+                        //     .where(
+                        //       'username',
+                        //       isEqualTo: _searchController.text,
+                        //     )
+                        //     .snapshots(),
                         builder: (context, snapshot) {
                           if (snapshot.hasError) {
                             return Text('Something went wrong');
                           }
-
                           if (snapshot.connectionState == ConnectionState.waiting) {
                             return Container(
                               height: size.height * 0.3,
@@ -137,47 +139,18 @@ class _Journel8ScreenState extends State<Journel8Screen> {
                               UserModel user = UserModel.fromMap(e.data() as Map<String, dynamic>);
                               return value.user!.userId! == user.userId! || user.trainers!.contains(value.user!.userId!)
                                   ? Container()
-                                  : Column(
-                                      children: [
-                                        Divider(),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                                          child: Row(
-                                            children: [
-                                              Container(
-                                                height: 5,
-                                                width: 5,
-                                                decoration: BoxDecoration(
-                                                    shape: BoxShape.circle, color: AppColors.darkerBlueBorder),
+                                  : _searchController.text.isEmpty
+                                      ? DisplayUserWidget(
+                                          user: user,
+                                          value: value,
+                                        )
+                                      : user.username!.toLowerCase().contains(_searchController.text.toLowerCase())
+                                          ? DisplayUserWidget(value: value, user: user)
+                                          : Container(
+                                              child: Center(
+                                                child: Text("No Users Found.", style: AppConstants.labelStyle),
                                               ),
-                                              SizedBox(
-                                                width: 20,
-                                              ),
-                                              Text(
-                                                user.firstName!,
-                                                style: AppConstants.buttonTextStyle,
-                                              ),
-                                              Spacer(),
-                                              Padding(
-                                                padding: const EdgeInsets.only(right: 20, left: 20, bottom: 20),
-                                                child: Align(
-                                                  alignment: Alignment.topRight,
-                                                  child: GestureDetector(
-                                                    onTap: () {
-                                                      value.addTrainer(user.userId!);
-                                                    },
-                                                    child: Text(
-                                                      '+',
-                                                      style: AppConstants.buttonTextStyle,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    );
+                                            );
                             }).toList(),
                           );
                         }),
@@ -192,6 +165,63 @@ class _Journel8ScreenState extends State<Journel8Screen> {
           ),
         ),
       ),
+    );
+  }
+}
+
+class DisplayUserWidget extends StatelessWidget {
+  const DisplayUserWidget({
+    Key? key,
+    required this.value,
+    required this.user,
+  }) : super(key: key);
+  final FirebaseProvider value;
+  final UserModel user;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Divider(),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          child: Row(
+            children: [
+              Container(
+                height: 5,
+                width: 5,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: AppColors.darkerBlueBorder,
+                ),
+              ),
+              SizedBox(
+                width: 20,
+              ),
+              Text(
+                user.firstName!,
+                style: AppConstants.buttonTextStyle,
+              ),
+              Spacer(),
+              Padding(
+                padding: const EdgeInsets.only(right: 20, left: 20, bottom: 20),
+                child: Align(
+                  alignment: Alignment.topRight,
+                  child: GestureDetector(
+                    onTap: () {
+                      value.addTrainer(user.userId!);
+                    },
+                    child: Text(
+                      '+',
+                      style: AppConstants.buttonTextStyle,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

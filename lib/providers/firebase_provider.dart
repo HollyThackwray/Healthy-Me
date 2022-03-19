@@ -187,11 +187,9 @@ class FirebaseProvider extends BaseProvider {
   }
 
   signOut() async {
-    // await _removeToken(_user.uid);
     _user = null;
     name = null;
     user = null;
-    // UserModel.users.clear();
     _auth.signOut();
     Get.offAll(() => LoginScreen());
   }
@@ -200,6 +198,7 @@ class FirebaseProvider extends BaseProvider {
   var ref;
   uploadProfilePicture(ImageSource source) async {
     try {
+      // ignore: deprecated_member_use
       image = (await ImagePicker().getImage(source: source));
       if (image == null) return;
       setLoadingState(true);

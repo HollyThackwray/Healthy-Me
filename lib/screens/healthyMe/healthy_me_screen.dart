@@ -289,13 +289,13 @@ class _HealtthyMeScreenState extends State<HealtthyMeScreen> {
                                               SizedBox(
                                                 height: 10,
                                               ),
-                                              Text(
-                                                value.user!.currentProgram!.length == 0
-                                                    ? 'No Program Selected :('
-                                                    : 'Successfully ${plan.title}ING since ${Jiffy(DateTime.fromMillisecondsSinceEpoch(time)).fromNow()}',
-                                                style: AppConstants.bulkinDaysTextStyle,
-                                                textAlign: TextAlign.center,
-                                              ),
+                                              value.user!.currentProgram!.length == 0
+                                                  ? Text(
+                                                      'No Program Selected :(',
+                                                      style: AppConstants.bulkinDaysTextStyle,
+                                                      textAlign: TextAlign.center,
+                                                    )
+                                                  : Container(),
                                               value.user!.currentProgram!.length == 0
                                                   ? Container()
                                                   : IconButton(
@@ -343,10 +343,13 @@ class _HealtthyMeScreenState extends State<HealtthyMeScreen> {
                                         );
                                       },
                                       child: Text(
-                                        plan.title,
+                                        'Successfully on ${plan.title} since ${Jiffy(DateTime.fromMillisecondsSinceEpoch(time)).fromNow()}'
+                                            .replaceAll(' ago', ''),
                                         style: AppConstants.toneTextStyle.copyWith(
                                           color: Theme.of(context).dividerColor,
+                                          fontSize: 25,
                                         ),
+                                        textAlign: TextAlign.center,
                                       ),
                                     ),
                                     SizedBox(
