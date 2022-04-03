@@ -1,5 +1,4 @@
 class Images {
-  static const String back_arrow = 'assets/images/back_arrow.png';
   static const String burger_menu = 'assets/images/burger_menu.png';
   static const String calender = 'assets/images/calender.png';
   static const String down_arrow = 'assets/images/down_arrow.png';

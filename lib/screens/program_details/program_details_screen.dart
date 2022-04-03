@@ -137,7 +137,7 @@ class _ProgramDetailsScreenState extends State<ProgramDetailsScreen> {
                       icon: Icon(
                         Icons.keyboard_arrow_up,
                         color: Theme.of(context).dividerColor,
-                        size: 60,
+                        size: 50,
                       ),
                     ),
                     SizedBox(

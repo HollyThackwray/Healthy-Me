@@ -145,7 +145,7 @@ class _HealtthyMeScreenState extends State<HealtthyMeScreen> {
                         icon: Icon(
                           Icons.keyboard_arrow_down_outlined,
                           color: Theme.of(context).iconTheme.color,
-                          size: 60,
+                          size: 50,
                         ),
                       ),
                       SizedBox(
@@ -177,7 +177,7 @@ class _HealtthyMeScreenState extends State<HealtthyMeScreen> {
                         icon: Icon(
                           Icons.keyboard_arrow_up,
                           color: Theme.of(context).dividerColor,
-                          size: 60,
+                          size: 50,
                         ),
                       ),
                       SizedBox(

@@ -99,7 +99,9 @@ class _Journel8ScreenState extends State<Journel8Screen> {
                           backgroundColor: Colors.transparent,
                           borderRadius: BorderRadius.circular(30),
                           onChanged: (val) {
-                            setState(() {});
+                            setState(
+                              () {},
+                            );
                           },
                           placeholderStyle: AppConstants.bulkinDaysTextStyle,
                         ),
@@ -109,33 +111,27 @@ class _Journel8ScreenState extends State<Journel8Screen> {
                       height: 20,
                     ),
                     StreamBuilder<QuerySnapshot>(
-                        stream: FirebaseFirestore.instance.collection('users').snapshots(),
-                        //  FirebaseFirestore.instance
-                        //     .collection('users')
-                        //     .where(
-                        //       'username',
-                        //       isEqualTo: _searchController.text,
-                        //     )
-                        //     .snapshots(),
-                        builder: (context, snapshot) {
-                          if (snapshot.hasError) {
-                            return Text('Something went wrong');
-                          }
-                          if (snapshot.connectionState == ConnectionState.waiting) {
-                            return Container(
-                              height: size.height * 0.3,
-                              child: Center(
-                                child: CircularProgressIndicator(),
-                              ),
-                            );
-                          }
-                          if (snapshot.data!.docs.length == 0) {
-                            return Center(
-                              child: Text("No Users Found.", style: AppConstants.labelStyle),
-                            );
-                          }
-                          return Column(
-                            children: snapshot.data!.docs.map((e) {
+                      stream: FirebaseFirestore.instance.collection('users').snapshots(),
+                      builder: (context, snapshot) {
+                        if (snapshot.hasError) {
+                          return Text('Something went wrong');
+                        }
+                        if (snapshot.connectionState == ConnectionState.waiting) {
+                          return Container(
+                            height: size.height * 0.3,
+                            child: Center(
+                              child: CircularProgressIndicator(),
+                            ),
+                          );
+                        }
+                        if (snapshot.data!.docs.length == 0) {
+                          return Center(
+                            child: Text("No Users Found.", style: AppConstants.labelStyle),
+                          );
+                        }
+                        return Column(
+                          children: snapshot.data!.docs.map(
+                            (e) {
                               UserModel user = UserModel.fromMap(e.data() as Map<String, dynamic>);
                               return value.user!.userId! == user.userId! || user.trainers!.contains(value.user!.userId!)
                                   ? Container()
@@ -151,9 +147,11 @@ class _Journel8ScreenState extends State<Journel8Screen> {
                                                 child: Text("No Users Found.", style: AppConstants.labelStyle),
                                               ),
                                             );
-                            }).toList(),
-                          );
-                        }),
+                            },
+                          ).toList(),
+                        );
+                      },
+                    ),
                     Divider(),
                     SizedBox(
                       height: 20,

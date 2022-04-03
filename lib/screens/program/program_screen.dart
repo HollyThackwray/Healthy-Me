@@ -86,7 +86,7 @@ class _ProgramScreenState extends State<ProgramScreen> {
                     size: size,
                     isCongo: false,
                     title: 'HEALTHY ME',
-                    subTitle: value.user!.username!,
+                    subTitle: value.user?.username ?? ' ',
                   ),
                   SizedBox(
                     height: size.height * 0.2,
@@ -112,42 +112,49 @@ class _ProgramScreenState extends State<ProgramScreen> {
                           style: AppConstants.labelStyle,
                         ),
                         Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: value.user!.programs.streches
-                                .map((e) => Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Container(
-                                          margin: EdgeInsets.only(
-                                            left: 10,
-                                          ),
-                                          child: Text(
-                                            e.name!,
-                                            style: AppConstants.labelStyle.copyWith(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: value.user!.programs.streches
+                              .map(
+                                (e) => Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      margin: EdgeInsets.only(
+                                        left: 10,
+                                      ),
+                                      child: Text(
+                                        e.name!,
+                                        style: AppConstants.labelStyle.copyWith(
+                                          color: AppColors.darkerBlueBorder,
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      margin: EdgeInsets.only(
+                                        left: 20,
+                                      ),
+                                      child: Row(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text('Duration:', style: AppConstants.bulkinDaysTextStyle),
+                                          Text(
+                                            'Held for ${printDuration(
+                                              Duration(
+                                                seconds: e.duration ?? 0,
+                                              ),
+                                            )} \n${e.reps} Reps\n${e.sets} Sets',
+                                            style: AppConstants.bulkinDaysTextStyle.copyWith(
                                               color: AppColors.darkerBlueBorder,
                                             ),
                                           ),
-                                        ),
-                                        Container(
-                                          margin: EdgeInsets.only(
-                                            left: 20,
-                                          ),
-                                          child: Row(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: [
-                                              Text('Duration:', style: AppConstants.bulkinDaysTextStyle),
-                                              Text(
-                                                'Held for ${printDuration(Duration(seconds: e.duration ?? 0))} \n${e.reps} Reps\n${e.sets} Sets',
-                                                style: AppConstants.bulkinDaysTextStyle.copyWith(
-                                                  color: AppColors.darkerBlueBorder,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ))
-                                .toList()),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              )
+                              .toList(),
+                        ),
                         SizedBox(
                           height: 30,
                         ),
@@ -159,19 +166,20 @@ class _ProgramScreenState extends State<ProgramScreen> {
                         //   height: 40,
                         // ),
                         Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: value.user!.programs.exercises
-                                .map(
-                                  (e) => ExcersizeBlockWidget(
-                                    excersize: e.name!,
-                                    sets: e.sets.toString(),
-                                    duration: e.duration ?? 0,
-                                    size: size,
-                                    reps: e.reps!.toString(),
-                                    notes: e.notes!,
-                                  ),
-                                )
-                                .toList()),
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: value.user!.programs.exercises
+                              .map(
+                                (e) => ExcersizeBlockWidget(
+                                  excersize: e.name!,
+                                  sets: e.sets.toString(),
+                                  duration: e.duration ?? 0,
+                                  size: size,
+                                  reps: e.reps!.toString(),
+                                  notes: e.notes!,
+                                ),
+                              )
+                              .toList(),
+                        ),
                       ],
                     ),
                   ),

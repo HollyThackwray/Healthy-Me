@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 
 import 'package:hollythackwray/res/app_colors.dart';
 import 'package:hollythackwray/res/app_constants.dart';
-import 'package:hollythackwray/res/images.dart';
 
 class TopBannerSubHeadingWidget extends StatelessWidget {
   const TopBannerSubHeadingWidget({
@@ -72,8 +71,8 @@ class TopBannerSubHeadingWidget extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                GestureDetector(
-                  onTap: () {
+                IconButton(
+                  onPressed: () {
                     if (afterGym != null) {
                       Get.back();
                       Get.back();
@@ -81,15 +80,11 @@ class TopBannerSubHeadingWidget extends StatelessWidget {
                     }
                     Get.back();
                   },
-                  child: Container(
-                    margin: EdgeInsets.symmetric(horizontal: 20),
-                    child: Image.asset(
-                      Images.back_arrow,
-                      color: Theme.of(context).iconTheme.color,
-                      height: 20,
-                      width: 20,
-                    ),
+                  icon: Icon(
+                    Icons.arrow_back_ios,
+                    size: 30,
                   ),
+                  color: Theme.of(context).iconTheme.color,
                 ),
                 Expanded(
                   child: Text(
@@ -101,15 +96,15 @@ class TopBannerSubHeadingWidget extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                 ),
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 20),
-                  child: Image.asset(
-                    Images.back_arrow,
-                    color: Colors.transparent,
-                    height: 20,
-                    width: 20,
-                  ),
-                )
+                IconButton(
+                    onPressed: () {
+                      Get.back();
+                    },
+                    icon: Icon(
+                      Icons.arrow_back_ios,
+                      size: 30,
+                    ),
+                    color: Colors.transparent),
               ],
             ),
             Center(
