@@ -327,9 +327,8 @@ class FirebaseProvider extends BaseProvider {
     String type,
     UserProgramModel userProgramModel,
   ) async {
-    if (DateTime.fromMillisecondsSinceEpoch(userProgramModel.date).day == DateTime.now().day &&
-        DateTime.fromMillisecondsSinceEpoch(userProgramModel.date).month == DateTime.now().month &&
-        DateTime.fromMillisecondsSinceEpoch(userProgramModel.date).year == DateTime.now().year) {
+    var ref = await FirebaseFirestore.instance.collection('userPrograms').doc(userProgramModel.programId).get();
+    if (ref.exists) {
       try {
         setLoadingState(true);
         await FirebaseFirestore.instance.collection('userPrograms').doc(userProgramModel.programId).update(
